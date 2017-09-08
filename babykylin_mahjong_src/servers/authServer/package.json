@@ -1,0 +1,15 @@
+{
+  "name": "auth-server",
+  "version": "0.2.0",
+  "private": false,
+  "dependencies": {
+    "express": "3.4.8",
+    "generic-pool": "=2.1.1",
+    "mysql": ">=2.0",
+    "bearcat": "^0.4.29",
+    "crc": ">=0.0.1",
+    "pomelo": "^2.2.3",
+    "pomelo-collection": ">=0.1.0",
+    "pomelo-logger": "0.1.x"
+  }
+}
