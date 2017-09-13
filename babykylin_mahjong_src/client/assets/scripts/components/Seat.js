@@ -116,7 +116,7 @@ cc.Class({
         this.node.active = this._userName != null && this._userName != ""; 
     },
     
-    setInfo(name,score,dayingjia){
+    setInfo:function(name,score,dayingjia){
         this._userName = name;
         this._score = score;
         if(this._score == null){

@@ -64,7 +64,7 @@ cc.Class({
         }
     },
     
-    dispatchEvent(event,data){
+    dispatchEvent:function(event,data){
         if(this.dataEventHandler){
             this.dataEventHandler.emit(event,data);
         }    

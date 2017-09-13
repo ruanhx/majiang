@@ -36,7 +36,7 @@ cc.Class({
     },
 
     onBtnOK: function () {
-        var usedTypes = ['xzdd', 'xlch'];
+        var usedTypes = ['zg','xzdd', 'xlch'];
         var type = this.getType();
         if (usedTypes.indexOf(type) == -1) {
             return;
@@ -55,12 +55,9 @@ cc.Class({
             }
         }
         if (type == 0) {
-            return 'xzdd';
+            return 'zg';
         }
-        else if (type == 1) {
-            return 'xlch';
-        }
-        return 'xzdd';
+        return 'zg';
     },
 
     getSelectedOfRadioGroup:function(groupRoot) {
@@ -109,6 +106,8 @@ cc.Class({
         }
         else if (type == 'xlch') {
             conf = this.constructSCMJConf();
+        }else if(type == 'zg'){
+
         }
         conf.type = type;
 

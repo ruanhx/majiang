@@ -40,6 +40,7 @@ cc.Class({
             self.sign = ret.sign;
             cc.vv.http.url = "http://" + cc.vv.SI.hall;
             self.login();
+
         }   
     },
     
@@ -50,6 +51,10 @@ cc.Class({
                 console.log(ret.errmsg);
             }
             else{
+                cc.vv.pomeloNet.login("127.0.0.1",3014,self.account,"123456", function (ret) {
+                    cc.log('login ret:', ret);
+                });
+
                 if(!ret.userid){
                     //jump to register user info.
                     cc.director.loadScene("createrole");
@@ -66,6 +71,9 @@ cc.Class({
                     self.roomData = ret.roomid;
                     self.sex = ret.sex;
                     self.ip = ret.ip;
+                    // cc.vv.net.login("127.0.0.1",3014,self.account,"123456", function (ret) {
+                    //     cc.log('login ret:', ret);
+                    // });
         			cc.director.loadScene("hall");
                 }
             }

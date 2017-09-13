@@ -52,7 +52,7 @@ cc.Class({
         this._quickChatInfo["item8"] = {index:8,content:"不要吵了，专心玩游戏吧！",sound:"fix_msg_9.mp3"};
     },
     
-    getQuickChatInfo(index){
+    getQuickChatInfo:function(index){
         var key = "item" + index;
         return this._quickChatInfo[key];   
     },
