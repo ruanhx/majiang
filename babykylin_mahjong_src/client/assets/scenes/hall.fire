@@ -9554,7 +9554,7 @@
       }
     ],
     "_tag": -1,
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 269
@@ -10296,7 +10296,7 @@
       }
     ],
     "_tag": -1,
-    "_active": false,
+    "_active": true,
     "_components": [],
     "_prefab": null,
     "_id": "157e4AzGy5DVatruawdTZ0X",

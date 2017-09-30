@@ -51,7 +51,7 @@ function initMgr(){
     var Utils = require("Utils");
     cc.vv.utils = new Utils();
 
-    cc.vv.pomeloNet = require('../netutil/net')();
+    cc.vv.pomeloNet = require('pomeloNet')();
 
     //var MJUtil = require("MJUtil");
     //cc.vv.mjutil = new MJUtil();

@@ -105,7 +105,7 @@ exports.createRoom = function(account,userId,roomConf,fnCallback){
 			};
 			reqdata.sign = crypto.md5(userId + roomConf + data.gems + config.ROOM_PRI_KEY);
 			http.get(serverinfo.ip,serverinfo.httpPort,"/create_room",reqdata,function(ret,data){
-				//console.log(data);
+				console.info("111:%j",data);
 				if(ret){
 					if(data.errcode == 0){
 						fnCallback(0,data.roomid);
@@ -130,6 +130,7 @@ exports.enterRoom = function(userId,name,roomId,fnCallback){
 		name:name,
 		roomid:roomId
 	};
+	console.error("4444 %j",reqdata);
 	reqdata.sign = crypto.md5(userId + name + roomId + config.ROOM_PRI_KEY);
 
 	var checkRoomIsRuning = function(serverinfo,roomId,callback){
@@ -163,7 +164,7 @@ exports.enterRoom = function(userId,name,roomId,fnCallback){
 					});
 				}
 				else{
-					console.log(data.errmsg);
+					console.log("333:%j",data.errmsg);
 					fnCallback(data.errcode,null);
 				}
 			}

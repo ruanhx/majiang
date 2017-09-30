@@ -65,6 +65,7 @@ app.get('/create_room',function(req,res){
 	}
 
 	conf = JSON.parse(conf);
+	console.info("222%j",conf);
 	roomMgr.createRoom(userId,conf,gems,serverIp,config.CLIENT_PORT,function(errcode,roomId){
 		if(errcode != 0 || roomId == null){
 			http.send(res,errcode,"create failed.");

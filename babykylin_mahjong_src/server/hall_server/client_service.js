@@ -140,6 +140,7 @@ app.get('/create_private_room',function(req,res){
 			}
 			//创建房间
 			room_service.createRoom(account,userId,conf,function(err,roomId){
+				console.log("####%s",roomId);
 				if(err == 0 && roomId != null){
 					room_service.enterRoom(userId,name,roomId,function(errcode,enterInfo){
 						if(enterInfo){

@@ -1,5 +1,5 @@
 ﻿var db = require('../utils/db');
-var Player = require('./Player');
+
 var rooms = {};
 var creatingRooms = {};
 
@@ -30,13 +30,13 @@ function constructRoomFromDb(dbdata){
         conf:JSON.parse(dbdata.base_info)
     };
 
-    roomInfo.gameMgr = require("./zhuoguiMgr");
-    // if(roomInfo.conf.type == "xlch"){
-    //     roomInfo.gameMgr = require("./gamemgr_xlch");
-    // }
-    // else{
-    //     roomInfo.gameMgr = require("./gamemgr_xzdd");
-    // }
+
+    if(roomInfo.conf.type == "xlch"){
+        roomInfo.gameMgr = require("./gamemgr_xlch");
+    }
+    else{
+        roomInfo.gameMgr = require("./gamemgr_xzdd");
+    }
     var roomId = roomInfo.id;
 
     for(var i = 0; i < 4; ++i){
@@ -66,17 +66,46 @@ function constructRoomFromDb(dbdata){
 }
 
 exports.createRoom = function(creator,roomConf,gems,ip,port,callback){
-	if(roomConf.type == null){
+	if(
+		roomConf.type == null
+		|| roomConf.difen == null
+		|| roomConf.zimo == null
+		|| roomConf.jiangdui == null
+		|| roomConf.huansanzhang == null
+		|| roomConf.zuidafanshu == null
+		|| roomConf.jushuxuanze == null
+		|| roomConf.dianganghua == null
+		|| roomConf.menqing == null
+		|| roomConf.tiandihu == null){
 		callback(1,null);
 		return;
 	}
 
+	if(roomConf.difen < 0 || roomConf.difen > DI_FEN.length){
+		callback(1,null);
+		return;
+	}
+
+	if(roomConf.zimo < 0 || roomConf.zimo > 2){
+		callback(1,null);
+		return;
+	}
+
+	if(roomConf.zuidafanshu < 0 || roomConf.zuidafanshu > MAX_FAN.length){
+		callback(1,null);
+		return;
+	}
+
+	if(roomConf.jushuxuanze < 0 || roomConf.jushuxuanze > JU_SHU.length){
+		callback(1,null);
+		return;
+	}
 	
-	// var cost = JU_SHU_COST[roomConf.jushuxuanze];
-	// if(cost > gems){
-	// 	callback(2222,null);
-	// 	return;
-	// }
+	var cost = JU_SHU_COST[roomConf.jushuxuanze];
+	if(cost > gems){
+		callback(2222,null);
+		return;
+	}
 
 	var fnCreate = function(){
 		var roomId = generateRoomId();
@@ -102,23 +131,41 @@ exports.createRoom = function(creator,roomConf,gems,ip,port,callback){
 						seats:[],
 						conf:{
 							type:roomConf.type,
-							playerCnt:roomConf.cnt,
+							baseScore:DI_FEN[roomConf.difen],
+						    zimo:roomConf.zimo,
+						    jiangdui:roomConf.jiangdui,
+						    hsz:roomConf.huansanzhang,
+						    dianganghua:parseInt(roomConf.dianganghua),
+						    menqing:roomConf.menqing,
+						    tiandihu:roomConf.tiandihu,
+						    maxFan:MAX_FAN[roomConf.zuidafanshu],
+						    maxGames:JU_SHU[roomConf.jushuxuanze],
 						    creator:creator,
 						}
 					};
-					//TODO:
-					// if(roomConf.type == "xlch"){
-					// 	roomInfo.gameMgr = require("./gamemgr_xlch");
-					// }
-					// else{
-					// 	roomInfo.gameMgr = require("./gamemgr_xzdd");
-					// }
-                    roomInfo.gameMgr = require("./zhuoguiMgr").getInstance();
+					
+					if(roomConf.type == "xlch"){
+						roomInfo.gameMgr = require("./gamemgr_xlch");
+					}
+					else{
+						roomInfo.gameMgr = require("./gamemgr_xzdd");
+					}
 					console.log(roomInfo.conf);
-
-					for(var i = 0; i < roomConf.cnt; ++i){
-						var player = new Player({userId:0,seat:i});
-						roomInfo.seats.push(player);
+					
+					for(var i = 0; i < 4; ++i){
+						roomInfo.seats.push({
+							userId:0,
+							score:0,
+							name:"",
+							ready:false,
+							seatIndex:i,
+							numZiMo:0,
+							numJiePao:0,
+							numDianPao:0,
+							numAnGang:0,
+							numMingGang:0,
+							numChaJiao:0,
+						});
 					}
 					
 
@@ -187,7 +234,7 @@ exports.enterRoom = function(roomId,userId,userName,callback){
 			return 0;
 		}
 
-		for(var i = 0; i < room.seats.length; ++i){
+		for(var i = 0; i < 4; ++i){
 			var seat = room.seats[i];
 			if(seat.userId <= 0){
 				seat.userId = userId;
@@ -197,7 +244,7 @@ exports.enterRoom = function(roomId,userId,userName,callback){
 					seatIndex:i
 				};
 				//console.log(userLocation[userId]);
-				// db.update_seat_info(roomId,i,seat.userId,"",seat.name);
+				db.update_seat_info(roomId,i,seat.userId,"",seat.name);
 				//正常
 				return 0;
 			}

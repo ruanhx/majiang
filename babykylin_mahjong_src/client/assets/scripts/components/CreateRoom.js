@@ -109,7 +109,14 @@ cc.Class({
         }else if(type == 'zg'){
 
         }
-        conf.type = type;
+
+        var conf = {
+            di:0.5,
+            gui:2,
+            cnt:5, 
+        };
+
+        conf.type = 'zg';
 
         var data = {
             account: cc.vv.userMgr.account,

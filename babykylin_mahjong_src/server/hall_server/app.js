@@ -1,7 +1,7 @@
 var client_service = require("./client_service");
 var room_service = require("./room_service");
 
-var configs = require(process.argv[2]);
+var configs = require('../configs_win.js');
 var config = configs.hall_server();
 
 var db = require('../utils/db');

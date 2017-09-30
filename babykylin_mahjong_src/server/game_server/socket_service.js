@@ -4,6 +4,7 @@ var db = require('../utils/db');
 var tokenMgr = require('./tokenmgr');
 var roomMgr = require('./roommgr');
 var userMgr = require('./usermgr');
+var zhuoguiMgr = require('./zhuoguiMgr');
 var io = null;
 exports.start = function(config,mgr){
 	io = require('socket.io')(config.CLIENT_PORT);
@@ -104,7 +105,7 @@ exports.start = function(config,mgr){
 			socket.gameMgr = roomInfo.gameMgr;
 
 			//玩家上线，强制设置为TRUE
-			socket.gameMgr.setReady(userId);
+			zhuoguiMgr.getInstance().setReady(userId);
 
 			socket.emit('login_finished');
 

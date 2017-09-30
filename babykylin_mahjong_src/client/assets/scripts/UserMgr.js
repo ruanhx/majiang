@@ -51,9 +51,9 @@ cc.Class({
                 console.log(ret.errmsg);
             }
             else{
-                cc.vv.pomeloNet.login("127.0.0.1",3014,self.account,"123456", function (ret) {
-                    cc.log('login ret:', ret);
-                });
+                // cc.vv.pomeloNet.login("127.0.0.1",3014,self.account,"123456", function (ret) {
+                //     cc.log('login ret:', ret);
+                // });
 
                 if(!ret.userid){
                     //jump to register user info.
