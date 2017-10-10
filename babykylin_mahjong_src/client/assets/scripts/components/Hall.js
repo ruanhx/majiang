@@ -121,6 +121,7 @@ cc.Class({
             sign:cc.vv.userMgr.sign,
         };
         cc.vv.http.sendRequest("/get_user_status",data,onGet.bind(this));
+        // pomelo.request("area.playerHandler.getUserStatus",data,onGet.bind(this));
     },
     
     refreshGemsTip:function(){

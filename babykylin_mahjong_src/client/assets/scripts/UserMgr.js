@@ -47,7 +47,7 @@ cc.Class({
     login:function(){
         var self = this;
         var onLogin = function(ret){
-            if(ret.errcode !== 0){
+            if(ret.errcode != 0){
                 console.log(ret.errmsg);
             }
             else{
@@ -80,8 +80,50 @@ cc.Class({
         };
         cc.vv.wc.show("正在登录游戏");
         cc.vv.http.sendRequest("/login",{account:this.account,sign:this.sign},onLogin);
+        // this.pomeloLogin(this.account,onLogin);
     },
     
+    pomeloLogin:function(account,cb){
+        // 启动网络连接  
+        var acc = account;
+        var pwd = "123456";
+        var url = "127.0.0.1";
+        var port = 3014;
+        var self = this;
+        pomelo.init({
+            host : url,
+            port : port
+        }, function () {
+            var route = 'gate.gateHandler.queryEntry';
+            pomelo.request(route, {uid:acc}, function (data) {
+                cc.log("####"+data);
+                if(data.code==200){
+                    pomelo.init({
+                        host : data.host,
+                        port : data.port
+                    }, function () {
+                    var route = 'connector.entryHandler.enter';
+                    pomelo.request(route, {account:acc}, function (data) {
+                        // cc.log("connector:"+data.msg);
+                        cb(data);
+                    })
+                })
+                }
+                // pomelo.disconnect(function () {
+                //     pomelo.init({
+                //         host : host2,
+                //         port : port2,
+                //         reconnect : true
+                //     }, function () {
+                //     })
+                // });
+            });
+            
+        });
+     },
+
+
+
     create:function(name){
         var self = this;
         var onCreate = function(ret){
