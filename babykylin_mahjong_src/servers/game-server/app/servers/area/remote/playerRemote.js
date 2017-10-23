@@ -1,54 +1,55 @@
-var bearcat = require('bearcat');
-
-var PlayerRemote = function(app) {
-	this.app = app;
-	this.utils = null;
-	this.consts = null;
-	this.areaService = null;
-}
-
 /**
- * Player exits. It will persistent player's state in the database.
- *
- * @param {Object} args
- * @param {Function} cb
- * @api public
+ * Created by employee11 on 2015/12/24.
  */
-PlayerRemote.prototype.playerLeave = function(args, cb) {
-	var areaId = args.areaId;
-	var playerId = args.playerId;
-	var player = this.areaService.getPlayer(playerId);
 
-	if (!player) {
-		this.utils.invokeCallback(cb);
-		return;
-	}
-	this.areaService.removePlayer(playerId);
-	this.areaService.getChannel().pushMessage({
-		route: 'onUserLeave',
-		code: this.consts.MESSAGE.RES,
-		playerId: playerId
-	});
-	this.utils.invokeCallback(cb);
+var logger = require('pomelo-logger').getLogger(__filename);
+var area = require('../../../domain/area/area');
+var Code = require('../../../../shared/code');
+var utils = require('../../../util/utils');
+
+var Handler = function(app){
+    this.app = app;
 };
 
-module.exports = function(app) {
-	return bearcat.getBean({
-		id: "playerRemote",
-		func: PlayerRemote,
-		args: [{
-			name: "app",
-			value: app
-		}],
-		props: [{
-			name: "areaService",
-			ref: "areaService"
-		}, {
-			name: "utils",
-			ref: "utils"
-		}, {
-			name: "consts",
-			ref: "consts"
-		}]
-	});
+module.exports = function(app){
+    return new Handler(app);
+};
+
+var pro = Handler.prototype;
+
+pro.playerLeave = function(args,cb){
+    var player = area.getPlayer(args.playerId);
+
+    if(player && player.frontendId === args.frontendId && player.sessionId === args.sessionId){
+        area.removePlayer(args.playerId);
+        logger.debug('playerLeave ok!playerId = %s', args.playerId);
+    }
+    utils.invokeCallback(cb);
+};
+
+pro.getPlayerEndlessBuff = function (args,cb) {
+    var player = area.getPlayer(args.playerId);
+    if(player){
+        utils.invokeCallback(cb,null,player.effectBuffIds);
+    }else {
+        utils.invokeCallback(cb,null,null);
+    }
+};
+
+pro.playerRemove = function (args,cb) {
+    var player = area.getPlayer(args.playerId);
+    if (player){
+        player.flush(cb);
+    }
+    utils.invokeCallback(cb);
+};
+
+pro.progressMission = function (args,cb) {
+    var player = area.getPlayer(args.playerId);
+    if (!player){
+        cb(Code.FAIL);
+        return;
+    }
+    player.missionMgr.progressUpdate(args.type,args.valueType,args.progress,args.paramerter);
+    utils.invokeCallback(cb);
 };

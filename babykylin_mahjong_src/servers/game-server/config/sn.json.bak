@@ -1,0 +1,14 @@
+{
+  "default": {
+    "enable": true,
+    "uri": "http://=host=:=port=/getSNAward?sn=",
+    "code": {
+      "ok": 200,
+      "invalid": 500
+    },
+    "type": {
+      "world": 1,
+      "player": 2
+    }
+  }
+}

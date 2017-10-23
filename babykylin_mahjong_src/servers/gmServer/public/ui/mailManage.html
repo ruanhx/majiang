@@ -1,0 +1,361 @@
+
+<div class="tab">
+	<h1>位置：服务器后台管理->邮件管理</h1>
+	<div id="channelServer" ></div>
+	<br>
+	<div >
+		<h2>邮件内容:</h2>
+		<table>
+			<tr id="zhuti_tr">
+				<td>
+					<label>邮件主题:</label>
+				</td>
+				<td>
+					<input type="text" id="zhuti_mail" size="160"/>
+				</td>
+			</tr>
+
+			<tr id="source_tr">
+				<td>
+					<label>邮件来源:</label>	
+				</td>
+				<td>				
+					<input type="text" id="source_mail" size="160"/>	
+				</td>
+			</tr>
+			
+			
+			<tr id="title_tr">
+				<td>
+					<label>邮件正文抬头:</label>
+				</td>
+				<td>
+					<input type="text" id="title_mail" size="160"/>					
+				</td>
+			</tr>
+			
+			<tr id="content_tr">
+				<td>
+					<label>邮件正文内容:</label>
+				</td>
+				<td>
+					<textarea rows="15" cols="160" id="content_mail"></textarea>			
+				</td>
+			</tr>
+			
+			
+			<tr id="subjoin_tr">
+				<td>
+					<label>邮件附件id(多个时#隔开):</label>
+				</td>
+				<td>	
+					<input type="text" id="subjoin_mail" size="160"/>						
+				</td>
+			</tr>
+
+			<tr id="life_tr">
+				<td>
+					<label>邮件保存时间(配置秒):</label>
+				</td>
+				<td>
+					<input type="text" id="life_mail" size="40"/>
+				</td>
+			</tr>
+			
+		</table>
+	</div>
+	
+	<br>
+	<div >
+		<h2>邮件发送目标(多人时#隔开):</h2>
+		<table>
+			<!--<tr id="account_tr">
+				<td>
+					<label>玩家账号:</label>
+				</td>
+				<td>
+					<input type="text" id="account_mail" size="45"/>
+				</td>				
+				<td>
+					<button id="account_mail_button" >发送</button>
+				</td>
+			</tr>-->
+
+			<tr id="playerid_tr">
+				<td>
+					<label>玩家ID:</label>
+				</td>
+				<td>				
+					<input type="text" id="playerid_mail" size="45"/>	
+				</td>
+				<td>
+					<button id="playerid_mail_button" >发送</button>
+				</td>
+			</tr>
+			
+			
+			<tr id="name_tr">
+				<td>
+					<label>玩家姓名:</label>
+				</td>
+				<td>
+					<input type="text" id="name_mail" size="45"/>					
+				</td>
+				<td>
+					<button id="name_mail_button" >发送</button>
+				</td>
+			</tr>
+
+			<!--<tr id="level_tr">
+				<td>
+					<label>玩家等级段:</label>
+				</td>
+				<td>
+					<input type="text" id="level_mail1" size="15"/>	
+					<label>~</label>
+					<input type="text" id="level_mail2" size="15"/>	
+				</td>
+				<td>
+					<button id="level_mail_button" >发送</button>
+				</td>
+			</tr>-->
+			<tr id="allServer_tr">
+				<td>
+					<label>全服发送:</label>
+				</td>
+				<!--<td>-->
+					<!--<input type="text" id="allServer_mail" size="45"/>-->
+				<!--</td>-->
+				<td>
+					<button id="allServer_mail_button" >发送</button>
+				</td>
+
+			</tr>
+			
+		</table>
+	</div>
+	
+	<br><br>
+</div><!-- Introduction Page Ends -->
+<script>
+	$(document).ready(function(e) {
+		$("div#channelServer").load('channelServer.html?mailManage',
+			function(response,status,xhr)
+			{
+				$("#channelSelect").append('<option value="0" selected="selected">全部</option>');	
+				$("#severSelect").append('<option value="0" selected="selected">全部</option>');		
+			}
+		);
+		$("#account_mail_button").click(function(){
+			if($.trim($("#account_mail").val()) == ''){
+				alert("帐号不能为空");
+			}else{
+				sendMail(0);
+			}
+		});
+		$("#playerid_mail_button").click(function(){
+			if($.trim($("#playerid_mail").val()) == ''){
+				alert("角色id不能为空");
+			}else{
+				sendMail(1);
+			}
+		});
+		$("#name_mail_button").click(function(){
+			if($.trim($("#name_mail").val()) == ''){
+				alert("角色名称不能为空");
+			}else{
+				sendMail(2);
+			}
+		});
+		$("#level_mail_button").click(function(){			
+			//sendMail(3);
+			alert("该功能暂不开放");
+		});
+		$("#allServer_mail_button").click(function(){
+			sendMail(4);
+		});
+
+		
+		$("input").focus(function(){
+			$("#account_tr td").remove("#notice_sending");
+			$("#playerid_tr td").remove("#notice_sending");
+			$("#name_tr td").remove("#notice_sending");
+			$("#level_tr td").remove("#notice_sending");
+            $("#allServer_tr td").remove("#notice_sending");
+		});
+		
+		function sendMail(type)//发送类型：0=账号，1=玩家id，2=玩家名称 ，3=等级范围 ,4=全服邮件
+		{
+			if(false)
+			{
+				alert("只能是数字");
+			}
+			else
+			{
+				var zhuti_mail = $.trim($("#zhuti_mail").val());
+				var source_mail = $.trim($("#source_mail").val());
+				var title_mail = $.trim($("#title_mail").val());
+				var content_mail = $.trim($("#content_mail").val());
+				var subjoin_mail = $.trim($("#subjoin_mail").val());
+                var life_mail = $.trim($("#life_mail").val());
+				zhuti_mail = zhuti_mail;//encodeUTF8(zhuti_mail);
+				source_mail = source_mail;//encodeUTF8(source_mail);
+				title_mail = title_mail;//encodeUTF8(title_mail);
+				content_mail = content_mail;//encodeUTF8(content_mail);
+				subjoin_mail = subjoin_mail;//encodeUTF8(subjoin_mail);
+                life_mail = life_mail;
+				
+				if(source_mail == "")
+				{
+					source_mail = "系统邮件";
+				}
+				
+				if(zhuti_mail == "")
+				{
+					alert("主题不能为空");
+					return;
+				}
+				if(content_mail == "")
+				{
+					alert("正文内容不能为空");
+					return;
+				}
+				
+				var channelId = $("#channelSelect  option:selected").val();
+				var serverId = $("#severSelect  option:selected").val();
+				if(channelId == null)
+				{
+					return;
+				}
+				var objjson = '{';
+				objjson += '"channelIds":"'+channelId+'",';
+				if(channelId != 0)
+					objjson += '"serverIds":"'+serverId+'",';
+
+				var mailInfo = {};
+				mailInfo.title = zhuti_mail;
+				mailInfo.sender = source_mail;
+				mailInfo.info = title_mail +"\t\n"+ content_mail;
+				mailInfo.drop = subjoin_mail;
+                mailInfo.serverMail = 0;
+				mailInfo.life = life_mail;
+				if(type == 0)
+				{
+					mailInfo.account = $.trim($("#account_mail").val());
+					$("#account_tr").append("<td id='notice_sending' style='color:#CCCC00'>*发送中</td>");
+				}
+				else if(type == 1)
+				{
+					mailInfo.targetID = $.trim($("#playerid_mail").val());
+					$("#playerid_tr").append("<td id='notice_sending' style='color:#CCCC00'>*发送中</td>");
+				}
+				else if(type == 2)
+				{
+					var targetName = $.trim($("#name_mail").val());
+					targetName = targetName;//encodeUTF8(targetName);
+					mailInfo.targetName = targetName;
+					$("#name_tr").append("<td id='notice_sending' style='color:#CCCC00'>*发送中</td>");
+				}
+				else if(type == 3)
+				{
+					mailInfo.less = $.trim($("#level_mail1").val());
+					mailInfo.greater = $.trim($("#level_mail2").val());
+					$("#level_tr").append("<td id='notice_sending' style='color:#CCCC00'>*发送中</td>");
+				}
+                else if(type == 4)
+                {
+//                    mailInfo.targetID = $.trim($("#playerid_mail").val());
+					  mailInfo.serverMail = 1;
+                    $("#allServer_tr").append("<td id='notice_sending' style='color:#CCCC00'>*发送中</td>");
+                }
+				objjson += '"mailInfo":"'+encodeUTF8(JSON.stringify(mailInfo))+'"';
+				objjson += '}';
+				
+				//console.log(mailInfo);
+				console.log(objjson);
+				
+				//var xxx = JSON.parse(objjson);
+			  $.post("/mailManage",
+					  JSON.parse(objjson),
+					  function(data,status){
+						console.log(data);
+						$("#account_tr td").remove("#notice_sending");
+						$("#playerid_tr td").remove("#notice_sending");
+						$("#name_tr td").remove("#notice_sending");
+						$("#level_tr td").remove("#notice_sending");
+						$("#allServer_tr td").remove("#notice_sending");
+						if(status=="success")
+						{
+							if(data.code == CODE.OK)
+							{
+								switch(type)
+								{
+								 case 0:
+									$("#account_tr").append("<td id='notice_sending' style='color:green'>*发送成功</td>");
+									break;
+								 case 1:
+									$("#playerid_tr").append("<td id='notice_sending' style='color:green'>*发送成功</td>");
+									break;
+								 case 2:
+									$("#name_tr").append("<td id='notice_sending' style='color:green'>*发送成功</td>");
+									break;
+								 case 3:
+                                    $("#level_tr").append("<td id='notice_sending' style='color:green'>*发送成功</td>");
+                                    break;
+                                 case 4:
+                                    $("#allServer_tr").append("<td id='notice_sending' style='color:green'>*发送成功</td>");
+                                    break;
+								}
+								var Str = "服务器返回：";
+								$.each(data.results, function(i, item){ 
+									$.each(serverAllData, function(j, itemJ){ 
+										if(itemJ.ID == item.serverId && itemJ.channelId == item.channelId)
+										{
+											Str += itemJ.channelName;											
+											Str += "-";
+											Str += itemJ.name;											
+											Str += "-";
+											if(item.success)
+												Str += "success";
+											else												
+												Str += "failed";
+											Str += "  ";
+										}
+									});
+								});
+								alert(Str);
+							}
+							else 
+							{
+								switch(type)
+								{
+								 case 0:
+									$("#account_tr").append("<td id='notice_sending' style='color:red'>*发送失败</td>");
+									break;
+								 case 1:
+									$("#playerid_tr").append("<td id='notice_sending' style='color:red'>*发送失败</td>");
+									break;
+								 case 2:
+									$("#name_tr").append("<td id='notice_sending' style='color:red'>*发送失败</td>");
+									break;
+								 case 3:
+                                     $("#level_tr").append("<td id='notice_sending' style='color:red'>*发送失败</td>");
+                                     break;
+                                 case 4:
+                                     $("#allServer_tr").append("<td id='notice_sending' style='color:red'>*发送失败</td>");
+                                     break;
+								}
+							}
+						}
+						else
+						{
+							console.log("加载数据失败。");
+						}
+					  });
+				
+			}
+		}
+	});
+	
+	
+</script>

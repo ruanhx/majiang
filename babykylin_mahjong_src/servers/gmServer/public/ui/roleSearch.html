@@ -1,0 +1,173 @@
+
+<div class="tab">
+	<h1>位置：服务器后台管理->玩家信息查询</h1>
+	<div id="channelServer" ></div>
+	
+	<br>
+
+	
+	<br>	
+	<div>
+		<label>筛选目标:</label>
+		<!--<input name="targetRadio" type="radio" value="0" checked="true"  />全部账号-->
+		<!--<input name="targetRadio" type="radio" value="1"   />指定账号-->
+        <input name="targetRadio" type="radio" value="2"   />指定玩家id
+        <input name="targetRadio" type="radio" value="3"   />指定玩家名
+		<input type="text" id="targetText"/>
+		<br>
+		<button id="search">查询</button>
+	</div>
+
+	<div>
+		<label>搜索结果:</label>
+		<table id="searchTable"  class="display" cellspacing="0" width="100%" align="center">
+			<thead>
+				<tr>
+					<th>玩家ID</th>
+					<th>玩家名字</th><!--账号-->
+					<th>注册时间</th>
+					<th>累计充值金额</th>
+					<th>钻石数量</th>
+					<th>金币数量</th>
+					<th>体力值 </th>
+					<th>竞技奖杯数量 </th>
+					<th>青铜徽章数量</th>
+					<th>白银徽章数量 </th>
+					<th>黄金徽章数量 </th>
+					<th>历史最大战力</th>
+					<th>无尽历史最高得分</th>
+					<th>无尽当前得分</th>
+					<th>周卡到期时间</th>
+					<th>月卡到期时间</th>
+					<th>永恒卡到期时间</th>
+					<th>历史最高段位ID</th>
+					<th>当前段位ID</th>
+					<th>当前段位积分</th>
+				</tr>
+			</thead>
+			<tbody>
+
+			</tbody>
+		</table>
+	</div>
+	<br><br><br>
+	
+</div><!-- Introduction Page Ends -->
+<script>
+	var table;
+	$(document).ready(function(e) {
+//		$("div#channelServer").load('channelServer.html?roleSearch ');
+        $("div#channelServer").load('channelServer.html?roleSearch',
+            function(response,status,xhr)
+            {
+                $("#channelSelect").append('<option value="0" selected="selected">全部</option>');
+                $("#severSelect").append('<option value="0" selected="selected">全部</option>');
+            }
+        );
+		table = $("#searchTable").DataTable({
+		});
+
+		$("#search").click(function(){
+
+            console.log("#####&&");
+			var type = $('input[name="targetRadio"]:checked').val();
+			
+			var channelId = $("#channelSelect  option:selected").val();
+			var serverId = $("#severSelect  option:selected").val();
+			if(channelId == null)
+			{
+                console.log("#####");
+				return;
+			}
+			var objjson = '{';
+			objjson += '"channelIds":"'+channelId+'",';
+			if(channelId != 0)
+				objjson += '"serverIds":"'+serverId+'",';
+
+			if(type == 2)//指定玩家id
+				objjson += '"playerId":"'+$("#targetText").val()+'"';
+			else if(type == 3)//指定玩家名
+				objjson += '"playerName":"'+$("#targetText").val()+'"';
+				
+			objjson += '}';
+			$.post("/roleManager.getRoleInfo",
+					  JSON.parse(objjson),
+				function(data,status){
+					console.log("/roleManager.getRoleInfo:status-" + status + "  data.code-" + data.code);
+					console.log(data);
+					if(status == "success")
+					{
+						if(data.code == CODE.OK)
+						{
+							
+							table.clear();
+							$.each(data.results, function(i, item){
+                                console.log("$$$%j",item);
+//								$.each(item.playerInfo, function(J, itemJ){
+									table.row.add( [
+                                        item.playerInfo.id,
+                                        item.playerInfo.playername,
+                                        item.playerInfo.createTime,
+                                        item.playerInfo.totalRechargeNum,
+                                        item.playerInfo.diamondCnt,
+                                        item.playerInfo.goldCnt,
+                                        item.playerInfo.energy,
+                                        item.playerInfo.comPoint,
+                                        item.playerInfo.bronzeCoin,
+                                        item.playerInfo.silverCoin,
+                                        item.playerInfo.goldCoin,
+                                        item.playerInfo.highPower,
+                                        item.playerInfo.highScore,
+                                        item.playerInfo.weekHighScore,
+                                        item.playerInfo.weekCardEndTick,
+                                        item.playerInfo.monthCardEndTick,
+                                        item.playerInfo.foreverCardEndTick,
+                                        item.playerInfo.highDivision,
+                                        item.playerInfo.divisionId,
+                                        item.playerInfo.divScore,
+									] );
+//								});
+							});
+							table.draw();
+                            alert("获取信息成功");
+						}
+						else 
+						{
+							alert("获取信息失败");
+						}
+					}
+					else
+					{
+						console.log("加载数据失败。");
+					}
+					
+				}
+			);
+		});
+		
+		// 全选
+//		$("#choseAll").click(function(){
+//
+//			$(".chkItem").prop("checked",'true');//全选
+//			checkClumnsShowHide();
+//		})
+		
+		$(".chkItem").change(function(){
+			//console.log($(this).val()+ " "+ $(this).prop("checked"));
+			checkClumnsShowHide();
+		});
+		
+		function checkClumnsShowHide()
+		{
+		
+			$(".chkItem").each(function(i,item) {
+				//console.log(item.value + " "+ item.checked);
+				var column = table.column(item.value);
+				column.visible(item.checked);
+			});
+		}
+		
+	});
+	
+	
+</script>

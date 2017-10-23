@@ -1,0 +1,38 @@
+{
+    "default": {
+        "enable": true,
+        "url": "http://127.0.0.1:3003/authCheck",
+        "method": "POST",
+        "prefix": "default_"
+    },
+    "guonei_ios": {
+        "enable": true,
+        "url": "http://127.0.0.1:3003/authCheck",
+        "method": "POST",
+        "prefix": "guonei_ios_"
+    },
+    "taiqi_guonei_ios": {
+        "enable": true,
+        "url": "http://usdk.taiqigame.com/channel/%s/checkLogin",
+        "method": "POST",
+        "prefix": "taiqi_guonei_ios_"
+    },
+    "taiqi_hudong_android": {
+        "enable": true,
+        "appId":"1000146",
+        "cpId":"1024",
+        "urlDebug": "http://krtestusdk.uqsoft.com/upay_sdk/channel/%s/checkLogin",
+        "urlRelease": "http://krusdk.uqsoft.com/channel/%s/checkLogin",
+        "method": "POST",
+        "prefix": "taiqi_hudong_android_"
+    },
+     "taiqi_inland_android": {
+         "enable": true,
+         "appId":"1000151",
+         "cpId":"1024",
+         "urlDebug": "http://testweb.taiqigame.com/upay_sdk/channel/%s/checkLogin",
+         "urlRelease": "http://usdk.taiqigame.com/channel/%s/checkLogin",
+         "method": "POST",
+         "prefix": "taiqi_inland_android_"
+     }
+}

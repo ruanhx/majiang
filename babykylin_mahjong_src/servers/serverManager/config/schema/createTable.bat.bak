@@ -1,0 +1,9 @@
+@ECHO OFF
+SET BIN="C:\Program Files\MySQL\MySQL Server 5.1\bin\mysql"
+SET IP=localhost
+SET USER=root
+SET PSW=123456
+SET SCRIPT=./createTable.sql
+SET LOG=./createTable.sql.log
+%BIN% -h %IP% -u %USER% -p%PSW% -e "CREATE DATABASE IF NOT EXISTS ServerManager2;" && %BIN% -h %IP% --database=ServerManager2 -u %USER% -p%PSW% <%SCRIPT% >%LOG% -f --batch --silent --show-warnings --line-numbers --table --column-names
+PAUSE

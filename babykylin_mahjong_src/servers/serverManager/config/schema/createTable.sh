@@ -1,0 +1,3 @@
+#!/bin/sh
+mysql -u root -p123456 -e "CREATE DATABASE IF NOT EXISTS serverManager3;" && mysql -u root -p123456 --database=serverManager3 <./createTable.sql >createTable.log -f --batch --silent --show-warnings --line-numbers --table --column-names
+mysql -u root -p123456 -e "CREATE DATABASE IF NOT EXISTS serverManager3;" && mysql -u root -p123456 --database=serverManager3 <./createTable4Log.sql >createTable4Log.log -f --batch --silent --show-warnings --line-numbers --table --column-names

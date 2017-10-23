@@ -1,0 +1,8 @@
+#!/bin/sh
+
+dbs=('GameLog' 'GameUser' 'ServerManager' 'GameStat')
+
+for db in ${dbs[@]}
+do
+	/usr/bin/mysql -uuser -ppassword ${db} < ${db}.sql
+done

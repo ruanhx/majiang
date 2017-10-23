@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>天瞳网络--GM</title>
+    <link href="mycss.css" rel="stylesheet">
+    <link href="jquery-ui.css" rel="stylesheet">
+    <script src="external/jquery/jquery.js"></script>
+    <script src="jquery-ui.js"></script>
+    <script src="myjs.js"></script>
+    <script src="code.js"></script>
+
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="dataTables/css/jquery.dataTables.css">
+
+    <!-- jQuery
+    <script type="text/javascript" charset="utf8" src="dataTables/js/jquery.js"></script>-->
+
+    <!-- DataTables -->
+    <script type="text/javascript" charset="utf8" src="dataTables/js/jquery.dataTables.js"></script>
+
+</head>
+
+<body>
+<table cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+        <th style="vertical-align:top">
+            <div>
+                <ul id="tab-menu">
+                    <li id="li_1"><a onclick="onMenuItemClick('li_1',this)"><b>账号管理</b></a></li>
+                    <li id="li_2"><a onclick="onMenuItemClick('li_2',this)"><b>全服统计</b></a></li>
+                    <!--<li id="li_3"><a  onclick="onMenuItemClick('li_3',this)"><b>充值统计</b></a></li>
+                    <li id="li_4"><a  onclick="onMenuItemClick('li_4',this)"><b>消费统计</b></a></li>
+                    <li id="li_5"><a  onclick="onMenuItemClick('li_5',this)"><b>在线与登录</b></a></li>-->
+                    <li id="li_6"><a onclick="onMenuItemClick('li_6',this)"><b>公告管理</b></a></li>
+                    <li id="li_7"><a onclick="onMenuItemClick('li_7',this)"><b>邮件管理</b></a></li>
+                    <li id="li_8"><a onclick="onMenuItemClick('li_8',this)"><b>活动管理</b></a></li>
+                    <!--<li id="li_9"><a  onclick="onMenuItemClick('li_9',this)"><b>商店管理</b></a></li>
+                    <!--<li id="li_10"><a onclick="onMenuItemClick('li_10',this)"><b>客服后台监控</b></a></li>&ndash;&gt;-->
+                    <li id="li_11"><a onclick="onMenuItemClick('li_11',this)"><b>玩家充值查询</b></a></li>
+                    <li id="li_12"><a onclick="onMenuItemClick('li_12',this)"><b>客服礼包查询</b></a></li>
+                    <!--li id="li_13"><a onclick="onMenuItemClick('li_13',this)"><b>客服信息查询</b></a></li>-->
+                    <!--<li id="li_14"><a onclick="onMenuItemClick('li_14',this)"><b>卡牌/物品信息查询</b></a></li>-->
+                    <!--<li id="li_15"><a onclick="onMenuItemClick('li_15',this)"><b>异常战斗查询</b></a></li>-->
+                    <!--<li id="li_16"><a onclick="onMenuItemClick('li_16',this)"><b>异常账号跟踪</b></a></li>&ndash;&gt;-->
+                    <li id="li_17"><a onclick="onMenuItemClick('li_17',this)"><b>玩家信息查询</b></a></li>
+                </ul>
+            </div>
+        </th>
+        <th align="left">
+            <div id="content" style="margin:0;padding:0;">
+            </div>
+        </th>
+    </tr>
+</table>
+
+<div id="loginDialog" title="">
+    <label>用户名：</label>&nbsp;<input type="text" id="username"/><br><br>
+    <label>密&nbsp&nbsp码：</label>&nbsp;<input type="password" id="password"/>
+</div>
+
+
+<script>
+    var userName;
+    var px;//权限级别
+    var contentHtml = "";
+    function onMenuItemClick(menuItemName, parentNode) {
+        //点中文字才改变状态图标
+        $('#tab-menu > li').removeClass('selected');
+        $(parentNode.parentNode).addClass('selected');
+        //console.log(userName);
+        //if(userName != null)
+        {
+            $("div#content").empty();
+            switch (menuItemName) {
+                case "li_1":
+                    setContentHtml("account");
+                    $("div#content").load('account.html');
+                    break;
+                case "li_2":
+                    setContentHtml("allServerStatistics");
+                    $("div#content").load('allServerStatistics.html');
+                    break;
+                case "li_3":
+                    setContentHtml("payStatistics");
+                    $("div#content").load('payStatistics.html');
+                    break;
+                case "li_4":
+                    setContentHtml("consumeStatistics");
+                    $("div#content").load('consumeStatistics.html');
+                    break;
+                case "li_5":
+                    setContentHtml("onlineAndLogin");
+                    $("div#content").load('onlineAndLogin.html');
+                    break;
+                case "li_6":
+                    setContentHtml("annonceManage");
+                    $("div#content").load('annonceManage.html');
+                    break;
+                case "li_7":
+                    setContentHtml("mailManage");
+                    $("div#content").load('mailManage.html');
+                    break;
+                case "li_8":
+                    setContentHtml("activityManage");
+                    $("div#content").load('activityManage.html');
+                    break;
+                case "li_9":
+                    setContentHtml("shopManage");
+                    $("div#content").load('shopManage.html');
+                    break;
+                case "li_10":
+                    setContentHtml("backstageManage");
+                    $("div#content").load('backstageManage.html');
+                    break;
+                case "li_11":
+                    setContentHtml("paySearch");
+                    $("div#content").load('paySearch.html');
+                    break;
+                case "li_12":
+                    setContentHtml("presentSearch");
+                    $("div#content").load('presentSearch.html');
+                    break;
+                case "li_13":
+                    setContentHtml("messageSearch");
+                    $("div#content").load('messageSearch.html');
+                    break;
+                case "li_14":
+                    setContentHtml("itemCardSearch");
+                    $("div#content").load('itemCardSearch.html');
+                    break;
+                case "li_15":
+                    setContentHtml("unusualFightSearch");
+                    $("div#content").load('unusualFightSearch.html');
+                    break;
+                case "li_16":
+                    setContentHtml("unusualAccountSearch");
+                    $("div#content").load('unusualAccountSearch.html');
+                    break;
+                case "li_17":
+                    setContentHtml("roleSearch");
+                    $("div#content").load('roleSearch.html');
+                    break;
+            }
+        }
+        //else
+        {
+            //makeDialog();
+        }
+    }
+    $("#loginDialog").hide();
+    //makeDialog();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,282 @@
+
+<div class="tab">
+	<h1>位置：服务器后台管理->异常账号跟踪</h1>
+	<div id="channelServer" ></div>
+	
+	
+	<br>	
+	<div>
+		<label>筛选目标:</label>
+		<input name="targetRadio" id="radioAllAcct" type="radio" value="0" checked="true"  />全部账号
+		<input name="targetRadio" type="radio" value="1"  />指定账号
+        <input name="targetRadio" type="radio" value="2"   />指定玩家id
+        <input name="targetRadio" type="radio" value="3"   />指定玩家名
+		<input type="text" id="targetText"/>
+		<br>
+		<button id="search">查询</button>
+	</div>
+	
+	<div id="add">
+		<label>添加目标:</label>
+		<button id="addButton">添加</button>
+	</div>
+	
+	<br>
+	
+	<!--<div>
+		<button id="choseAll">全选</button>
+        <input class="chkItem" type="checkbox" value="3" checked="true" />等级信息
+    </div>-->
+	
+	<br>
+	<div>
+		<label>搜索结果:</label>
+		<table id="searchTable"  class="display" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th>账号</th>
+					<th>玩家id</th>
+					<th>玩家名</th>
+					<th>等级信息</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>	
+	</div>
+	<br><br><br>
+	
+</div><!-- Introduction Page Ends -->
+<script>
+	var table;
+	$(document).ready(function(e) {
+		$("div#channelServer").load('channelServer.html?unusualAccountSearch');
+		table = $("#searchTable").DataTable({
+		"language": {
+				"zeroRecords": "未找到该玩家"
+			  },
+		columnDefs:[
+				{
+				"targets": 4,
+				"sortable":false,
+				"render": function ( data, type, full, meta ) {
+						return '<button onclick=moveOut("'+full+'")>移除</button>';//full.name
+					}
+				},
+			]
+		});
+		
+		$("#search").click(function(){
+			var type = $('input[name="targetRadio"]:checked').val();
+			
+			var channelId = $("#channelSelect  option:selected").val();
+			var serverId = $("#severSelect  option:selected").val();
+			if(channelId == null)
+			{
+				return;
+			}
+			var objjson = '{';
+			objjson += '"channelIds":"'+channelId+'",';
+			if(channelId != 0)
+				objjson += '"serverIds":"'+serverId+'",';
+				
+			if(type == 0)//全部帐号
+				objjson = objjson.substr(0,objjson.length - 1);
+				
+			else if(type == 1)//指定帐号
+				objjson += '"username":"'+$("#targetText").val()+'"';
+			else if(type == 2)//指定玩家id
+				objjson += '"playerId":"'+$("#targetText").val()+'"';
+			else if(type == 3)//指定玩家名
+			{
+				objjson += '"playerName":"'+$("#targetText").val()+'"';
+				//alert("不能使用玩家名进行查询");
+				//return;
+			}
+				
+			objjson += '}';
+			$.post("/battleException.getTraceRecord",
+					  JSON.parse(objjson),
+				function(data,status){
+					console.log("battleException.getTraceRecord:status-" + status + "  data.code-" + data.code);
+					console.log(data);
+					if(status == "success")
+					{
+						if(data.code == CODE.OK)
+						{	
+							table.clear();
+							if(data.results[0])
+							{						
+								$.each(data.results[0].results, function(i, item){ 
+									table.row.add( [
+										item.username,
+										item.playerId,
+										item.playerName,
+										item.level,
+										"1"
+									] );
+								});
+							}
+							table.draw();
+						}
+						else 
+						{
+							alert("获取信息失败");
+						}
+					}
+					else
+					{
+						console.log("加载数据失败。");
+					}
+					
+				}
+			);
+		});
+		
+		$("#addButton").click(function(){
+			if(false)
+			{
+				alert("无效");
+			}
+			else
+			{	
+				
+				var type = $('input[name="targetRadio"]:checked').val();
+			
+				var channelId = $("#channelSelect  option:selected").val();
+				var serverId = $("#severSelect  option:selected").val();
+				if(channelId == null)
+				{
+					return;
+				}
+				var objjson = '{';
+				objjson += '"channelIds":"'+channelId+'",';
+				if(channelId != 0)
+					objjson += '"serverIds":"'+serverId+'",';
+					
+				if(type == 0)//全部帐号
+				{
+					alert("不能选择全部帐号");
+					return;
+				}
+					
+				if(type == 1)//指定帐号
+				{
+					objjson += '"username":"'+$("#targetText").val()+'"';
+					//alert("只能按玩家名追踪");
+					//return;
+				}
+				else if(type == 2)//指定玩家id
+				{
+					objjson += '"playerId":"'+$("#targetText").val()+'"';
+					//alert("只能按玩家名追踪");
+					//return;
+				}
+				else if(type == 3)//指定玩家名
+					objjson += '"playerName":"'+$("#targetText").val()+'"';
+					
+				objjson += '}';
+				
+				$("#add").append('<label id="submiting" style="color:green">*提交中...</label>');
+					
+				$.post("/battleException.addTraceByName",
+						  JSON.parse(objjson),
+					function(data,status){
+						$("#add").children().remove("#submiting");
+						console.log("battleException.addTraceByName:status-" + status + "  data.code-" + data.code);
+						console.log(data);
+						if(status == "success")
+						{
+							if(data.code == CODE.OK)
+							{	
+								$("#radioAllAcct").prop("checked",true);
+								$("#search").click();
+							}
+							else 
+							{
+								alert("获取信息失败");
+							}
+						}
+						else
+						{
+							console.log("加载数据失败。");
+						}
+						
+					}
+				);
+			}
+		});
+		
+		
+		// 全选
+		$("#choseAll").click(function(){
+		
+			$(".chkItem").prop("checked",'true');//全选
+			checkClumnsShowHide();
+		})
+		
+		$(".chkItem").change(function(){
+			//console.log($(this).val()+ " "+ $(this).prop("checked"));
+			checkClumnsShowHide();
+		});
+		
+		function checkClumnsShowHide()
+		{
+		
+			$(".chkItem").each(function(i,item) {
+				//console.log(item.value + " "+ item.checked);
+				var column = table.column(item.value);
+				column.visible(item.checked);
+			});
+		}
+		
+	});
+	
+	function moveOut(dataFull)
+	{
+		var str = dataFull.split(',');
+		
+		var type = $('input[name="targetRadio"]:checked').val();
+			
+			var channelId = $("#channelSelect  option:selected").val();
+			var serverId = $("#severSelect  option:selected").val();
+			if(channelId == null)
+			{
+				return;
+			}
+			var objjson = '{';
+			objjson += '"channelIds":"'+channelId+'",';
+			if(channelId != 0)
+				objjson += '"serverIds":"'+serverId+'",';
+				
+			objjson += '"playerName":"'+str[2]+'"';
+				
+			objjson += '}';
+			$.post("/battleException.delTraceByName",
+					  JSON.parse(objjson),
+				function(data,status){
+					console.log("battleException.delTraceByName:status-" + status + "  data.code-" + data.code);
+					console.log(data);
+					if(status == "success")
+					{
+						if(data.code == CODE.OK)
+						{
+							$("#search").click();
+						}
+						else 
+						{
+							alert("获取信息失败");
+						}
+					}
+					else
+					{
+						console.log("加载数据失败。");
+					}
+					
+				}
+			);
+	}
+	
+</script>

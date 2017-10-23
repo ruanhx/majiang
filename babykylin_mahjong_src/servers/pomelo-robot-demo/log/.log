@@ -1,0 +1,199 @@
+Error: not opened
+    at WebSocket.send (F:\Liemoren\servsers\pomelo-robot-demo\node_modules\ws\lib\WebSocket.js:175:16)
+    at send (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:179:20)
+    at sendMessage (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:169:9)
+    at EventEmitter.pomelo.request (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:139:9)
+    at Object.netHandler.(anonymous function) [as area_guideHandler.finish] (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:61:20)
+    at Object.netHandler.sendRequest (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:64:25)
+    at evalmachine.<anonymous>:210:36
+    at null._onTimeout (evalmachine.<anonymous>:182:8)
+    at Timer.listOnTimeout (timers.js:110:15)Error: not opened
+    at WebSocket.send (F:\Liemoren\servsers\pomelo-robot-demo\node_modules\ws\lib\WebSocket.js:175:16)
+    at send (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:179:20)
+    at sendMessage (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:169:9)
+    at EventEmitter.pomelo.request (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:139:9)
+    at Object.netHandler.(anonymous function) [as area_clientSaveHandler.save] (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:61:20)
+    at Object.netHandler.sendRequest (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:64:25)
+    at evalmachine.<anonymous>:210:36
+    at null._onTimeout (evalmachine.<anonymous>:182:8)
+    at Timer.listOnTimeout (timers.js:110:15)Error: not opened
+    at WebSocket.send (F:\Liemoren\servsers\pomelo-robot-demo\node_modules\ws\lib\WebSocket.js:175:16)
+    at send (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:179:20)
+    at sendMessage (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:169:9)
+    at EventEmitter.pomelo.request (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:139:9)
+    at Object.netHandler.(anonymous function) [as area_clientSaveHandler.load] (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:61:20)
+    at Object.netHandler.sendRequest (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:64:25)
+    at evalmachine.<anonymous>:210:36
+    at null._onTimeout (evalmachine.<anonymous>:182:8)
+    at Timer.listOnTimeout (timers.js:110:15)Error: not opened
+    at WebSocket.send (F:\Liemoren\servsers\pomelo-robot-demo\node_modules\ws\lib\WebSocket.js:175:16)
+    at send (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:179:20)
+    at sendMessage (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:169:9)
+    at EventEmitter.pomelo.request (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:139:9)
+    at Object.netHandler.(anonymous function) [as area_clientSaveHandler.save] (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:61:20)
+    at Object.netHandler.sendRequest (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:64:25)
+    at evalmachine.<anonymous>:210:36
+    at null._onTimeout (evalmachine.<anonymous>:182:8)
+    at Timer.listOnTimeout (timers.js:110:15)Error: not opened
+    at WebSocket.send (F:\Liemoren\servsers\pomelo-robot-demo\node_modules\ws\lib\WebSocket.js:175:16)
+    at send (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:179:20)
+    at sendMessage (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:169:9)
+    at EventEmitter.pomelo.request (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:139:9)
+    at Object.netHandler.(anonymous function) [as area_guideHandler.finish] (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:61:20)
+    at Object.netHandler.sendRequest (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:64:25)
+    at evalmachine.<anonymous>:210:36
+    at null._onTimeout (evalmachine.<anonymous>:182:8)
+    at Timer.listOnTimeout (timers.js:110:15)Error: not opened
+    at WebSocket.send (F:\Liemoren\servsers\pomelo-robot-demo\node_modules\ws\lib\WebSocket.js:175:16)
+    at send (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:179:20)
+    at sendMessage (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:169:9)
+    at EventEmitter.pomelo.request (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:139:9)
+    at Object.netHandler.(anonymous function) [as area_clientSaveHandler.save] (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:61:20)
+    at Object.netHandler.sendRequest (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:64:25)
+    at evalmachine.<anonymous>:210:36
+    at null._onTimeout (evalmachine.<anonymous>:182:8)
+    at Timer.listOnTimeout (timers.js:110:15)Error: not opened
+    at WebSocket.send (F:\Liemoren\servsers\pomelo-robot-demo\node_modules\ws\lib\WebSocket.js:175:16)
+    at send (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:179:20)
+    at sendMessage (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:169:9)
+    at EventEmitter.pomelo.request (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:139:9)
+    at Object.netHandler.(anonymous function) [as area_clientSaveHandler.load] (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:61:20)
+    at Object.netHandler.sendRequest (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:64:25)
+    at evalmachine.<anonymous>:210:36
+    at null._onTimeout (evalmachine.<anonymous>:182:8)
+    at Timer.listOnTimeout (timers.js:110:15)Error: not opened
+    at WebSocket.send (F:\Liemoren\servsers\pomelo-robot-demo\node_modules\ws\lib\WebSocket.js:175:16)
+    at send (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:179:20)
+    at sendMessage (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:169:9)
+    at EventEmitter.pomelo.request (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:139:9)
+    at Object.netHandler.(anonymous function) [as area_playerHandler.exitBarrier] (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:61:20)
+    at Object.netHandler.sendRequest (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:64:25)
+    at evalmachine.<anonymous>:210:36
+    at null._onTimeout (evalmachine.<anonymous>:182:8)
+    at Timer.listOnTimeout (timers.js:110:15)Error: not opened
+    at WebSocket.send (F:\Liemoren\servsers\pomelo-robot-demo\node_modules\ws\lib\WebSocket.js:175:16)
+    at send (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:179:20)
+    at sendMessage (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:169:9)
+    at EventEmitter.pomelo.request (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:139:9)
+    at Object.netHandler.(anonymous function) [as area_mailHandler.getMailTitle] (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:61:20)
+    at Object.netHandler.sendRequest (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:64:25)
+    at evalmachine.<anonymous>:210:36
+    at null._onTimeout (evalmachine.<anonymous>:182:8)
+    at Timer.listOnTimeout (timers.js:110:15)Error: not opened
+    at WebSocket.send (F:\Liemoren\servsers\pomelo-robot-demo\node_modules\ws\lib\WebSocket.js:175:16)
+    at send (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:179:20)
+    at sendMessage (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:169:9)
+    at EventEmitter.pomelo.request (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:139:9)
+    at Object.netHandler.(anonymous function) [as area_playerHandler.exitBarrier] (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:61:20)
+    at Object.netHandler.sendRequest (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:64:25)
+    at evalmachine.<anonymous>:210:36
+    at null._onTimeout (evalmachine.<anonymous>:182:8)
+    at Timer.listOnTimeout (timers.js:110:15)Error: not opened
+    at WebSocket.send (F:\Liemoren\servsers\pomelo-robot-demo\node_modules\ws\lib\WebSocket.js:175:16)
+    at send (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:179:20)
+    at sendMessage (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:169:9)
+    at EventEmitter.pomelo.request (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:139:9)
+    at Object.netHandler.(anonymous function) [as area_mailHandler.getMailTitle] (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:61:20)
+    at Object.netHandler.sendRequest (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:64:25)
+    at evalmachine.<anonymous>:210:36
+    at null._onTimeout (evalmachine.<anonymous>:182:8)
+    at Timer.listOnTimeout (timers.js:110:15)Error: not opened
+    at WebSocket.send (F:\Liemoren\servsers\pomelo-robot-demo\node_modules\ws\lib\WebSocket.js:175:16)
+    at send (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:179:20)
+    at sendMessage (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:169:9)
+    at EventEmitter.pomelo.request (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:139:9)
+    at Object.netHandler.(anonymous function) [as area_guideHandler.finish] (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:61:20)
+    at Object.netHandler.sendRequest (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:64:25)
+    at evalmachine.<anonymous>:210:36
+    at null._onTimeout (evalmachine.<anonymous>:182:8)
+    at Timer.listOnTimeout (timers.js:110:15)Error: not opened
+    at WebSocket.send (F:\Liemoren\servsers\pomelo-robot-demo\node_modules\ws\lib\WebSocket.js:175:16)
+    at send (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:179:20)
+    at sendMessage (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:169:9)
+    at EventEmitter.pomelo.request (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:139:9)
+    at Object.netHandler.(anonymous function) [as area_clientSaveHandler.save] (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:61:20)
+    at Object.netHandler.sendRequest (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:64:25)
+    at evalmachine.<anonymous>:210:36
+    at null._onTimeout (evalmachine.<anonymous>:182:8)
+    at Timer.listOnTimeout (timers.js:110:15)Error: not opened
+    at WebSocket.send (F:\Liemoren\servsers\pomelo-robot-demo\node_modules\ws\lib\WebSocket.js:175:16)
+    at send (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:179:20)
+    at sendMessage (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:169:9)
+    at EventEmitter.pomelo.request (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:139:9)
+    at Object.netHandler.(anonymous function) [as area_clientSaveHandler.load] (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:61:20)
+    at Object.netHandler.sendRequest (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:64:25)
+    at evalmachine.<anonymous>:210:36
+    at null._onTimeout (evalmachine.<anonymous>:182:8)
+    at Timer.listOnTimeout (timers.js:110:15)Error: not opened
+    at WebSocket.send (F:\Liemoren\servsers\pomelo-robot-demo\node_modules\ws\lib\WebSocket.js:175:16)
+    at send (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:179:20)
+    at sendMessage (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:169:9)
+    at EventEmitter.pomelo.request (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:139:9)
+    at Object.netHandler.(anonymous function) [as area_playerHandler.exitBarrier] (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:61:20)
+    at Object.netHandler.sendRequest (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:64:25)
+    at evalmachine.<anonymous>:210:36
+    at null._onTimeout (evalmachine.<anonymous>:182:8)
+    at Timer.listOnTimeout (timers.js:110:15)Error: not opened
+    at WebSocket.send (F:\Liemoren\servsers\pomelo-robot-demo\node_modules\ws\lib\WebSocket.js:175:16)
+    at send (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:179:20)
+    at sendMessage (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:169:9)
+    at EventEmitter.pomelo.request (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:139:9)
+    at Object.netHandler.(anonymous function) [as area_mailHandler.getMailTitle] (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:61:20)
+    at Object.netHandler.sendRequest (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:64:25)
+    at evalmachine.<anonymous>:210:36
+    at null._onTimeout (evalmachine.<anonymous>:182:8)
+    at Timer.listOnTimeout (timers.js:110:15)Error: not opened
+    at WebSocket.send (F:\Liemoren\servsers\pomelo-robot-demo\node_modules\ws\lib\WebSocket.js:175:16)
+    at send (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:179:20)
+    at sendMessage (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:169:9)
+    at EventEmitter.pomelo.request (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:139:9)
+    at Object.netHandler.(anonymous function) [as area_statisticHandler.playerBehavior] (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:61:20)
+    at Object.netHandler.sendRequest (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:64:25)
+    at evalmachine.<anonymous>:210:36
+    at null._onTimeout (evalmachine.<anonymous>:182:8)
+    at Timer.listOnTimeout (timers.js:110:15)Error: not opened
+    at WebSocket.send (F:\Liemoren\servsers\pomelo-robot-demo\node_modules\ws\lib\WebSocket.js:175:16)
+    at send (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:179:20)
+    at sendMessage (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:169:9)
+    at EventEmitter.pomelo.request (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:139:9)
+    at Object.netHandler.(anonymous function) [as area_clientSaveHandler.save] (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:61:20)
+    at Object.netHandler.sendRequest (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:64:25)
+    at evalmachine.<anonymous>:210:36
+    at null._onTimeout (evalmachine.<anonymous>:182:8)
+    at Timer.listOnTimeout (timers.js:110:15)Error: not opened
+    at WebSocket.send (F:\Liemoren\servsers\pomelo-robot-demo\node_modules\ws\lib\WebSocket.js:175:16)
+    at send (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:179:20)
+    at sendMessage (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:169:9)
+    at EventEmitter.pomelo.request (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:139:9)
+    at Object.netHandler.(anonymous function) [as area_statisticHandler.playerBehavior] (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:61:20)
+    at Object.netHandler.sendRequest (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:64:25)
+    at evalmachine.<anonymous>:210:36
+    at null._onTimeout (evalmachine.<anonymous>:182:8)
+    at Timer.listOnTimeout (timers.js:110:15)Error: not opened
+    at WebSocket.send (F:\Liemoren\servsers\pomelo-robot-demo\node_modules\ws\lib\WebSocket.js:175:16)
+    at send (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:179:20)
+    at sendMessage (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:169:9)
+    at EventEmitter.pomelo.request (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:139:9)
+    at Object.netHandler.(anonymous function) [as area_clientSaveHandler.save] (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:61:20)
+    at Object.netHandler.sendRequest (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:64:25)
+    at evalmachine.<anonymous>:210:36
+    at null._onTimeout (evalmachine.<anonymous>:182:8)
+    at Timer.listOnTimeout (timers.js:110:15)Error: not opened
+    at WebSocket.send (F:\Liemoren\servsers\pomelo-robot-demo\node_modules\ws\lib\WebSocket.js:175:16)
+    at send (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:179:20)
+    at sendMessage (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:169:9)
+    at EventEmitter.pomelo.request (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:139:9)
+    at Object.netHandler.(anonymous function) [as area_statisticHandler.playerBehavior] (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:61:20)
+    at Object.netHandler.sendRequest (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:64:25)
+    at evalmachine.<anonymous>:210:36
+    at null._onTimeout (evalmachine.<anonymous>:182:8)
+    at Timer.listOnTimeout (timers.js:110:15)Error: not opened
+    at WebSocket.send (F:\Liemoren\servsers\pomelo-robot-demo\node_modules\ws\lib\WebSocket.js:175:16)
+    at send (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:179:20)
+    at sendMessage (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:169:9)
+    at EventEmitter.pomelo.request (F:\Liemoren\servsers\pomelo-robot-demo\app\script\pomelo.js:139:9)
+    at Object.netHandler.(anonymous function) [as area_guideHandler.finish] (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:61:20)
+    at Object.netHandler.sendRequest (F:\Liemoren\servsers\pomelo-robot-demo\app\script\netHandler.js:64:25)
+    at evalmachine.<anonymous>:210:36
+    at null._onTimeout (evalmachine.<anonymous>:182:8)
+    at Timer.listOnTimeout (timers.js:110:15)

@@ -1,0 +1,429 @@
+
+	<script src="item.json"></script>
+	<script src="cardProperty.json"></script>
+	
+<div class="tab">
+	<h1>位置：服务器后台管理->卡牌物品信息查询</h1>
+	<div id="channelServer" ></div>
+	
+	<br>	
+	<div>
+		<label>筛选目标:</label>
+		<input name="targetRadio" type="radio" value="1"  checked="true"  />指定账号
+        <input name="targetRadio" type="radio" value="2"   />指定玩家id
+        <input name="targetRadio" type="radio" value="3"   />指定玩家名
+		<input type="text" id="targetText"/>
+		<br>
+		<button id="search">物品查询</button>		
+		<button id="search1">卡牌查询</button>
+		<button id="search2">卡牌碎片查询</button>
+	</div>
+	
+	<br><br>
+	<div class="staticsList">
+		<label>帐号：</label>
+		<label id="accountLabel"></label>
+		<label>&nbsp&nbsp玩家id：</label>
+		<label id="playerIDLabel"></label>
+		<label>&nbsp&nbsp玩家名：</label>
+		<label id="playerNameLabel"></label>
+		<label>&nbsp&nbsp玩家等级：</label>
+		<label id="playerLevelLabel"></label>
+		<table id="staticsTable"  class="display" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th>物品id</th>
+					<th>物品名称</th>
+					<th>物品对应数量</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>		
+	</div>
+		<br><br>
+	<div class="staticsList1">
+		<label>帐号：</label>
+		<label id="accountLabel1"></label>
+		<label>&nbsp&nbsp玩家id：</label>
+		<label id="playerIDLabel1"></label>
+		<label>&nbsp&nbsp玩家名：</label>
+		<label id="playerNameLabel1"></label>
+		<label>&nbsp&nbsp玩家等级：</label>
+		<label id="playerLevelLabel1"></label>
+		<table id="staticsTable1"  class="display" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th>卡牌id</th>
+					<th>卡牌名称</th>
+					<th>卡牌等级</th>
+					<th>卡牌技能等级</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>		
+	</div>
+	<br><br>
+	<div class="staticsList2">
+		<label>帐号：</label>
+		<label id="accountLabel2"></label>
+		<label>&nbsp&nbsp玩家id：</label>
+		<label id="playerIDLabel2"></label>
+		<label>&nbsp&nbsp玩家名：</label>
+		<label id="playerNameLabel2"></label>
+		<label>&nbsp&nbsp玩家等级：</label>
+		<label id="playerLevelLabel2"></label>
+		<table id="staticsTable2"  class="display" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th>卡牌碎片id</th>
+					<th>卡牌碎片名称</th>
+					<th>卡牌碎片数量</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>		
+	</div>
+	
+</div><!-- Introduction Page Ends -->
+<script>
+	var table;
+	var table1;
+	var table2;
+	var itemJson = null;
+	var cardJson = null;
+	
+	$(document).ready(function(e) {
+		$("div#channelServer").load('channelServer.html?itemCardSearch');
+		
+		$.getJSON("item.json",function(data){//加载item的json
+			itemJson = data;
+		});
+		$.getJSON("cardProperty.json",function(data){//加载card的json
+			cardJson = data;
+		});
+		
+		table = $("#staticsTable").DataTable({
+					"language": {
+							"zeroRecords": "未找到该玩家"
+						  }
+					});
+		table1 = $("#staticsTable1").DataTable({
+							"language": {
+									"zeroRecords": "未找到该玩家"
+								  }
+							});
+		
+		table2 = $("#staticsTable2").DataTable({
+							"language": {
+									"zeroRecords": "未找到该玩家"
+								  }
+							});
+		
+		$("#search").click(function(){
+			var type = $('input[name="targetRadio"]:checked').val();
+			
+			var channelId = $("#channelSelect  option:selected").val();
+			var serverId = $("#severSelect  option:selected").val();
+			if(channelId == null)
+			{
+				return;
+			}
+			var objjson = '{';
+			objjson += '"channelIds":"'+channelId+'",';
+			if(channelId != 0)
+				objjson += '"serverIds":"'+serverId+'",';
+				
+			if(type == 1)//指定帐号
+				objjson += '"username":"'+$("#targetText").val()+'"';
+			else if(type == 2)//指定玩家id
+				objjson += '"playerId":"'+$("#targetText").val()+'"';
+			else if(type == 3)//指定玩家名
+				objjson += '"playerName":"'+$("#targetText").val()+'"';
+				
+			objjson += '}';
+			$.post("/playerManager.listItems",
+					  JSON.parse(objjson),
+				function(data,status){
+					console.log("playerManager.listItems:status-" + status + "  data.code-" + data.code);
+					console.log(data);
+					if(status == "success")
+					{
+						if(data.code == CODE.OK)
+						{	
+							table.clear();
+							if(data.results[0])
+							{
+								if(data.results[0].results[0])
+								{
+									$("#accountLabel").text(data.results[0].results[0].username);
+									$("#playerIDLabel").text(data.results[0].results[0].playerId);
+									$("#playerNameLabel").text(data.results[0].results[0].playerName);
+									$("#playerLevelLabel").text(data.results[0].results[0].level);
+																
+									$.each(data.results[0].results[0].expItems, function(i, item){ 
+											table.row.add( [
+												item.itemId,
+												getItemName(item.itemId),
+												item.count
+											] );
+									});
+									$.each(data.results[0].results[0].materials, function(i, item){ 
+											table.row.add( [
+												item.itemId,
+												getItemName(item.itemId),
+												item.count
+											] );
+									});
+									$.each(data.results[0].results[0].sweepTickets, function(i, item){ 
+											table.row.add( [
+												item.itemId,
+												getItemName(item.itemId),
+												item.count
+											] );
+									});
+									$.each(data.results[0].results[0].equips, function(i, item){ 
+											table.row.add( [
+												item.itemId,
+												getItemName(item.itemId),
+												item.count
+											] );
+									});
+								}
+							}
+							table.draw();
+						}
+						else 
+						{
+							alert("获取信息失败");
+						}
+					}
+					else
+					{
+						console.log("加载数据失败。");
+					}
+					
+				}
+			);
+		});
+		
+		$("#search1").click(function(){			
+			if(false)
+			{
+				alert("无效");
+			}
+			else
+			{	
+				var type = $('input[name="targetRadio"]:checked').val();
+			
+				var channelId = $("#channelSelect  option:selected").val();
+				var serverId = $("#severSelect  option:selected").val();
+				if(channelId == null)
+				{
+					return;
+				}
+				var objjson = '{';
+				objjson += '"channelIds":"'+channelId+'",';
+				if(channelId != 0)
+					objjson += '"serverIds":"'+serverId+'",';
+					
+				if(type == 1)//指定帐号
+					objjson += '"username":"'+$("#targetText").val()+'"';
+				else if(type == 2)//指定玩家id
+					objjson += '"playerId":"'+$("#targetText").val()+'"';
+				else if(type == 3)//指定玩家名
+					objjson += '"playerName":"'+$("#targetText").val()+'"';
+					
+				objjson += '}';
+				$.post("/playerManager.listCards",
+						  JSON.parse(objjson),
+					function(data,status){
+						console.log("playerManager.listCards:status-" + status + "  data.code-" + data.code);
+						console.log(data);
+						if(status == "success")
+						{
+							if(data.code == CODE.OK)
+							{	
+								table1.clear();
+								if(data.results[0])
+								{
+									if(data.results[0].results[0])
+									{
+										$("#accountLabel1").text(data.results[0].results[0].username);
+										$("#playerIDLabel1").text(data.results[0].results[0].playerId);
+										$("#playerNameLabel1").text(data.results[0].results[0].playerName);
+										$("#playerLevelLabel1").text(data.results[0].results[0].level);
+									
+									
+										$.each(data.results[0].results[0].cards, function(i, item){ 
+												table1.row.add( [
+													item.cardId,
+													getCardName(item.cardId),
+													item.level,
+													item.superSkillLV
+												] );
+										});
+									}
+								}
+								table1.draw();
+							}
+							else 
+							{
+								alert("获取信息失败");
+							}
+						}
+						else
+						{
+							console.log("加载数据失败。");
+						}
+						
+					}
+				);
+			}
+		});
+		
+		$("#search2").click(function(){			
+			if(false)
+			{
+				alert("无效");
+			}
+			else
+			{	
+				var type = $('input[name="targetRadio"]:checked').val();
+			
+				var channelId = $("#channelSelect  option:selected").val();
+				var serverId = $("#severSelect  option:selected").val();
+				if(channelId == null)
+				{
+					return;
+				}
+				var objjson = '{';
+				objjson += '"channelIds":"'+channelId+'",';
+				if(channelId != 0)
+					objjson += '"serverIds":"'+serverId+'",';
+					
+				if(type == 1)//指定帐号
+					objjson += '"username":"'+$("#targetText").val()+'"';
+				else if(type == 2)//指定玩家id
+					objjson += '"playerId":"'+$("#targetText").val()+'"';
+				else if(type == 3)//指定玩家名
+					objjson += '"playerName":"'+$("#targetText").val()+'"';
+					
+				objjson += '}';
+				$.post("/playerManager.listCardFrags",
+						  JSON.parse(objjson),
+					function(data,status){
+						console.log("playerManager.listCardFrags:status-" + status + "  data.code-" + data.code);
+						console.log(data);
+						if(status == "success")
+						{
+							if(data.code == CODE.OK)
+							{								
+								table2.clear();
+								if(data.results[0])
+								{
+									if(data.results[0].results[0])
+									{
+										$("#accountLabel2").text(data.results[0].results[0].username);
+										$("#playerIDLabel2").text(data.results[0].results[0].playerId);
+										$("#playerNameLabel2").text(data.results[0].results[0].playerName);
+										$("#playerLevelLabel2").text(data.results[0].results[0].level);
+									
+									
+										$.each(data.results[0].results[0].frags, function(i, item){ 
+												table2.row.add( [
+													item.itemId,
+													getItemName(item.itemId),
+													item.count
+												] );
+										});
+									}
+								}
+								table2.draw();
+							}
+							else 
+							{
+								alert("获取信息失败");
+							}
+						}
+						else
+						{
+							console.log("加载数据失败。");
+						}
+						
+					}
+				);
+			}
+		});
+		
+		// 全选
+		$("#choseAll").click(function(){
+     
+			$(".chkItem").prop("checked",'true');//全选
+			checkClumnsShowHide();
+		})
+		// 全选1
+		$("#choseAll1").click(function(){
+     
+			$(".chkItem1").prop("checked",'true');//全选
+			checkClumnsShowHide1();
+		})
+		
+		$(".chkItem").change(function(){
+			checkClumnsShowHide();
+		});
+		$(".chkItem1").change(function(){
+			checkClumnsShowHide1();
+		});
+		
+		function checkClumnsShowHide()
+		{
+			$(".chkItem").each(function(i,item) {
+				var column = table.column(item.value);
+				column.visible(item.checked);
+			});
+		}
+		function checkClumnsShowHide1()
+		{
+			$(".chkItem1").each(function(i,item) {
+				var column = table1.column(item.value);
+				column.visible(item.checked);
+			});
+		}
+		
+		function getItemName(id)
+		{
+			ret = "";
+			$.each(itemJson, function(i, item){ 
+				if(i >= 2 && item[0] == id)
+				{
+					ret = item[1];
+					return;
+				}
+			});
+			
+			return ret;
+		}
+		function getCardName(id)
+		{
+			ret = "";
+			$.each(cardJson, function(i, item){ 
+				if(i >= 2 && item[0] == id)
+				{
+					ret = item[1];
+					return;
+				}
+			});
+			
+			return ret;
+		}
+		
+	});
+	
+	
+</script>

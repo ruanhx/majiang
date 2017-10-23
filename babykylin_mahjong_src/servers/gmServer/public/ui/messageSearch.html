@@ -1,0 +1,234 @@
+
+<div class="tab">
+	<h1>位置：服务器后台管理->客服信息查询</h1>
+	<div id="channelServer" ></div>
+		
+	<br>	
+	<div>
+		<label>筛选目标:</label>
+		<input name="targetRadio" type="radio" value="1" checked="true"  />指定账号
+        <input name="targetRadio" type="radio" value="2"   />指定玩家id
+        <input name="targetRadio" type="radio" value="3"   />指定玩家名
+		<input type="text" id="targetText"/>
+		<br>
+		<button id="search">查询</button>
+	</div>
+	
+	<br>
+	
+	<div>
+		<button id="choseAll">全选</button>
+        <input class="chkItem" type="checkbox" value="3" checked="true" />等级信息
+        <input class="chkItem" type="checkbox" value="4" checked="true"  />竞技排名
+        <input class="chkItem" type="checkbox" value="5" checked="true"  />关卡进度
+        <input class="chkItem" type="checkbox" value="6" checked="true"  />城堡建筑等级
+		<input class="chkItem" type="checkbox" value="7" checked="true"  />法师塔建筑等级
+		<input class="chkItem" type="checkbox" value="8" checked="true"  />金矿坑建筑等级
+		<input class="chkItem" type="checkbox" value="9" checked="true"  />钻石晶柱建筑等级
+		<input class="chkItem" type="checkbox" value="10" checked="true"  />在线状态
+		<input class="chkItem" type="checkbox" value="11" checked="true"  />VIP等级
+		<input class="chkItem" type="checkbox" value="12" checked="true"  />注册时间
+		<input class="chkItem" type="checkbox" value="13" checked="true"  />最后登入时间
+		<input class="chkItem" type="checkbox" value="14" checked="true"  />最后登出时间
+		<input class="chkItem" type="checkbox" value="15" checked="true"  />总在线时长
+		<input class="chkItem" type="checkbox" value="16" checked="true"  />公会名称
+		<input class="chkItem" type="checkbox" value="17" checked="true"  />首充时间
+		<input class="chkItem" type="checkbox" value="18" checked="true"  />最近充值时间
+		<input class="chkItem" type="checkbox" value="19" checked="true"  />总充值金额
+		
+    </div>
+	
+	<br>
+	<div>
+		<label>搜索结果:</label>
+		<table id="searchTable"  class="display" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th>账号</th>
+					<th>玩家id</th>
+					<th>玩家名</th>
+					<th>等级信息</th>
+					<th>竞技排名</th>
+					<th>关卡进度</th>
+					<th>城堡建筑等级</th>
+					<th>法师塔建筑等级</th>
+					<th>金矿坑建筑等级</th>
+					<th>钻石晶柱建筑等级</th>
+					<th>在线状态</th>
+					<th>VIP等级</th>
+					<th>注册时间</th>
+					<th>最后登入时间</th>
+					<th>最后登出时间</th>
+					<th>总在线时长</th>
+					<th>公会名称</th>
+					<th>首充时间</th>
+					<th>最近充值时间</th>
+					<th>总充值金额</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>	
+	</div>
+	<br><br><br>
+	
+</div><!-- Introduction Page Ends -->
+<script>
+	var table;
+	$(document).ready(function(e) {
+		$("div#channelServer").load('channelServer.html?messageSearch');
+		table = $("#searchTable").DataTable({
+		"language": {
+				"zeroRecords": "未找到该玩家"
+			  }
+		});
+		
+		$("#search").click(function(){
+					
+			var type = $('input[name="targetRadio"]:checked').val();
+			
+			var channelId = $("#channelSelect  option:selected").val();
+			var serverId = $("#severSelect  option:selected").val();
+			if(channelId == null)
+			{
+				return;
+			}
+			var objjson = '{';
+			objjson += '"channelIds":"'+channelId+'",';
+			if(channelId != 0)
+				objjson += '"serverIds":"'+serverId+'",';
+				
+			if(type == 1)//指定帐号
+				objjson += '"username":"'+$("#targetText").val()+'"';
+			else if(type == 2)//指定玩家id
+				objjson += '"playerId":"'+$("#targetText").val()+'"';
+			else if(type == 3)//指定玩家名
+				objjson += '"playerName":"'+$("#targetText").val()+'"';
+				
+			objjson += '}';
+			$.post("/playerManager.findPlayer",
+					  JSON.parse(objjson),
+				function(data,status){
+					console.log("playerManager.findPlayer:status-" + status + "  data.code-" + data.code);
+					console.log(data);
+					if(status == "success")
+					{
+						if(data.code == CODE.OK)
+						{							
+							table.clear();
+							if(data.results[0])
+							$.each(data.results[0].playerList, function(i, itemJ){ 
+									table.row.add( [
+										itemJ.username,
+										itemJ.playerId,
+										itemJ.playerName,
+										itemJ.level,
+										itemJ.rank,
+										itemJ.barrierProgress,
+										buildingLevel(itemJ.buildings,1),
+										buildingLevel(itemJ.buildings,2),
+										buildingLevel(itemJ.buildings,5),
+										buildingLevel(itemJ.buildings,3),
+										onlineStr(itemJ.isOnline),
+										itemJ.vipLv,//vipLevel,
+										getDateStr(itemJ.registerTime),
+										getDateStr(itemJ.logonTime),
+										getDateStr(itemJ.logoffTime),
+										getTimeString(itemJ.totalOnlineTime),
+										"",
+										getDateStr(itemJ.firstChargeTime),
+										getDateStr(itemJ.lastChargeTime),
+										itemJ.chargeTotal,
+										
+									] );
+							});
+							table.draw();
+						}
+						else 
+						{
+							alert("获取信息失败");
+						}
+					}
+					else
+					{
+						console.log("加载数据失败。");
+					}
+					
+				}
+			);
+		});
+		function buildingLevel(buildings,type)
+		{
+			var ret = 0;
+			if(buildings != null)
+			{
+				$.each(buildings, function(i, item){
+					if(item.buildingType == type)
+					{
+						ret = item.level;
+						return;
+					}
+				});				
+			}
+			return ret;
+		}
+		function onlineStr( isOnline )
+		{
+			if(isOnline == 0)
+			{
+				return "否";
+			}
+			else return "是";
+		}
+		$("#kickoutButton").click(function(){
+			if(false)
+			{
+				alert("无效");
+			}
+			else
+			{
+				var objjson = '{';
+				objjson += '"channelID":"'+channelID+'",';
+				objjson += '"serverID":"'+serverID+'",';
+				
+				objjson += '"playerid":"'+playerid+'",';
+				
+				objjson += '}';
+			  /*$.post("商店url2",//????????????
+					  objjson,
+					  function(data,status){
+					
+					  });*/
+				
+			}
+		});
+		
+		
+		// 全选
+		$("#choseAll").click(function(){
+     
+			$(".chkItem").prop("checked",'true');//全选
+			checkClumnsShowHide();
+		})
+		
+		$(".chkItem").change(function(){
+			//console.log($(this).val()+ " "+ $(this).prop("checked"));
+			checkClumnsShowHide();
+		});
+		
+		function checkClumnsShowHide()
+		{
+		
+			$(".chkItem").each(function(i,item) {
+				//console.log(item.value + " "+ item.checked);
+				var column = table.column(item.value);
+				column.visible(item.checked);
+			});
+		}
+		
+		
+	});
+	
+	
+</script>

@@ -1,0 +1,31 @@
+<div>
+<h1>您没有权限查看该页面</h1>
+
+<button id="logout">退出当前帐号</button>
+</div>
+
+<script>
+	var table;
+	$(document).ready(function(e) {
+		$("#logout").click(function(){
+			$.get("/logout",
+					function(data,status){
+						if(status == "success")
+						{
+							if(data.code == CODE.OK)
+							{
+								makeDialog();
+							}
+							else 
+							{
+								console.log("登出失败");
+							}
+						}
+						else
+						{
+							console.log("加载数据失败。");
+						}
+					});
+		});
+	});
+</script>

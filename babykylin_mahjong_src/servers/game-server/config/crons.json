@@ -1,0 +1,222 @@
+{
+  "development": {
+    "comment":["这里是注释",
+      "var SECOND = 0;  秒 [0,59]                          ",
+      "var MIN = 1;     分钟 [0,59]                        ",
+      "var HOUR = 2;    小时 [0,24]                        ",
+      "var DOM = 3;     几号 [1,31]                        ",
+      "var MONTH = 4;   月份 [0,11] (1月-11月)             ",
+      "var DOW = 5;     星期几 [0,6](星期天是0)            "
+      ],
+    "area": [
+      {
+        "id": 1,
+        "time": "0 0 0 * * *",
+        "action": "resetBarrierAtkCnt.reset",
+        "comment": "关卡可挑战次数刷新（包括购买次数）"
+      },
+      {
+        "id": 2,
+        "time": "0 0/5 * * * *",
+        "action": "energyDispatcher.dispatch",
+        "comment": "体力回复"
+      },
+      {
+        "id": 3,
+        "time": "0 0 0 * * *",
+        "action": "energyDispatcher.resetBuyEnergyCount",
+        "comment": "体力购买次数"
+      },
+      {
+        "id": 4,
+        "time": "0 0 0 * * *",
+        "action": "playerShop.reset",
+        "comment": "商品每天可购买次数的 "
+      },
+      {
+        "id": 5,
+        "time": "15 0/30 * * * *",
+        "action": "activityPublisher.publish",
+        "comment": "发布任务"
+      },
+      {
+        "id": 6,
+        "time": "0 0 0 * * *",
+        "action": "equipRefine.reset",
+        "comment": "精炼重置"
+      },
+      {
+        "id": 7,
+        "time": "0 0 0 * * *",
+        "action": "endless.reset",
+        "comment": "无尽各种模式每天可挑战次数"
+      },
+      {
+        "id": 8,
+        "time": "0 0 22 * * 0",
+        "action": "endless.resetWeekHighScore",
+        "comment": "无尽每周积分刷新"
+      },
+      {
+        "id": 9,
+        "time": "0 0 0 * * *",
+        "action": "resetDailyTask.reset",
+        "comment": "每日任务刷新 "
+      },
+      {
+        "id": 10,
+        "time": "0 0 0 * * *",
+        "action": "activityEnergy.reset",
+        "comment": "活动体力重置"
+      },
+      {
+        "id": 11,
+        "time": "0 0 12,14,18,20 * * *",
+        "action": "activityEnergy.checkEnergy",
+        "comment": "检查领取体力的活动"
+      },
+      {
+        "id": 12,
+        "time": "0 0 5 * * *",
+        "action": "resetDailyActivityEctype.reset",
+        "comment": "活动副本每天可攻打次数的刷新"
+      },
+      {
+        "id": 13,
+        "time": "0 30 22 * * *",
+        "action": "resetCatchTreasure.reset",
+        "comment": "抓宝重置"
+      },
+      {
+        "id": 14,
+        "time": "0 0 0 * * *",
+        "action": "friendPerson.reset",
+        "comment": "好友每日刷新"
+      },
+      {
+        "id": 15,
+        "time": "0 0 0 * * *",
+        "action": "playerDailyRefresh.resetAssitRandBoss",
+        "comment": "好友随机boss挑战次数刷新"
+      },
+      {
+        "id": 16,
+        "time": "0 0 0 * * *",
+        "action": "train.reset",
+        "comment": "挂机玩法免费训练次数"
+      },
+      {
+        "id": 17,
+        "time": "0 0 0 * * *",
+        "action": "resetDailyTask.resetDivision",
+        "comment": "段位赛每天免费刷新对手次数"
+      },
+      {
+        "id": 18,
+        "time": "0 0 0 * * *",
+        "action": "playerDailyRefresh.resetAssistFightCount",
+        "comment": "每天好友的免费助战次数刷新"
+      },
+      {
+        "id": 19,
+        "time": "0 0 0 * * *",
+        "action": "activityEnergy.activityReset",
+        "comment": "活动重置"
+      },
+      {
+        "id": 20,
+        "time": "0 0 22 * * 0",
+        "action": "endless.resetWeekHighScore",
+        "comment": "无尽每周积分刷新"
+      }
+    ],
+    "world": [
+      {
+        "id": 1,
+        "time": "0 0 22 * * 0",
+        "action": "rankAwardDispatcher.dispatch",
+        "comment": "无尽周榜清空、周榜奖励邮件发放.总榜排名奖励邮件发放"
+      },
+      {
+        "id": 2,
+        "time": "0 30 22 * * *",
+        "action": "rankAwardDispatcher.dispatchDaily",
+        "comment": "抓宝排行榜每天奖励"
+      },
+      {
+        "id": 3,
+        "time": "0 30 21 * * *",
+        "action": "division.dispatchAwards",
+        "comment": "段位每日奖励的邮件"
+      },
+      {
+        "id": 4,
+        "time": "0 35 21 * * 0",
+        "action": "division.weekReset",
+        "comment": "段位每周奖励"
+      },
+      {
+        "id": 6,
+        "time": "0 0 3 * * *",
+        "action": "worldRefresh.miniDataRefresh",
+        "comment": "玩家基本信息刷新"
+      },
+      {
+        "id": 7,
+        "time": "0 30 21 * * 0",
+        "action": "rankAwardDispatcher.resetDivisionRankList",
+        "comment": "段位排行榜奖励"
+      },
+      {
+        "id": 8,
+        "time": "0 10 * * * *",
+        "action": "endless.removeOut",
+        "comment": "清理无尽缓存"
+      },
+      {
+        "id": 9,
+        "time": "0 0 0 * * *",
+        "action": "endless.endlessMatchCntReset",
+        "comment": "无尽匹配次数重置"
+      }
+    ],
+    "gate": [
+      {
+        "id": 1,
+        "time": "0 59 23 * * *",
+        "action": "dailySample.sample",
+        "comment": ""
+      }
+    ]
+  },
+  "production": {
+    "area": [
+      {
+      "id": 1,
+      "time": "0 0 0 * * *",
+      "action": "resetBarrierAtkCnt.reset",
+      "comment": "关卡可挑战次数刷新（包括购买次数）"
+      },
+      {
+        "id": 2,
+        "time": "0 0/5 * * * *",
+        "action": "energyDispatcher.dispatch",
+        "comment": "体力回复"
+      },
+      {
+        "id": 3,
+        "time": "0 0 0 * * *",
+        "action": "energyDispatcher.resetBuyEnergyCount",
+        "comment": "体力购买次数"
+      }
+    ],
+    "gate": [
+      {
+        "id": 1,
+        "time": "0 59 23 * * *",
+        "action": "dailySample.sample",
+        "comment": ""
+      }
+    ]
+  }
+}

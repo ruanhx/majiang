@@ -1,0 +1,1 @@
+{"development":{"host":"127.0.0.1","port":3306,"database":"serverManager3","user":"root","password":"MTIzNDU2"},"production":{"host":"127.0.0.1","port":3306,"database":"serverManager3","user":"root","password":"MTIzNDU2"}}

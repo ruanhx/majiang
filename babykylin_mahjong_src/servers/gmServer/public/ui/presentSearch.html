@@ -1,0 +1,183 @@
+
+<div class="tab">
+	<h1>位置：服务器后台管理->客服礼包查询</h1>
+	<div id="channelServer" ></div>
+	
+	<br>
+	<div>
+		<label>选择日期:</label>
+		<input type="text" id="dateFrom" class="ui-corner-top"/>
+		<input type="text" id="dateTo" class="ui-corner-top"/>
+	</div>
+	
+	<br>	
+	<div>
+		<label>筛选目标:</label>
+		<input name="targetRadio" type="radio" value="0" checked="true"  />全部账号
+		<input name="targetRadio" type="radio" value="1"   />指定账号
+        <input name="targetRadio" type="radio" value="2"   />指定玩家id
+        <input name="targetRadio" type="radio" value="3"   />指定玩家名
+		<input type="text" id="targetText"/>
+		<br>
+		<button id="search">查询</button>
+	</div>
+	
+	<br>
+	
+	<div>
+		<button id="choseAll">全选</button>
+        <input class="chkItem" type="checkbox" value="1" checked="true" />账号
+        <input class="chkItem" type="checkbox" value="2" checked="true"  />玩家id
+        <input class="chkItem" type="checkbox" value="3" checked="true"  />玩家名
+        <input class="chkItem" type="checkbox" value="4" checked="true"  />使用礼包码
+        <input class="chkItem" type="checkbox" value="5" checked="true"  />对应奖励id
+        <input class="chkItem" type="checkbox" value="6" checked="true"  />奖励名称
+        <input class="chkItem" type="checkbox" value="7" checked="true"  />领取时间
+    </div>
+	
+	<br>
+	<div>
+		<label>搜索结果:</label>
+		<table id="searchTable"  class="display" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th>日期</th>
+					<th>uid</th><!--账号-->
+					<th>玩家id</th>
+					<th>玩家名</th>
+					<th>使用礼包码</th>
+					<th>对应奖励id</th>
+					<th>奖励名称</th>
+					<th>领取时间</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>	
+	</div>
+	<br><br><br>
+	
+</div><!-- Introduction Page Ends -->
+<script>
+	var table;
+	$(document).ready(function(e) {
+		$("div#channelServer").load('channelServer.html?presentSearch');
+		table = $("#searchTable").DataTable({
+		});
+		$("#dateFrom").datepicker({
+				dateFormat: 'yy-mm-dd'});
+		$("#dateTo").datepicker({
+				dateFormat: 'yy-mm-dd'});
+		
+		$("#search").click(function(){
+			
+			var dataFrom = $("#dateFrom").datepicker( 'getDate' );
+			var sFrom = Date.parse(new Date());
+			if(dataFrom != null)
+				sFrom = dataFrom.valueOf(); //获取时间戳 毫秒
+			var dataTo = $("#dateTo").datepicker( 'getDate' );
+			var sTo = Date.parse(new Date())
+			if(dataTo != null)
+				sTo = dataTo.valueOf(); 
+			sTo += 86400000;
+			if(sTo < sFrom){//时间不能倒退
+				sTo = sFrom;
+			}
+		
+			var type = $('input[name="targetRadio"]:checked').val();
+			
+			var channelId = $("#channelSelect  option:selected").val();
+			var serverId = $("#severSelect  option:selected").val();
+			if(channelId == null)
+			{
+				return;
+			}
+			var objjson = '{';
+			objjson += '"channelIds":"'+channelId+'",';
+			if(channelId != 0)
+				objjson += '"serverIds":"'+serverId+'",';
+				
+			
+			objjson += '"begin":"'+sFrom+'",';
+			if(type == 0)//全部帐号
+				objjson += '"end":"'+sTo+'"';
+			else
+				objjson += '"end":"'+sTo+'",';//后面还有，所以要加,
+				
+			if(type == 1)//指定帐号
+				objjson += '"username":"'+$("#targetText").val()+'"';
+			else if(type == 2)//指定玩家id
+				objjson += '"playerId":"'+$("#targetText").val()+'"';
+			else if(type == 3)//指定玩家名
+				objjson += '"playerName":"'+$("#targetText").val()+'"';
+				
+			objjson += '}';
+			$.post("/snManager.getSnHistories",
+					  JSON.parse(objjson),
+				function(data,status){
+					console.log("/snManager.getSnHistories:status-" + status + "  data.code-" + data.code);
+					console.log(data);
+					if(status == "success")
+					{
+						if(data.code == CODE.OK)
+						{
+							
+							table.clear();
+							$.each(data.results, function(i, item){ 
+								$.each(item.snHistories, function(J, itemJ){ 
+									table.row.add( [
+										getDateStr(itemJ.logTime),
+										itemJ.uid,
+										itemJ.playerId,
+										itemJ.playerName,
+										itemJ.sn,
+										itemJ.awardId,
+										itemJ.awardName,
+										getDateTimeStr(itemJ.logTime/1000),
+									] );
+								});
+							});
+							table.draw();
+                            alert("获取信息成功");
+						}
+						else 
+						{
+							alert("获取信息失败");
+						}
+					}
+					else
+					{
+						console.log("加载数据失败。");
+					}
+					
+				}
+			);
+		});
+		
+		// 全选
+		$("#choseAll").click(function(){
+     
+			$(".chkItem").prop("checked",'true');//全选
+			checkClumnsShowHide();
+		})
+		
+		$(".chkItem").change(function(){
+			//console.log($(this).val()+ " "+ $(this).prop("checked"));
+			checkClumnsShowHide();
+		});
+		
+		function checkClumnsShowHide()
+		{
+		
+			$(".chkItem").each(function(i,item) {
+				//console.log(item.value + " "+ item.checked);
+				var column = table.column(item.value);
+				column.visible(item.checked);
+			});
+		}
+		
+	});
+	
+	
+</script>

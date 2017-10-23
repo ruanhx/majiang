@@ -1,0 +1,202 @@
+
+<div class="tab">
+	<h1>位置：服务器后台管理->活动管理</h1>
+	<div id="channelServer" ></div>
+	
+	<br>	
+	<div>
+		<button id="search">查询</button>
+	</div>
+	
+	<br>	
+	<div>
+		<table id="activityTable"  class="display" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th>活动名称</th>
+					<th>开启时间</th>
+					<th>结束时间</th>
+					<th>开启状态</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>	
+	</div>
+	
+	<br>
+	<div id="activityEdit">
+		<label>编辑活动运营标识:</label>
+		<input type="text" id="activityText" size="120"/>		
+		<button id="activityButton" >提交</button>
+	</div>
+	
+	<br><br>
+</div><!-- Introduction Page Ends -->
+<script>
+	var table;
+	$(document).ready(function(e) {
+		$("div#channelServer").load('channelServer.html?activityManage',
+			function(response,status,xhr)
+			{
+				$("#channelSelect").append('<option value="0" selected="selected">全部</option>');	
+				$("#severSelect").append('<option value="0" selected="selected">全部</option>');		
+			}
+		);
+		table = $("#activityTable").DataTable({});
+		$("#activityEdit").hide();
+		//$("#activityTable").hide();
+		
+		$("#search").click(function(){
+			var channelId = $("#channelSelect  option:selected").val();
+			var serverId = $("#severSelect  option:selected").val();
+			if(channelId == null)
+			{
+				return;
+			}
+			var objjson = '{';
+			objjson += '"channelIds":"'+channelId+'",';
+			if(channelId != 0)
+				objjson += '"serverIds":"'+serverId+'"';
+			else
+				objjson = objjson.substring(0,objjson.length - 1);
+			objjson += '}';
+			$.post("/activityManager.listActivities",
+				JSON.parse(objjson),
+				function(data,status){
+					console.log(data);
+					if(status == "success")
+					{
+						if(data.code == CODE.OK)
+						{
+							var Str = "";
+							$("#activityEdit").show();
+							//$("#activityTable").show();
+							//if(table == null)
+								//table = $("#activityTable").DataTable({});
+							
+							table.clear();		
+							if(data.results.length != 0)
+								$.each(data.results[0].result.activities, function(i, item){
+									table.row.add( [
+										item.name,
+										getDateStr(item.openDate),
+										closeDateStr(item.closeDate),
+										openStr(item.isOpen)
+									] );		
+								});
+							table.draw();
+							
+							if(data.results.length != 0)
+							{
+								$.each(data.results[0].result.opFlags, function(i, item){
+									Str += item;
+									Str += "#";
+								});							
+								Str=Str.substring(0,Str.length-1);
+							}
+							$("#activityText").val(Str);
+						}
+						else 
+						{
+							alert("获取信息失败");
+						}
+					}
+					else
+					{
+						console.log("加载数据失败。");
+					}
+				}
+			);
+		});
+		function closeDateStr(t)
+		{
+			if(t == -1)
+			{
+				return "永久";
+			}
+			else
+			{
+				return getDateStr(t);
+			}
+		}
+		function openStr(b)
+		{
+			if(b)
+				return "开启";
+			else				
+				return "关闭";
+		}
+		$("#activityButton").click(function(){
+			if(false)
+			{
+				alert("只能是数字");
+			}
+			else
+			{
+				$("#activityEdit").children().remove("#notice_sending");
+				$("#activityEdit").append("<label id='notice_sending' style='color:#CCCC00'>*提交中</label>");
+				
+				var channelId = $("#channelSelect  option:selected").val();
+				var serverId = $("#severSelect  option:selected").val();
+				if(channelId == null)
+				{
+					return;
+				}
+				var objjson = '{';
+				objjson += '"channelIds":"'+channelId+'",';
+				if(channelId != 0)
+					objjson += '"serverIds":"'+serverId+'",';
+				
+				objjson += '"opFlags":"'+$("#activityText").val()+'"';
+				
+				objjson += '}';
+				$.post("/activityManager.changeOpFlags",
+					  JSON.parse(objjson),
+					  function(data,status){
+						console.log(data);
+						$("#activityEdit").children().remove("#notice_sending");
+						
+						if(status == "success")
+						{
+							if(data.code == CODE.OK)
+							{
+								$("#activityEdit").append("<label id='notice_sending' style='color:green'>*提交成功</label>");
+								table.clear();	
+								if(data.results.length != 0)
+									$.each(data.results[0].result.activities, function(i, item){
+										table.row.add( [
+											item.name,
+											getDateStr(item.openDate),
+											closeDateStr(item.closeDate),
+											openStr(item.isOpen)
+										] );		
+									});
+								table.draw();
+							}
+							else 
+							{
+								alert("获取信息失败");
+							}
+						}
+						else
+						{
+							$("#activityEdit").append("<label id='notice_sending' style='color:#CCCC00'>*提交失败</label>");
+							console.log("加载数据失败。");
+						}
+						
+					  });
+				
+			}
+		});
+		
+		$("input").focus(function(){
+			$("#activityEdit").children().remove("#notice_sending");
+		});
+		
+	});
+	
+	
+	
+</script>

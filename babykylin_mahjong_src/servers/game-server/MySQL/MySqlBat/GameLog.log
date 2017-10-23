@@ -1,0 +1,5 @@
+Note (Code 1051): Unknown table 'gamelog3.playeractionlog'
+Warning (Code 1831): Duplicate index 'AK_Key_playerId_type' defined on the table 'gamelog3.playeractionlog'. This is deprecated and will be disallowed in a future release.
+Note (Code 1051): Unknown table 'gamelog3.logrechargeplayerinfo'
+Note (Code 1051): Unknown table 'gamelog3.clientactionlog'
+Note (Code 1051): Unknown table 'gamelog3.logitemflow'

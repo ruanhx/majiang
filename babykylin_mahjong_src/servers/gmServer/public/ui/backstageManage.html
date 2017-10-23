@@ -1,0 +1,450 @@
+
+<div class="tab">
+	<h1>位置：服务器后台管理->客服后台监控</h1>
+	<div id="channelServer" ></div>
+	
+	<br>	
+	<div>
+		<label>筛选目标:</label>
+		<input name="targetRadio" type="radio" value="1" checked="true"  />指定账号
+        <input name="targetRadio" type="radio" value="2" />指定玩家id
+        <input name="targetRadio" type="radio" value="3" />指定玩家名
+		<input type="text" id="targetText"/>
+		<br>
+		<button id="search">查询</button>
+	</div>
+	
+	<br>
+	<div>
+		<label>搜索结果:</label>
+		<table id="searchTable"  class="display" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th>uid</th>
+					<th>账号</th>
+					<th>玩家id</th>
+					<th>玩家名</th>
+					<th>等级信息</th>
+					<th>禁言剩余时长（分钟）</th>
+					<th>封号剩余时长（分钟）</th>
+					<th>是否在线</th>
+					<th>所在渠道</th>
+					<th>所在服务器</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>	
+	</div>
+	<br><br><br>
+	
+	<div id="shopEdit">
+		<label>操作:当前playerID:</label>
+		<label id="curPlayerId"></label>&nbsp;
+		<label>当前uid:</label>
+		<label id="uid"></label>
+		<br><br>
+		<button id="kickoutButton" >踢出</button><br><br>
+		<button id="nospeakButton" >禁言</button>&nbsp;<input type="text" id="nospeakText"/>(分钟)<br><br>
+		<button id="sealedButton" >封号</button>&nbsp;<input type="text" id="sealedText"/>(分钟)<br><br>
+		<button id="relieveNospeakButton" >解除禁言</button><br>	<br>
+		<button id="relieveSealedButton" >解除封号</button><br>
+	</div>
+	
+	<br><br>
+</div><!-- Introduction Page Ends -->
+<script>
+	var table;
+	var playerid = 0;
+	var uid = 0;
+	$(document).ready(function(e) {
+		$("div#channelServer").load('channelServer.html?backstageManage');
+		table = $("#searchTable").DataTable({
+			"dom": "rt",
+			
+			"language": {
+					"zeroRecords": "未找到该玩家"
+				  }
+		});
+		
+		
+		$("#search").click(function(){
+			var type = $('input[name="targetRadio"]:checked').val();
+			
+			var channelId = $("#channelSelect  option:selected").val();
+			var serverId = $("#severSelect  option:selected").val();
+			if(channelId == null)
+			{
+				return;
+			}
+			var objjson = '{';
+			objjson += '"channelIds":"'+channelId+'",';
+			if(channelId != 0)
+				objjson += '"serverIds":"'+serverId+'",';
+				
+			if(type == 1)//指定帐号
+				objjson += '"username":"'+$("#targetText").val()+'"';
+			else if(type == 2)//指定玩家id
+				objjson += '"playerId":"'+$("#targetText").val()+'"';
+			else if(type == 3)//指定玩家名
+				objjson += '"playerName":"'+$("#targetText").val()+'"';
+				
+			objjson += '}';
+			$.post("/monitorConsole.findPlayer",
+				JSON.parse(objjson),
+				function(data,status){
+					console.log(data);
+					if(status == "success")
+					{
+						if(data.code == CODE.OK)
+						{	
+							table.clear();
+							$.each(data.results, function(i, item){ 
+								$.each(item.result, function(J, itemJ){ 
+									table.row.add( [
+										itemJ.uid,
+										itemJ.username,
+										itemJ.playerId,
+										itemJ.playerName,
+										itemJ.level,
+										getOpMin(itemJ.opRecs,1),
+										getOpMin(itemJ.opRecs,2),
+										onlineStr(itemJ.isOnline),
+										getChannelName(item.serverId,item.channelId),
+										getServerName(item.serverId,item.channelId)
+									] );
+									if(i == 0 && J == 0)
+									{
+										playerid = itemJ.playerId;
+										$("#curPlayerId").text(playerid);										
+										uid = itemJ.uid;
+										$("#uid").text(uid);
+									}
+								});
+							});
+							table.draw();
+							if(data.results.length == 0)
+								alert("未找到该玩家");								
+							}
+						else 
+						{
+							alert("获取信息失败");
+						}
+					}
+					else
+					{
+						console.log("加载数据失败。");
+					}
+				}
+			);
+		});
+		function getServerName(serverId,channelId)
+		{
+			var ret="";
+			$.each(serverAllData, function(j, itemJ){ 
+				if(itemJ.ID == serverId && itemJ.channelId == channelId)
+				{	
+					ret = itemJ.name;
+					return;
+				}
+			});
+			return ret;
+		}
+		function getChannelName(serverId,channelId)
+		{
+			var ret="";
+			$.each(serverAllData, function(j, itemJ){ 
+				if(itemJ.ID == serverId && itemJ.channelId == channelId)
+				{	
+					ret = itemJ.channelName;
+					return;
+				}
+			});
+			return ret;
+		}
+		function onlineStr( isOnline )
+		{
+			if(isOnline == 0)
+			{
+				return "否";
+			}
+			else return "是";
+		}
+		function getOpMin(opRecs,op)
+		{
+		    var ret = 0;
+			if(opRecs != null)
+			$.each(opRecs, function(i, item){ 
+				if(item.op == op)
+				{
+					ret = item.interval;
+					return;
+				}
+			});
+			return ret;
+		}
+		
+		//踢人
+		$("#kickoutButton").click(function(){
+			if(playerid == 0)
+			{
+				alert("无效playerid");
+			}
+			else
+			{
+				var channelId = $("#channelSelect  option:selected").val();
+				var serverId = $("#severSelect  option:selected").val();
+				if(channelId == null)
+				{
+					return;
+				}
+				var objjson = '{';
+				objjson += '"channelIds":"'+channelId+'",';
+				if(channelId != 0)
+					objjson += '"serverIds":"'+serverId+'",';
+					
+				objjson += '"playerId":"'+playerid+'"';
+				
+				objjson += '}';
+			  $.post("/monitorConsole.kickPlayer",
+					  JSON.parse(objjson),
+					  function(data,status){
+					  console.log(data);
+						if(status == "success")
+						{
+							if(data.code == CODE.OK)
+							{	
+								alert("成功踢出该玩家");
+							}
+							else 
+							{
+								alert("踢出玩家失败");
+							}
+						}
+						else
+						{
+							console.log("加载数据失败。");
+						}
+					  });
+				
+			}
+		});
+		
+		//禁言
+		$("#nospeakButton").click(function(){
+			if(uid == 0)
+			{
+				alert("无效uid");
+			}
+			else
+			{
+				var channelId = $("#channelSelect  option:selected").val();
+				var serverId = $("#severSelect  option:selected").val();
+				if(channelId == null)
+				{
+					return;
+				}
+				var objjson = '{';
+				objjson += '"channelIds":"'+channelId+'",';
+				if(channelId != 0)
+					objjson += '"serverIds":"'+serverId+'",';
+								
+				var timeT = $("#nospeakText").val();
+				if(timeT == "")
+					timeT = 10;
+					
+				objjson += '"interval":"'+timeT+'",';
+				objjson += '"uid":"'+uid+'"';
+				
+				objjson += '}';
+			  $.post("/monitorConsole.disableChat",
+					  JSON.parse(objjson),
+					  function(data,status){
+					  console.log(data);
+						if(status == "success")
+						{
+							if(data.code == CODE.OK)
+							{	
+								alert("成功禁言该玩家");
+							}
+							else 
+							{
+								alert("禁言玩家失败");
+							}
+						}
+						else
+						{
+							console.log("加载数据失败。");
+						}
+					  });
+				
+			}
+		});
+		
+		//封号
+		$("#sealedButton").click(function(){
+			if(uid == 0)
+			{
+				alert("无效uid");
+			}
+			else
+			{
+				var channelId = $("#channelSelect  option:selected").val();
+				var serverId = $("#severSelect  option:selected").val();
+				if(channelId == null)
+				{
+					return;
+				}
+				var objjson = '{';
+				objjson += '"channelIds":"'+channelId+'",';
+				if(channelId != 0)
+					objjson += '"serverIds":"'+serverId+'",';
+				
+				var timeT = $("#sealedText").val();
+				if(timeT == "")
+					timeT = 10;
+				objjson += '"interval":"'+timeT+'",';
+				objjson += '"uid":"'+uid+'"';
+				
+				objjson += '}';
+			  $.post("/monitorConsole.disableLogon",
+					  JSON.parse(objjson),
+					  function(data,status){
+					  console.log(data);
+						if(status == "success")
+						{
+							if(data.code == CODE.OK)
+							{	
+								alert("成功封号该玩家");
+							}
+							else 
+							{
+								alert("封号玩家失败");
+							}
+						}
+						else
+						{
+							console.log("加载数据失败。");
+						}
+					  });
+				
+			}
+		});
+		
+		//解禁
+		$("#relieveNospeakButton").click(function(){
+			if(uid == 0)
+			{
+				alert("无效uid");
+			}
+			else
+			{
+				var channelId = $("#channelSelect  option:selected").val();
+				var serverId = $("#severSelect  option:selected").val();
+				if(channelId == null)
+				{
+					return;
+				}
+				var objjson = '{';
+				objjson += '"channelIds":"'+channelId+'",';
+				if(channelId != 0)
+					objjson += '"serverIds":"'+serverId+'",';
+					
+				objjson += '"uid":"'+uid+'"';
+				
+				objjson += '}';
+			  $.post("/monitorConsole.enableChat",
+					  JSON.parse(objjson),
+					  function(data,status){
+					  console.log(data);
+						if(status == "success")
+						{
+							if(data.code == CODE.OK)
+							{	
+								alert("成功解禁该玩家");
+							}
+							else 
+							{
+								alert("解禁玩家失败");
+							}
+						}
+						else
+						{
+							console.log("加载数据失败。");
+						}
+					  });
+				
+			}
+		});
+		
+		//解封
+		$("#relieveSealedButton").click(function(){
+			if(uid == 0)
+			{
+				alert("无效uid");
+			}
+			else
+			{
+				var channelId = $("#channelSelect  option:selected").val();
+				var serverId = $("#severSelect  option:selected").val();
+				if(channelId == null)
+				{
+					return;
+				}
+				var objjson = '{';
+				objjson += '"channelIds":"'+channelId+'",';
+				if(channelId != 0)
+					objjson += '"serverIds":"'+serverId+'",';
+					
+				objjson += '"uid":"'+uid+'"';
+				
+				objjson += '}';
+			  $.post("/monitorConsole.enableLogon",
+					  JSON.parse(objjson),
+					  function(data,status){
+						console.log(data);
+						if(status == "success")
+						{
+							if(data.code == CODE.OK)
+							{	
+								alert("成功解封该玩家");
+							}
+							else 
+							{
+								alert("解封玩家失败");
+							}
+						}
+						else
+						{
+							console.log("加载数据失败。");
+						}
+					  });
+				
+			}
+		});
+		
+		$("table#searchTable").on( 'click', 'tr', function () {
+			//console.log(table.row( this ).data().name +" "+table.row( this ).data().px);
+			//console.log($("#s1  option:selected").text());
+			//console.log(this.lastChild.firstChild.value);
+			if ( $(this).hasClass('selected') ) {
+				$(this).removeClass('selected');
+			}
+			else {
+				table.$('tr.selected').removeClass('selected');
+				$(this).addClass('selected');
+			}
+			if(table.row('.selected').data() != null)
+			{
+				playerid = table.row('.selected').data()[2];
+				$("#curPlayerId").text(playerid);
+				uid = table.row('.selected').data()[0];
+				$("#uid").text(uid);
+				//console.log(table.row('.selected').data()[1]+ " " +table.row('.selected').data()[2]);
+			}
+		} );
+	});
+	
+	
+</script>

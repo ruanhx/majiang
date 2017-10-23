@@ -2,7 +2,8 @@
  * Created by kilua on 2015-03-18.
  */
 var crypto = require('crypto'),
-    url = require('url');
+    url = require('url'),
+    stateReport = require('../util/stateReport');
 
 var globalUserDao = require('../dao/globalUserDao'),
     dbClient = require('../dao/mysql/mysql'),
@@ -86,6 +87,9 @@ exp.auth = function (req, res) {
         msg = url_parts.query,
         name = msg.name || '', pwd = msg.pwd || '';
     console.log('auth user = %s, pwd = %s', name, pwd);
+    var ip = req.connection.remoteAddress;
+    var deviceId = msg.deviceId||"123456";
+    var platform = msg.platform;
     if (!name || !pwd) {
         return res.send({code: 500});
     }
@@ -111,6 +115,7 @@ exp.auth = function (req, res) {
                     return res.send({code: 501});
                 }
                 if (!!success) {
+                    stateReport.SCADA("writeLoginReg",{accountId:name,deviceNum:deviceId,channelId:platform,addIp:ip,addtime:Date.now(),type:0},function(){});
                     return res.send({code: 200});
                 } else {
                     return res.send({code: 503});
@@ -152,7 +157,8 @@ exp.register = function (req, res) {
         msg = url_parts.query,
         name = msg.name || '', pwd = msg.pwd || '';
     console.log('register name = %s, pwd = %s', name, pwd);
-
+    var ip = req.connection.remoteAddress;
+    var deviceId = msg.deviceId||'123456';//TODO:客户端传值
     function containsInvalidChar(str) {
         return /[^0-9a-zA-Z@\.]/g.test(str);
     }
@@ -191,6 +197,8 @@ exp.register = function (req, res) {
             if (err) {
                 return res.send({code: Code.DB_ERR});
             }
+            stateReport.SCADA("writeLoginReg",{accountId:name,deviceNum:deviceId,channelId:'default',addIp:ip,addtime:Date.now(),type:0},function(){});
+
             return res.send({code: Code.OK});
         });
     });

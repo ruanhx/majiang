@@ -1,0 +1,16 @@
+{
+  "development": {
+    "host": "127.0.0.1",
+    "port": 3306,
+    "database": "lmr_bg_data",
+    "user": "lmrlm",
+    "password": "bG1ybG1AdGlhbnRvbmc"
+  },
+  "production": {
+    "host": "127.0.0.1",
+    "port": 3306,
+    "database": "lmr_bg_data",
+    "user": "lmrlm",
+    "password": "bG1ybG1AdGlhbnRvbmc"
+  }
+}

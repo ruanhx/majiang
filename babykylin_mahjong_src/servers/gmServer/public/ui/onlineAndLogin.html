@@ -1,0 +1,371 @@
+
+<div class="tab">
+	<h1>位置：服务器后台管理->在线与登录</h1>
+	<h2>有曲线图，暂时延后处理</h2>
+	<div id="channelServer" ></div>
+	
+	<br>
+	
+	<div>
+		<label>选择日期:</label>
+		<input type="text" id="dateFrom" class="ui-corner-top"/>
+		<input type="text" id="dateTo" class="ui-corner-top"/>
+	</div>
+	
+	<br>
+	
+	<div>
+		<button id="choseAll">全选</button>
+        <input class="chkItem" type="checkbox" value="1" checked="true"  />当日最高在线人数
+        <input class="chkItem" type="checkbox" value="2" checked="true"  />当日在线10m内人数
+        <input class="chkItem" type="checkbox" value="3" checked="true"  />当日在线11~30m人数
+        <input class="chkItem" type="checkbox" value="3" checked="true"  />当日在线31~60m内人数
+        <input class="chkItem" type="checkbox" value="3" checked="true"  />当日在线61~120m内人数
+        <input class="chkItem" type="checkbox" value="3" checked="true"  />当日在线121m以上人数
+    </div>
+	<button id="search">查询</button>
+		
+	<br><br>
+	<div class="staticsList">
+		<table id="staticsTableTime"  class="display" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th>时间</th>
+					<th>0</th>
+					<th>1</th>
+					<th>2</th>
+					<th>3</th>
+					<th>4</th>
+					<th>5</th>
+					<th>6</th>
+					<th>7</th>
+					<th>8</th>
+					<th>9</th>
+					<th>10</th>
+					<th>11</th>
+					<th>12</th>
+					<th>13</th>
+					<th>14</th>
+					<th>15</th>
+					<th>16</th>
+					<th>17</th>
+					<th>18</th>
+					<th>19</th>
+					<th>20</th>
+					<th>21</th>
+					<th>22</th>
+					<th>23</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>		
+	</div>
+	<div class="staticsList">
+		<table id="staticsTable"  class="display" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th>日期</th>
+					<th>当日最高在线人数</th>
+					<th>当日在线10m内人数</th>
+					<th>当日在线11~30m人数</th>
+					<th>当日在线31~60m内人数</th>
+					<th>当日在线61~120m内人数</th>
+					<th>当日在线121m以上人数</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>		
+	</div>
+	
+</div><!-- Introduction Page Ends -->
+<script>
+	var table;
+	var tableTime;
+	var channelID = 0;
+	var serverID = 0;
+	$(document).ready(function(e) {
+		$("div#channelServer").load('channelServer.html?onlineAndLogin');
+		$("#dateFrom").datepicker({
+				dateFormat: 'yy-mm-dd'});
+		$("#dateTo").datepicker({
+				dateFormat: 'yy-mm-dd'});
+		
+		//初始化datatable
+		tableTime = $("#staticsTableTime").DataTable({});
+		table = $("#staticsTable").DataTable({});
+		
+		$("tableTime#staticsTableTime").on( 'click', 'tr', function () {
+			if ( $(this).hasClass('selected') ) {
+				$(this).removeClass('selected');
+			}
+			else {
+				tableTime.$('tr.selected').removeClass('selected');
+				$(this).addClass('selected');
+			}
+		} );
+		
+		$("table#staticsTable").on( 'click', 'tr', function () {
+			if ( $(this).hasClass('selected') ) {
+				$(this).removeClass('selected');
+			}
+			else {
+				table.$('tr.selected').removeClass('selected');
+				$(this).addClass('selected');
+			}
+		} );
+		
+		// 全选
+		$("#choseAll").click(function(){
+     
+			$(".chkItem").prop("checked",'true');//全选
+			checkClumnsShowHide();
+		})
+		
+		$(".chkItem").change(function(){
+			checkClumnsShowHide();
+		});
+		
+		$("#search").click(function(){	
+			
+			var dataFrom = $("#dateFrom").datepicker( 'getDate' );
+			var sFrom = Date.parse(new Date());
+			if(dataFrom != null)
+				sFrom = dataFrom.valueOf(); //获取时间戳 毫秒
+			var dataTo = $("#dateTo").datepicker( 'getDate' );
+			var sTo = Date.parse(new Date())
+			if(dataTo != null)
+				sTo = dataTo.valueOf(); 
+			sTo += 86400000;
+			if(sTo < sFrom){//时间不能倒退
+				sTo = sFrom;
+			}
+			var channelId = $("#channelSelect  option:selected").val();
+			var serverId = $("#severSelect  option:selected").val();
+			if(channelId == null)
+			{
+				return;
+			}
+			var objjson = '{';
+			objjson += '"channelIds":"'+channelId+'",';
+			if(channelId != 0)
+				objjson += '"serverIds":"'+serverId+'",';
+			objjson += '"begin":"'+sFrom+'",';
+			objjson += '"end":"'+sTo+'"';
+			objjson += '}';
+			$.post("/onlineStatistics",
+					  JSON.parse(objjson),
+					  function(data,status){
+					  //data = JSON.parse('{ "code": 200,    "results": [{ "today": [  { "id": 10000,"count": 10,"sampleTime": 1444924800013},{"id": 10001,"count": 23,"sampleTime": 1444925100013},{"id": 10001,"count": 23,"sampleTime": 1445925100013}],"yesterday": [{ "id": 10000,"count": 11,"sampleTime": 1445024800013},{"id": 10001,"count": 21,"sampleTime": 1445025100013},{"id": 10001,"count": 21,"sampleTime": 1445525100013}],"lastWeek": [],"total": [{"onlineTimeStat": {"0-10": 1,"11-30": 1,"31-60": 0,"61-120": 0,"121-1440": 0},"todayHighOnline": 0,"createTime": 1444924740006}]}]}');
+						console.log("onlineStatistics:status-" + status + "  data.code-" + data.code);
+						console.log(data);
+						if(status == "success")
+						{
+							if(data.code == CODE.OK)
+							{
+								tableTime.clear();
+								var tableTimeTime = getOnlineAndLoginDataTime(data.results);
+								$.each(tableTimeTime, function(i, item){ 
+									tableTime.row.add( [
+										item.title,
+										item.onlineCount[0],
+										item.onlineCount[1],
+										item.onlineCount[2],
+										item.onlineCount[3],
+										item.onlineCount[4],
+										item.onlineCount[5],
+										item.onlineCount[6],
+										item.onlineCount[7],
+										item.onlineCount[8],
+										item.onlineCount[9],
+										item.onlineCount[10],
+										item.onlineCount[11],
+										item.onlineCount[12],
+										item.onlineCount[13],
+										item.onlineCount[14],
+										item.onlineCount[15],
+										item.onlineCount[16],
+										item.onlineCount[17],
+										item.onlineCount[18],
+										item.onlineCount[19],
+										item.onlineCount[20],
+										item.onlineCount[21],
+										item.onlineCount[22],
+										item.onlineCount[23],
+									] );
+								});
+								tableTime.draw();
+								
+								table.clear();	
+								var tableData = getOnlineAndLoginData(data.results);
+								$.each(tableData, function(i, item){ 
+									table.row.add( [
+										item.createTimeStr,
+										item.todayHighOnline,
+										item.onlineTimeStat['0-10'],
+										item.onlineTimeStat['11-30'],
+										item.onlineTimeStat['31-60'],
+										item.onlineTimeStat['61-120'],
+										item.onlineTimeStat['121-1440'],
+									] );
+								});
+								table.draw();
+							}
+							else 
+							{
+								alert("获取信息失败");
+							}
+						}
+						else
+						{
+							console.log("加载数据失败。");
+						}
+					  });
+			
+		});
+		function getOnlineAndLoginDataTime(results)
+		{
+			var ret = [];
+			$.each(results, function(i, item){ 
+				if(i == 0)//只取第一个,多了没意义
+				{
+					var onlineCount= [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+					var count= [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+					$.each(item.today, function(j, itemJ){ 
+						var date = new Date(itemJ.sampleTime);
+						var hour = date.getHours();
+						onlineCount[hour] = onlineCount[hour] + itemJ.count;
+						count[hour] = count[hour] + 1;
+					});
+					for(var k = 0; k < onlineCount.length; k ++)
+					{
+						if(count[k] > 0)
+							onlineCount[k] = Math.floor(onlineCount[k]/count[k]);
+					}
+					
+					ret[0] = {
+						"title":"0当日在线人数",
+						"onlineCount":onlineCount
+					};
+					
+					onlineCount= [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+					count= [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+					$.each(item.yesterday, function(j, itemJ){ 
+						var date = new Date(itemJ.sampleTime);
+						var hour = date.getHours();
+						onlineCount[hour] = onlineCount[hour] + itemJ.count;
+						count[hour] = count[hour] + 1;
+					});
+					for(var k = 0; k < onlineCount.length; k ++)
+					{
+						if(count[k] > 0)
+							onlineCount[k] = Math.floor(onlineCount[k]/count[k]);
+					}
+					
+					ret[1] = {
+						"title":"1昨天在线人数",
+						"onlineCount":onlineCount
+					};
+					
+					onlineCount= [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+					count= [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+					$.each(item.lastWeek, function(j, itemJ){ 
+						var date = new Date(itemJ.sampleTime);
+						var hour = date.getHours();
+						onlineCount[hour] = onlineCount[hour] + itemJ.count;
+						count[hour] = count[hour] + 1;
+					});
+					for(var k = 0; k < onlineCount.length; k ++)
+					{
+						if(count[k] > 0)
+							onlineCount[k] = Math.floor(onlineCount[k]/count[k]);
+					}
+					
+					ret[2] = {
+						"title":"2上周在线人数",
+						"onlineCount":onlineCount
+					};
+				}
+			});
+			
+			
+			return ret;
+		}
+		
+		function getOnlineAndLoginData(results)
+		{
+			var ret = [];
+			$.each(results, function(i, item){ 
+				if(i == 0)//第一个直接插入,第一个所出来的服务器
+				{
+					$.each(item.total, function(j, itemJ){ 
+						ret[j] = {
+						"onlineTimeStat":itemJ.onlineTimeStat,
+						"todayHighOnline":itemJ.todayHighOnline,
+						"createTimeStr":getDateStr(itemJ.createTime),
+						};
+					});
+				}
+				else
+				{
+					$.each(item.total, function(j, itemJ){ 
+						var timeStr = getDateStr(itemJ.createTime);
+						var getItem = containInRet(ret,timeStr);
+						if(getItem != null)
+						{
+							getItem.todayHighOnline = getItem.todayHighOnline + itemJ.todayHighOnline;
+							getItem.onlineTimeStat['0-10'] = getItem.onlineTimeStat['0-10'] + itemJ.onlineTimeStat['0-10'];
+							getItem.onlineTimeStat['11-30'] = getItem.onlineTimeStat['11-30'] + itemJ.onlineTimeStat['11-30'];
+							getItem.onlineTimeStat['31-60'] = getItem.onlineTimeStat['31-60'] + itemJ.onlineTimeStat['31-60'];
+							getItem.onlineTimeStat['61-120'] = getItem.onlineTimeStat['61-120'] + itemJ.onlineTimeStat['61-120'];
+							getItem.onlineTimeStat['121-1440'] = getItem.onlineTimeStat['121-1440'] + itemJ.onlineTimeStat['121-1440'];
+						}
+						else
+						{
+							ret[ret.length] = {
+							"onlineTimeStat":itemJ.onlineTimeStat,
+							"todayHighOnline":itemJ.todayHighOnline,
+							"createTimeStr":getDateStr(itemJ.createTime),
+							};
+						}
+					});
+				}
+			});
+			return ret;
+		}
+		
+		function containInRet(ret,timeStr)
+		{
+			var retItem = null;
+			$.each(ret, function(i, item){ 
+				if(getDateStr(item.createTimeStr) == timeStr)
+				{
+					retItem = item;
+					return;
+				}
+			});
+			return retItem;
+		}
+		
+		function checkClumnsShowHide()
+		{
+			$(".chkItem").each(function(i,item) {
+				var column = table.column(item.value);
+				column.visible(item.checked);
+			});
+		}
+	});
+	
+	function channelOnChange(valueNow)
+	{
+		channelID = valueNow;
+	}
+	
+	function serverOnChange(valueNow)
+	{
+		serverID = valueNow;
+	}
+</script>

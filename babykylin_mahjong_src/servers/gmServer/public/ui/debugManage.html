@@ -1,0 +1,142 @@
+
+<div class="tab">
+	<h1>服务器后台管理->debug</h1>
+	<div id="channelServer" ></div>
+	<br>
+
+	<br>
+	<div >
+		<h2>后台执行脚本:</h2>
+		<table>
+
+			<tr id="debug_tr">
+				<td>
+					<label>命令:</label>
+				</td>
+				<td>
+				<input type="text" id="server_debug" size="45"/>
+				</td>
+				<td>
+					<button id="server_debug_button" >发送</button>
+				</td>
+
+			</tr>
+			
+		</table>
+	</div>
+	
+	<br><br>
+</div><!-- Introduction Page Ends -->
+<script>
+	$(document).ready(function(e) {
+		$("div#channelServer").load('channelServer.html?mailManage',
+			function(response,status,xhr)
+			{
+				$("#channelSelect").append('<option value="0" selected="selected">全部</option>');	
+				$("#severSelect").append('<option value="0" selected="selected">全部</option>');		
+			}
+		);
+
+		$("#server_debug_button").click(function(){
+			sendMail(4);
+		});
+
+		
+		$("input").focus(function(){
+
+            $("#debug_tr td").remove("#notice_sending");
+		});
+		
+		function sendMail(type)//发送类型：0=账号，1=玩家id，2=玩家名称 ，3=等级范围 ,4=全服邮件
+		{
+			if(false)
+			{
+				alert("只能是数字");
+			}
+			else
+			{
+				var zhuti_mail = $.trim($("#zhuti_mail").val());
+
+				zhuti_mail = zhuti_mail;//encodeUTF8(zhuti_mail);
+
+				if(content_mail == "")
+				{
+					alert("正文内容不能为空");
+					return;
+				}
+				
+				var channelId = $("#channelSelect  option:selected").val();
+				var serverId = $("#severSelect  option:selected").val();
+				if(channelId == null)
+				{
+					return;
+				}
+				var objjson = '{';
+				objjson += '"channelIds":"'+channelId+'",';
+				if(channelId != 0)
+					objjson += '"serverIds":"'+serverId+'",';
+
+				var mailInfo = {};
+				mailInfo.title = zhuti_mail;
+				mailInfo.sender = source_mail;
+				mailInfo.info = title_mail +"\t\n"+ content_mail;
+				mailInfo.drop = subjoin_mail;
+                mailInfo.serverMail = 0;
+				mailInfo.life = life_mail;
+                $("#debug_tr").append("<td id='notice_sending' style='color:#CCCC00'>*发送中</td>");
+
+				objjson += '"mailInfo":"'+encodeUTF8(JSON.stringify(mailInfo))+'"';
+				objjson += '}';
+				
+				//console.log(mailInfo);
+				console.log(objjson);
+				
+				//var xxx = JSON.parse(objjson);
+			  $.post("/mailManage",
+					  JSON.parse(objjson),
+					  function(data,status){
+						console.log(data);
+
+						$("#debug_tr td").remove("#notice_sending");
+						if(status=="success")
+						{
+							if(data.code == CODE.OK)
+							{
+                                $("#debug_tr").append("<td id='notice_sending' style='color:green'>*发送成功</td>");
+								var Str = "服务器返回：";
+								$.each(data.results, function(i, item){
+									$.each(serverAllData, function(j, itemJ){ 
+										if(itemJ.ID == item.serverId && itemJ.channelId == item.channelId)
+										{
+											Str += itemJ.channelName;											
+											Str += "-";
+											Str += itemJ.name;											
+											Str += "-";
+											if(item.success)
+												Str += "success";
+											else												
+												Str += "failed";
+											Str += "  ";
+										}
+									});
+								});
+								alert(Str);
+							}
+							else 
+							{
+                                $("#debug_tr").append("<td id='notice_sending' style='color:red'>*发送失败</td>");
+
+							}
+						}
+						else
+						{
+							console.log("加载数据失败。");
+						}
+					  });
+				
+			}
+		}
+	});
+	
+	
+</script>

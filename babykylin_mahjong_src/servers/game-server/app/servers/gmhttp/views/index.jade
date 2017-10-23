@@ -1,0 +1,76 @@
+extends layout
+
+block content
+  h1= title
+
+  div
+    form(name='sendAnnouncement', action='/sendAnnouncement', method='get')
+      label(for='announcement') announcement:
+      input(name='announcement', type='text', value = '')
+      label(for='sendCount') sendCount:
+      input(name='sendCount', type='text', value = '1')
+      label(for='interval') interval:
+      input(name='interval', type='text', value = '0')
+      input(type='submit', value='sendAnnouncement')
+    p
+    form(name='mdfOpFlags', action='/modifyOpFlags', method='get')
+      label(for='opFlags') operationFlags:
+      input(name='opFlags', type='text', value = opFlags || '')
+      input(type='submit', value='modify')
+    p
+    form(name='mdfShopFlags', action='/modifyShopFlags', method='get')
+      label(for='opFlags') shopFlags:
+      input(name='opFlags', type='text', value = shopFlags || '')
+      input(type='submit', value='modify')
+    p
+    form(name='exceptionPlayer', action='/addExceptionPlayerByName', method='get')
+      label(for='playerName') player name:
+      input(name='playerName', type='text', value = '')
+      input(type='submit', value='add')
+    p
+    form(name='sendMailByName', action='/sendMail', method='get')
+      label(for='接收者名字') 接收者名字:
+      input(name='targetName', type='text', value = '')
+      label(for='发送者') 发送者:
+      input(name='sender', type='text', value = '系统邮件')
+      label(for='标题') 标题:
+      input(name='title', type='text', value = '')     
+      label(for='信息') 信息:
+      input(name='info', type='text', value = '')     
+      label(for='持续时间(秒)') 持续时间(秒):
+      input(name='life', type='text', value = '')       
+      label(for='掉落ID') 掉落ID:
+      input(name='drop', type='text', value = '')
+      input(type='submit', value='sendMailByName')
+    p
+    form(name='sendMailByLimit', action='/sendMail', method='get')
+      label(for='等级大于') 等级大于:
+      input(name='greater', type='text', value = '')
+      label(for='等级小于') 等级小于:
+      input(name='less', type='text', value = '')
+      label(for='发送者') 发送者:
+      input(name='sender', type='text', value = '系统邮件')
+      label(for='标题') 标题:
+      input(name='title', type='text', value = '')
+      label(for='信息') 信息:
+      input(name='info', type='text', value = '')
+      label(for='持续时间(秒)') 持续时间(秒):
+      input(name='life', type='text', value = '')
+      label(for='掉落ID') 掉落ID:
+      input(name='drop', type='text', value = '')
+      input(type='submit', value='sendMailByLimit')
+    p
+    form(name='sendMailByID', action='/sendMail', method='get')
+      label(for='接收者ID') 接收者ID:
+      input(name='targetID', type='text', value = '')
+      label(for='发送者') 发送者:
+      input(name='sender', type='text', value = '系统邮件')
+      label(for='标题') 标题:
+      input(name='title', type='text', value = '')
+      label(for='信息') 信息:
+      input(name='info', type='text', value = '')
+      label(for='持续时间(秒)') 持续时间(秒):
+      input(name='life', type='text', value = '')
+      label(for='掉落ID') 掉落ID:
+      input(name='drop', type='text', value = '')
+      input(type='submit', value='sendMailByID')

@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>fff</title>
+<link href="mycss.css" rel="stylesheet">   
+	<link href="jquery-ui.css" rel="stylesheet"> 
+	<script src="external/jquery/jquery.js"></script>
+	<script src="jquery-ui.js"></script>
+	<script src="myjs.js"></script>
+
+	<!-- DataTables CSS -->
+	<link rel="stylesheet" type="text/css" href="dataTables/css/jquery.dataTables.css">
+	 
+	<!-- jQuery 
+	<script type="text/javascript" charset="utf8" src="dataTables/js/jquery.js"></script>-->
+	 
+	<!-- DataTables -->
+	<script type="text/javascript" charset="utf8" src="dataTables/js/jquery.dataTables.js"></script>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	$("#txt1").datepicker({
+					dateFormat: 'yy-mm-dd'});
+					
+	$('#yy1').unbind('click').bind('click',function(){
+		var dataFrom = $("#txt1").datepicker( 'getDate' );
+		console.log(dataFrom);
+	});
+});
+</script>
+</head>
+<body>
+<input type="text" id="txt1" value="" />
+<input type="button" id="yy1" value="yyy" />
+</body>
+</html>

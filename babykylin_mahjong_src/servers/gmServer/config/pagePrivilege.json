@@ -1,0 +1,18 @@
+{
+  "account": "S",
+  "allServerStatistics": "A",
+  "payStatistics": "A",
+  "consumeStatistics": "A",
+  "onlineAndLogin": "A",
+  "annonceManage": "B",
+  "mailManage": "B",
+  "activityManage": "B",
+  "shopManage": "B",
+  "backstageManage": "C",
+  "paySearch": "C",
+  "presentSearch": "C",
+  "messageSearch": "C",
+  "itemCardSearch": "C",
+  "unusualFightSearch": "C",
+  "unusualAccountSearch": "C"
+}

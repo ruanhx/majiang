@@ -1,0 +1,463 @@
+
+<div class="tab">
+	<h1>位置：服务器后台管理->异常战斗跟踪</h1>
+	<div id="channelServer" ></div>
+	
+	<br>
+	<div>
+		<label>选择日期:</label>
+		<input type="text" id="dateFrom" class="ui-corner-top"/>
+		<input type="text" id="dateTo" class="ui-corner-top"/>
+	</div>
+	
+	<br>	
+	<div>
+		<label>筛选目标:</label>
+		<input name="targetRadio" type="radio" value="0" checked="true"  />全部账号
+        <input name="targetRadio" type="radio" value="1"   />指定账号
+        <input name="targetRadio" type="radio" value="2"   />指定玩家id
+        <input name="targetRadio" type="radio" value="3"   />指定玩家名
+		<input type="text" id="targetText"/>
+	</div>
+	<br>	
+	
+	<div>
+		<button id="choseAll">全选</button>
+        <input class="chkItem" type="checkbox" value="3" checked="true" />日志类型（PVP/PVE）
+        <input class="chkItem" type="checkbox" value="4" checked="true"  />发生时间
+        <input class="chkItem" type="checkbox" value="5" checked="true"  />玩家等级
+        <input class="chkItem" type="checkbox" value="6" checked="true"  />玩家总战斗力
+        <input class="chkItem" type="checkbox" value="7" checked="true"  />（PVP）对手ID
+        <input class="chkItem" type="checkbox" value="8" checked="true"  />（PVP）对手等级
+        <input class="chkItem" type="checkbox" value="9" checked="true"  />（PVP）对手总战斗力
+        <input class="chkItem" type="checkbox" value="10" checked="true"  />（PVE）关卡ID
+        <input class="chkItem" type="checkbox" value="11" checked="true"  />（PVE）关卡总战斗力
+    </div>
+	<button id="search">查询</button>
+		
+	<br><br>
+	<div>
+		<button id="choseAll1">全选</button>
+        <input class="chkItem1" type="checkbox" value="3" checked="true"  />pvp历史总报警次数
+        <input class="chkItem1" type="checkbox" value="4" checked="true"  />pvp72小时内报警次数
+        <input class="chkItem1" type="checkbox" value="5" checked="true"  />pve历史总报警次数
+        <input class="chkItem1" type="checkbox" value="6" checked="true"  />pve72小时内报警次数
+    </div>
+	<button id="search1">查询1</button>
+	
+	<br><br>
+	<div class="staticsList">
+		<table id="staticsTable"  class="display" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th>账号</th>
+					<th>玩家ID</th>
+					<th>玩家名</th>
+					<th>日志类型（PVP/PVE）</th>
+					<th>发生时间</th>
+					<th>玩家等级</th>
+					<th>玩家总战斗力</th>
+					<th>（PVP）对手ID</th>
+					<th>（PVP）对手等级</th>
+					<th>（PVP）对手总战斗力</th>
+					<th>（PVE）关卡ID</th>
+					<th>（PVE）关卡总战斗力</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>		
+	</div>
+		
+	<div class="staticsList1">
+		<table id="staticsTable1"  class="display" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th>账号</th>
+					<th>玩家ID</th>
+					<th>玩家名</th>
+					<th>pvp历史总报警次数</th>
+					<th>pvp72小时内报警次数</th>
+					<th>pve历史总报警次数</th>
+					<th>pve72小时内报警次数</th>
+					<th>跟踪</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>		
+	</div>
+	
+</div><!-- Introduction Page Ends -->
+<script>
+	var table;
+	var table1;
+	$(document).ready(function(e) {
+		table = null;
+		table1 = null;
+		$("#staticsTable").hide();
+		$("#staticsTable1").hide();
+		$("div#channelServer").load('channelServer.html?unusualFightSearch');
+		
+		$("#dateFrom").datepicker({
+				dateFormat: 'yy-mm-dd'});
+		$("#dateTo").datepicker({
+				dateFormat: 'yy-mm-dd'});
+				
+		$("#search").click(function(){
+			$("#staticsTable").show();
+			$("#staticsTable1").hide();
+			if(table == null)
+			{
+				table = $("#staticsTable").DataTable({
+					"language": {
+							"zeroRecords": "未找到该玩家"
+						  }
+					});
+			}
+			if(table1 != null)
+			{
+				table1.destroy();
+				table1 = null;
+			}
+			
+			var dataFrom = $("#dateFrom").datepicker( "getDate" );
+			var sFrom = Date.parse(new Date());
+			if(dataFrom != null)
+				sFrom = dataFrom.valueOf(); //获取时间戳 毫秒
+			else
+				console.log("dataFrom is null");
+			var dataTo = $("#dateTo").datepicker( "getDate" );
+			var sTo = Date.parse(new Date())
+			if(dataTo != null)
+				sTo = dataTo.valueOf(); 
+			else
+				console.log("dataTo is null");
+			sTo += 86400000;
+			if(sTo < sFrom){//时间不能倒退
+				sTo = sFrom;
+			}
+			
+			var type = $('input[name="targetRadio"]:checked').val();
+			
+			var channelId = $("#channelSelect  option:selected").val();
+			var serverId = $("#severSelect  option:selected").val();
+			if(channelId == null)
+			{
+				return;
+			}
+			var objjson = '{';
+			objjson += '"channelIds":"'+channelId+'",';
+			if(channelId != 0)
+				objjson += '"serverIds":"'+serverId+'",';
+			
+			if(type == 1)//指定帐号
+				objjson += '"username":"'+$("#targetText").val()+'",';
+			else if(type == 2)//指定玩家id
+				objjson += '"playerId":"'+$("#targetText").val()+'",';
+			else if(type == 3)//指定玩家名
+				objjson += '"playerName":"'+$("#targetText").val()+'",';
+				
+			objjson += '"begin":"'+sFrom+'",';
+			objjson += '"end":"'+sTo+'"';
+			
+			objjson += '}';
+			$.post("/battleException.getLog",
+					  JSON.parse(objjson),
+				function(data,status){
+					console.log("battleException.getLog:status-" + status + "  data.code-" + data.code);
+					console.log(data);
+					if(status == "success")
+					{
+						if(data.code == CODE.OK)
+						{	
+							table.clear();
+							if(data.results[0])
+							{						
+								$.each(data.results[0].results, function(i, item){ 
+										console.log(data.results[0].results[i]);
+										if(item.type == 2)//pvp
+										{
+											table.row.add( [
+												item.username,
+												item.playerId,
+												item.playerName,
+												"PVP",
+												getDateStr(item.logTime),
+												item.myLV,
+												item.myPower,
+												item.targetId,
+												item.targetLV,
+												item.targetPower,
+												"",
+												""
+											] );
+										}
+										else if(item.type == 3)//PVE
+										{
+											table.row.add( [
+												item.username,
+												item.playerId,
+												item.playerName,
+												"PVE",
+												getDateStr(item.logTime),
+												item.myLV,
+												item.myPower,
+												"",
+												"",
+												"",
+												item.barrierId,
+												item.barrierPower
+											] );
+										}
+								});
+							}
+							table.draw();
+						}
+						else 
+						{
+							alert("获取信息失败");
+						}
+					}
+					else
+					{
+						console.log("加载数据失败。");
+					}
+					
+				}
+			);
+		});
+		
+		$("#search1").click(function(){
+			$("#staticsTable").hide();
+			$("#staticsTable1").show();
+			if(table1 == null)
+			{
+			   table1 = $("#staticsTable1").DataTable({
+					"language": {
+									"zeroRecords": "未找到该玩家"
+								  },
+					columnDefs:[
+							{
+							"targets": 7,
+							"sortable":false,
+							"render": function ( data, type, full, meta ) {
+									if(data == true)
+										return '<button style="color:#CCCC00">已跟踪</button>';//full.name
+									else
+										return '<button onclick=clikeGenzong("'+full+'") style="color:green">跟踪</button>';//full.name
+								}
+							},
+						]
+			   });
+			}
+			if(table != null)
+			{
+				table.destroy();
+				table = null;
+			}
+			
+			if(false)
+			{
+				alert("无效");
+			}
+			else
+			{	
+				var objjson = '{';
+				
+				var type = $('input[name="targetRadio"]:checked').val();
+				
+				var channelId = $("#channelSelect  option:selected").val();
+				var serverId = $("#severSelect  option:selected").val();
+				if(channelId == null)
+				{
+					return;
+				}
+				var objjson = '{';
+				objjson += '"channelIds":"'+channelId+'",';
+				if(channelId != 0)
+					objjson += '"serverIds":"'+serverId+'",';
+				
+				if(type == 0)//全部帐号
+					objjson = objjson.substr(0,objjson.length - 1);
+				
+				if(type == 1)//指定帐号
+					objjson += '"username":"'+$("#targetText").val()+'"';
+				else if(type == 2)//指定玩家id
+					objjson += '"playerId":"'+$("#targetText").val()+'"';
+				else if(type == 3)//指定玩家名
+					objjson += '"playerName":"'+$("#targetText").val()+'"';
+					
+				objjson += '}';
+				$.post("/battleException.getStat",
+						  JSON.parse(objjson),
+					function(data,status){
+						console.log("battleException.getStat:status-" + status + "  data.code-" + data.code);
+						console.log(data);
+						/*data = {
+							 "code": 200,
+							 "results": [
+							 {
+								 "channelId": 1,
+								 "serverId": 10803,
+								 "results": [
+									 {
+										 "playerId": 10000,
+										 "PVPTotal": 2,
+										 "PVPCycleTotal": 1,
+										 "PVETotal": 4,
+										 "PVECycleTotal": 3,
+										 "username": "dsz0001",
+										 "playerName": "湮滅者艾薇拉",
+										 "traced": false
+									 }
+								 ]
+								 }
+							 ]
+						 };*/
+						if(status == "success")
+						{
+							if(data.code == CODE.OK)
+							{	
+								table1.clear();
+								if(data.results[0])
+								{						
+									$.each(data.results[0].results, function(i, item){ 
+											table1.row.add( [
+												item.username,
+												item.playerId,
+												item.playerName,
+												item.PVPTotal,
+												item.PVPCycleTotal,
+												item.PVETotal,
+												item.PVECycleTotal,
+												item.traced
+											] );
+									});
+								}
+								table1.draw();
+							}
+							else 
+							{
+								alert("获取信息失败");
+							}
+						}
+						else
+						{
+							console.log("加载数据失败。");
+						}
+						
+					}
+				);
+			}
+		});
+		
+		// 全选
+		$("#choseAll").click(function(){
+     
+			$(".chkItem").prop("checked",'true');//全选
+			checkClumnsShowHide();
+		})
+		// 全选1
+		$("#choseAll1").click(function(){
+     
+			$(".chkItem1").prop("checked",'true');//全选
+			checkClumnsShowHide1();
+		})
+		
+		$(".chkItem").change(function(){
+			checkClumnsShowHide();
+		});
+		$(".chkItem1").change(function(){
+			checkClumnsShowHide1();
+		});
+		
+		function checkClumnsShowHide()
+		{
+			$(".chkItem").each(function(i,item) {
+				var column = table.column(item.value);
+				column.visible(item.checked);
+			});
+		}
+		function checkClumnsShowHide1()
+		{
+			$(".chkItem1").each(function(i,item) {
+				var column = table1.column(item.value);
+				column.visible(item.checked);
+			});
+		}
+		
+	});
+	
+	function clikeGenzong(dataFull)
+	{
+		var str = dataFull.split(',');
+		
+		var objjson = '{';
+		var dataFrom = $("#dateFrom").datepicker( 'getDate' );
+		var sFrom = Date.parse(new Date());
+		if(dataFrom != null)
+			sFrom = dataFrom.valueOf(); //获取时间戳 毫秒
+		var dataTo = $("#dateTo").datepicker( 'getDate' );
+		var sTo = Date.parse(new Date())
+		if(dataTo != null)
+			sTo = dataTo.valueOf(); 
+		sTo += 86400000;
+		if(sTo < sFrom){//时间不能倒退
+			sTo = sFrom;
+		}
+		
+		var type = $('input[name="targetRadio"]:checked').val();
+		
+		var channelId = $("#channelSelect  option:selected").val();
+		var serverId = $("#severSelect  option:selected").val();
+		if(channelId == null)
+		{
+			return;
+		}
+		var objjson = '{';
+		objjson += '"channelIds":"'+channelId+'",';
+		if(channelId != 0)
+			objjson += '"serverIds":"'+serverId+'",';
+		
+		objjson += '"playerName":"'+str[2]+'"';
+			
+		objjson += '}';
+		$.post("/battleException.addTraceByName",
+				  JSON.parse(objjson),
+			function(data,status){
+				console.log("battleException.addTraceByName:status-" + status + "  data.code-" + data.code);
+				console.log(data);
+				if(status == "success")
+				{
+					if(data.code == CODE.OK)
+					{	
+						if(data.results[0])
+						{
+							if(data.results[0].result)
+							{
+								$("#search1").click();
+							}
+							else
+							{
+								alert("追踪失败");
+							}
+						}
+					}
+					else 
+					{
+						alert("获取信息失败");
+					}
+				}
+				else
+				{
+					console.log("加载数据失败。");
+				}
+				
+			}
+		);
+	}
+	
+</script>

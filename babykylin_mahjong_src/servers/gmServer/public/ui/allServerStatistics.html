@@ -1,0 +1,231 @@
+
+<div class="tab">
+	<h1>位置：服务器后台管理->全服统计</h1>
+
+	<div id="channelServer" ></div>
+	
+	<br>
+	
+	<div>
+		<label>选择日期:</label>
+		<input type="text" id="dateFrom" class="ui-corner-top"/>
+		<input type="text" id="dateTo" class="ui-corner-top"/>
+	</div>
+	
+	<br>
+	
+	<div>
+		<button id="choseAll">全选</button>
+        <input class="chkItem" type="checkbox" value="1" checked="true" />总用户数
+        <input class="chkItem" type="checkbox" value="2" checked="true"  />新增创角
+        <input class="chkItem" type="checkbox" value="3" checked="true"  />不重复登录数
+        <input class="chkItem" type="checkbox" value="4" checked="true"  />活跃人数
+        <input class="chkItem" type="checkbox" value="5" checked="true"  />次日留存
+        <input class="chkItem" type="checkbox" value="6" checked="true"  />2日留存
+        <input class="chkItem" type="checkbox" value="7" checked="true"  />3日留存
+        <input class="chkItem" type="checkbox" value="8" checked="true"  />4日留存
+        <input class="chkItem" type="checkbox" value="9" checked="true"  />5日留存
+        <input class="chkItem" type="checkbox" value="10" checked="true"  />6日留存
+        <input class="chkItem" type="checkbox" value="11" checked="true"  />7日留存
+        <input class="chkItem" type="checkbox" value="12" checked="true"  />15日留存
+        <input class="chkItem" type="checkbox" value="13" checked="true"  />30日留存
+    </div>
+	<br><br>
+	<button id="search">查询</button>
+	<br><br>
+	<div class="staticsList">
+		<table id="staticsTable"  class="display" cellspacing=DFYuanW7-GBK.ttf" width="100%">
+			<thead>
+				<tr>
+					<th>日期</th>
+					<th>总用户数totalUser</th>
+					<th>新增创角createPlayer</th>
+					<th>不重复登录数everLogonTotal</th>
+					<th>活跃人数activeUser</th>
+					<th>次日留存</th>
+					<th>2日留存</th>
+					<th>3日留存</th>
+					<th>4日留存</th>
+					<th>5日留存</th>
+					<th>6日留存</th>
+					<th>7日留存</th>
+					<th>15日留存</th>
+					<th>30日留存</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>
+		
+	</div>
+</div><!-- Introduction Page Ends -->
+<script>
+	var table;
+	$(document).ready(function(e) {		
+		$("div#channelServer").load('channelServer.html?allServerStatistics');
+		
+		$("#dateFrom").datepicker({
+				dateFormat: 'yy-mm-dd'});
+		$("#dateTo").datepicker({
+				dateFormat: 'yy-mm-dd'});
+		
+		//初始化datatable
+		table = $("#staticsTable").DataTable({});
+		$("table#staticsTable").on( 'click', 'tr', function () {
+			if ( $(this).hasClass('selected') ) {
+				$(this).removeClass('selected');
+			}
+			else {
+				table.$('tr.selected').removeClass('selected');
+				$(this).addClass('selected');
+			}
+		} );
+		
+		// 全选
+		$("#choseAll").click(function(){
+     
+			$(".chkItem").prop("checked",'true');//全选
+			checkClumnsShowHide();
+		})
+		
+		$(".chkItem").change(function(){
+			//console.log($(this).val()+ " "+ $(this).prop("checked"));
+			checkClumnsShowHide();
+		});
+		
+		$("#search").click(function(){
+			var dataFrom = $("#dateFrom").datepicker( 'getDate' );
+			console.log(dataFrom);
+			var sFrom = Date.parse(new Date());
+			console.log(sFrom);
+			if(dataFrom != null)
+				sFrom = dataFrom.valueOf(); //获取时间戳 毫秒
+			console.log(sFrom);
+			var dataTo = $("#dateTo").datepicker( 'getDate' );
+			var sTo = Date.parse(new Date())
+			if(dataTo != null)
+				sTo = dataTo.valueOf(); 
+			sTo += 86400000;
+			if(sTo < sFrom){//时间不能倒退
+				sTo = sFrom;
+			}
+			var channelId = $("#channelSelect  option:selected").val();
+			var serverId = $("#severSelect  option:selected").val();
+			if(channelId == null)
+			{
+				return;
+			}
+			var objjson = '{';
+			objjson += '"channelIds":"'+channelId+'",';
+			if(channelId != 0)
+				objjson += '"serverIds":"'+serverId+'",';
+			objjson += '"begin":"'+sFrom+'",';
+			objjson += '"end":"'+sTo+'"';
+			objjson += '}';
+			$.post("/globalStatistics",
+					  JSON.parse(objjson),
+					  function(data,status){
+						console.log("globalStatistics:status-" + status + "  data.code-" + data.code);
+						console.log(data);
+						if(status == "success")
+						{
+							if(data.code == CODE.OK)
+							{
+								table.clear();
+								var totalUser = 0;
+								var createPlayer = 0;
+								var everLogonTotal = 0;
+								var activeUser = 0;
+								var todayEverLogonBaseOnNumOfDaysBeforeCreated_1 = 0;
+								var todayEverLogonBaseOnNumOfDaysBeforeCreated_2 = 0;
+								var todayEverLogonBaseOnNumOfDaysBeforeCreated_3 = 0;
+								var todayEverLogonBaseOnNumOfDaysBeforeCreated_4 = 0;
+								var todayEverLogonBaseOnNumOfDaysBeforeCreated_5 = 0;
+								var todayEverLogonBaseOnNumOfDaysBeforeCreated_6 = 0;
+								var todayEverLogonBaseOnNumOfDaysBeforeCreated_7 = 0;
+								var todayEverLogonBaseOnNumOfDaysBeforeCreated_15 = 0;
+								var todayEverLogonBaseOnNumOfDaysBeforeCreated_30 = 0;
+
+								$.each(data.results, function(i, item){
+									totalUser += item.totalUser;
+									createPlayer += item.createPlayer;
+									everLogonTotal += item.everLogonTotal;
+									activeUser += item.activeUser
+									todayEverLogonBaseOnNumOfDaysBeforeCreated_1 += item.todayEverLogonBaseOnNumOfDaysBeforeCreated_1;
+									todayEverLogonBaseOnNumOfDaysBeforeCreated_2 += item.todayEverLogonBaseOnNumOfDaysBeforeCreated_2;
+									todayEverLogonBaseOnNumOfDaysBeforeCreated_3 += item.todayEverLogonBaseOnNumOfDaysBeforeCreated_3;
+									todayEverLogonBaseOnNumOfDaysBeforeCreated_4 += item.todayEverLogonBaseOnNumOfDaysBeforeCreated_4;
+									todayEverLogonBaseOnNumOfDaysBeforeCreated_5 += item.todayEverLogonBaseOnNumOfDaysBeforeCreated_5;
+									todayEverLogonBaseOnNumOfDaysBeforeCreated_6 += item.todayEverLogonBaseOnNumOfDaysBeforeCreated_6;
+									todayEverLogonBaseOnNumOfDaysBeforeCreated_7 += item.todayEverLogonBaseOnNumOfDaysBeforeCreated_7;
+									todayEverLogonBaseOnNumOfDaysBeforeCreated_15 += item.todayEverLogonBaseOnNumOfDaysBeforeCreated_15;
+									todayEverLogonBaseOnNumOfDaysBeforeCreated_30 += item.todayEverLogonBaseOnNumOfDaysBeforeCreated_30;
+								}	
+								);
+								if(data.results.length > 0)
+								{
+									/*table.row.add( [
+										"0总计",
+										totalUser,
+										createPlayer,
+										everLogonTotal,
+										activeUser,
+										todayEverLogonBaseOnNumOfDaysBeforeCreated_1.toFixed(3),
+										todayEverLogonBaseOnNumOfDaysBeforeCreated_2.toFixed(3),
+										todayEverLogonBaseOnNumOfDaysBeforeCreated_3.toFixed(3),
+										todayEverLogonBaseOnNumOfDaysBeforeCreated_4.toFixed(3),
+										todayEverLogonBaseOnNumOfDaysBeforeCreated_4.toFixed(3),
+										todayEverLogonBaseOnNumOfDaysBeforeCreated_5.toFixed(3),
+										todayEverLogonBaseOnNumOfDaysBeforeCreated_6.toFixed(3),
+										todayEverLogonBaseOnNumOfDaysBeforeCreated_15.toFixed(3),
+										todayEverLogonBaseOnNumOfDaysBeforeCreated_30.toFixed(3),
+									] );*/
+								}									
+								$.each(data.results, function(i, item){ 
+									table.row.add( [
+										getDateStr(item.sampleTick),
+										item.totalUser,
+										item.createPlayer,
+										item.everLogonTotal,
+										item.activeUser,
+										item.todayEverLogonBaseOnNumOfDaysBeforeCreated_1.toFixed(3),
+										item.todayEverLogonBaseOnNumOfDaysBeforeCreated_2.toFixed(3),
+										item.todayEverLogonBaseOnNumOfDaysBeforeCreated_3.toFixed(3),
+										item.todayEverLogonBaseOnNumOfDaysBeforeCreated_4.toFixed(3),
+										item.todayEverLogonBaseOnNumOfDaysBeforeCreated_4.toFixed(3),
+										item.todayEverLogonBaseOnNumOfDaysBeforeCreated_5.toFixed(3),
+										item.todayEverLogonBaseOnNumOfDaysBeforeCreated_6.toFixed(3),
+										item.todayEverLogonBaseOnNumOfDaysBeforeCreated_15.toFixed(3),
+										item.todayEverLogonBaseOnNumOfDaysBeforeCreated_30.toFixed(3),
+									] );
+								});
+								table.draw();
+							}
+							else 
+							{
+								alert("获取信息失败");
+							}
+						}
+						else
+						{
+							console.log("加载数据失败。");
+						}
+					  });
+			
+			
+		});
+		
+		
+		function checkClumnsShowHide()
+		{
+		
+			$(".chkItem").each(function(i,item) {
+				//console.log(item.value + " "+ item.checked);
+				var column = table.column(item.value);
+				column.visible(item.checked);
+			});
+		}
+	});
+	
+</script>

@@ -1,17 +1,1 @@
-{
-    "development": {
-        "host" : "127.0.0.1",
-        "port" : "3306",
-        "database" : "GlobalUser",
-        "user" : "root",
-        "password" : "Lss12345"
-    },
-
-    "production": {
-        "host" : "127.0.0.1",
-        "port" : "3306",
-        "database" : "GlobalUser",
-        "user" : "root",
-        "password" : "Lss12345"
-    }
-}
+{"development":{"host":"127.0.0.1","port":3306,"database":"GlobalUser3","user":"root","password":"123456"},"production":{"host":"127.0.0.1","port":3306,"database":"GlobalUser3","user":"root","password":"123456"}}

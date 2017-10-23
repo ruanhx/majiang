@@ -1,0 +1,3 @@
+Warning (Code 1287): Using GRANT for creating new user is deprecated and will be removed in future release. Create new user with CREATE USER statement.
+Warning (Code 1287): Using GRANT for creating new user is deprecated and will be removed in future release. Create new user with CREATE USER statement.
+Warning (Code 1287): Using GRANT for creating new user is deprecated and will be removed in future release. Create new user with CREATE USER statement.

@@ -1,0 +1,347 @@
+
+<div class="tab">
+	<h1>位置：服务器后台管理->客服充值查询</h1>
+	<div id="channelServer" ></div>
+	
+	<br>
+	<div>
+		<label>选择日期:</label>
+		<input type="text" id="dateFrom" class="ui-corner-top"/>
+		<input type="text" id="dateTo" class="ui-corner-top"/>
+	</div>
+	
+	<br>	
+	<div>
+		<label>筛选目标:</label>
+		<!--<input name="targetRadio" type="radio" value="0" checked="true"  />全部账号
+		<input name="targetRadio" type="radio" value="1"   />指定账号-->
+        <input name="targetRadio" type="radio" value="2"  checked="true"  />指定玩家id
+        <input name="targetRadio" type="radio" value="3"   />指定玩家名
+		<input type="text" id="targetText"/>
+		<br>
+	</div>
+	
+	<br>
+	
+	<!--<div>-->
+		<!--<button id="choseAll">全选</button>-->
+        <!--<input class="chkItem" type="checkbox" value="1" checked="true" />日期-->
+        <!--<input class="chkItem" type="checkbox" value="2" checked="true"  />玩家名-->
+        <!--<input class="chkItem" type="checkbox" value="3" checked="true"  />商品Id-->
+        <!--<input class="chkItem" type="checkbox" value="4" checked="true"  />本次充值金额-->
+        <!--<input class="chkItem" type="checkbox" value="5" checked="true"  />玩家id-->
+        <!--<input class="chkItem" type="checkbox" value="6" checked="true"  />订单编号-->
+        <!--<input class="chkItem" type="checkbox" value="7" checked="true"  />充值管道-->
+    <!--</div>-->
+	<br>
+	<button id="search">查询</button>
+	
+	<br>
+	<div>
+		<label>搜索结果:</label>
+		<table id="searchTable"  class="display" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th>日期</th>
+					<th>玩家名</th>
+					<th>商品Id</th>
+					<th>本次充值金额</th>
+					<th>玩家id</th>
+					<th>订单编号</th>
+					<th>充值管道</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>	
+	</div>
+	<br><br><br>
+	
+	
+	<!--<div>
+		<button id="choseAll1">全选</button>
+        <input class="chkItem1" type="checkbox" value="1" checked="true" />账号
+        <input class="chkItem1" type="checkbox" value="2" checked="true"  />玩家id
+        <input class="chkItem1" type="checkbox" value="3" checked="true"  />玩家名称
+        <input class="chkItem1" type="checkbox" value="4" checked="true"  />充值金额
+        <input class="chkItem1" type="checkbox" value="5" checked="true"  />订单编号
+        <input class="chkItem1" type="checkbox" value="6" checked="true"  />充值时间
+		<input class="chkItem1" type="checkbox" value="7" checked="true"  />充值管道
+		<input class="chkItem1" type="checkbox" value="8" checked="true"  />账号注册时间
+    </div>
+	<br>
+	<button id="search1">缓存订单查询</button>
+	
+	<br>
+	<div>
+		<label>搜索结果:</label>
+		<table id="searchTable1"  class="display" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th>日期</th>
+					<th>账号</th>
+					<th>玩家id</th>
+					<th>玩家名称</th>
+					<th>充值金额</th>
+					<th>订单编号</th>
+					<th>充值时间</th>
+					<th>充值管道</th>
+					<th>账号注册时间</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>	
+	</div>-->
+	
+</div><!-- Introduction Page Ends -->
+<script>
+	var table;
+	var table1;
+	$(document).ready(function(e) {
+		$("div#channelServer").load('channelServer.html?paySearch');
+		table = $("#searchTable").DataTable({
+		});
+		table1 = $("#searchTable1").DataTable({
+		});
+		
+		$("#dateFrom").datepicker({
+				dateFormat: 'yy-mm-dd'});
+		$("#dateTo").datepicker({
+				dateFormat: 'yy-mm-dd'});
+		
+		$("#search").click(function(){
+			var dataFrom = $("#dateFrom").datepicker( 'getDate' );
+			var sFrom = Date.parse(new Date());
+			if(dataFrom != null)
+				sFrom = dataFrom.valueOf(); //获取时间戳 毫秒
+			var dataTo = $("#dateTo").datepicker( 'getDate' );
+			var sTo = Date.parse(new Date())
+			if(dataTo != null)
+				sTo = dataTo.valueOf(); 
+			sTo += 86400000;
+			if(sTo < sFrom){//时间不能倒退
+				sTo = sFrom;
+			}
+		
+			var type = $('input[name="targetRadio"]:checked').val();
+			
+			var channelId = $("#channelSelect  option:selected").val();
+			var serverId = $("#severSelect  option:selected").val();
+			if(channelId == null)
+			{
+				return;
+			}
+			var objjson = '{';
+			objjson += '"channelIds":"'+channelId+'",';
+			if(channelId != 0)
+				objjson += '"serverIds":"'+serverId+'",';
+				
+			
+			objjson += '"begin":"'+sFrom+'",';
+			if(type == 0)//全部帐号
+				objjson += '"end":"'+sTo+'"';
+			else
+				objjson += '"end":"'+sTo+'",';//后面还有，所以要加,
+				
+			if(type == 1)//指定帐号
+				objjson += '"username":"'+$("#targetText").val()+'"';
+			else if(type == 2)//指定玩家id
+				objjson += '"playerId":"'+$("#targetText").val()+'"';
+			else if(type == 3)//指定玩家名
+				objjson += '"playerName":"'+$("#targetText").val()+'"';
+				
+			objjson += '}';
+			if($("#targetText").val() == ""){
+				alert("角色id 或者 角色名 不能为空");
+			}
+			else{
+
+				$.post("/orderQuery.getOrderList",
+						JSON.parse(objjson),
+						function(data,status){
+							console.log("orderQuery.getOrderList:status-" + status + "  data.code-" + data.code);
+							console.log(data);
+							if(status == "success")
+							{
+								if(data.code == CODE.OK)
+								{
+
+									table.clear();
+									$.each(data.results, function(i, item){
+										$.each(item.orderList, function(J, itemJ){
+											table.row.add( [
+												itemJ.createTime,
+                                                itemJ.playerName,
+                                                itemJ.productId,
+                                                itemJ.money,
+												itemJ.playerId,
+												itemJ.orderId,
+												itemJ.operationFlag
+											] );
+										});
+									});
+									table.draw();
+								}
+								else
+								{
+									alert("获取信息失败");
+								}
+							}
+							else
+							{
+								console.log("加载数据失败。");
+							}
+						}
+				);
+			}
+		});
+		
+		$("#search1").click(function(){
+			var dataFrom = $("#dateFrom").datepicker( 'getDate' );
+			var sFrom = Date.parse(new Date());
+			if(dataFrom != null)
+				sFrom = dataFrom.valueOf(); //获取时间戳 毫秒
+			var dataTo = $("#dateTo").datepicker( 'getDate' );
+			var sTo = Date.parse(new Date())
+			if(dataTo != null)
+				sTo = dataTo.valueOf(); 
+			sTo += 86400000;
+			if(sTo < sFrom){//时间不能倒退
+				sTo = sFrom;
+			}
+		
+			var type = $('input[name="targetRadio"]:checked').val();
+			
+			var channelId = $("#channelSelect  option:selected").val();
+			var serverId = $("#severSelect  option:selected").val();
+			if(channelId == null)
+			{
+				return;
+			}
+			var objjson = '{';
+			objjson += '"channelIds":"'+channelId+'",';
+			if(channelId != 0)
+				objjson += '"serverIds":"'+serverId+'",';
+				
+			
+			objjson += '"begin":"'+sFrom+'",';
+			if(type == 0)//全部帐号
+				objjson += '"end":"'+sTo+'"';
+			else
+				objjson += '"end":"'+sTo+'",';//后面还有，所以要加,
+				
+			if(type == 1)//指定帐号
+				objjson += '"username":"'+$("#targetText").val()+'"';
+			else if(type == 2)//指定玩家id
+				//objjson += '"playerId":"'+$("#targetText").val()+'"';
+			{
+				alert("暂不支持指定玩家id");
+				return;
+			}
+			else if(type == 3)//指定玩家名
+				//objjson += '"playerName":"'+$("#targetText").val()+'"';
+			{
+				alert("暂不支持指定玩家名");
+				return;
+			}
+				
+			objjson += '}';
+			
+			$.post("/orderQuery.getOrderCache",
+					  JSON.parse(objjson),
+				function(data,status){
+					console.log("orderQuery.getOrderCache:status-" + status + "  data.code-" + data.code);
+					console.log(data);
+					if(status == "success")
+					{
+						if(data.code == CODE.OK)
+						{
+							
+							table1.clear();
+							$.each(data.results, function(i, item){ 
+								$.each(item.orderList, function(J, itemJ){ 
+									table1.row.add( [
+										getDateStr(itemJ.time/1),//为了string转成数字
+										itemJ.uid,
+										"",
+										"",
+										itemJ.money,
+										itemJ.orderId,
+										getDateTimeStr(itemJ.time/1000),
+										itemJ.channel,
+										""//帐号注册时间
+									] );
+								});
+							});
+							table1.draw();
+						}
+						else 
+						{
+							alert("获取信息失败");
+						}
+					}
+					else
+					{
+						console.log("加载数据失败。");
+					}
+				}
+			);
+		});
+		
+		// 全选
+		$("#choseAll").click(function(){
+     
+			$(".chkItem").prop("checked",'true');//全选
+			checkClumnsShowHide();
+		})
+		// 全选
+		$("#choseAll1").click(function(){
+     
+			$(".chkItem1").prop("checked",'true');//全选
+			checkClumnsShowHide1();
+		})
+		
+		$(".chkItem").change(function(){
+			//console.log($(this).val()+ " "+ $(this).prop("checked"));
+			checkClumnsShowHide();
+		});
+		$(".chkItem1").change(function(){
+			//console.log($(this).val()+ " "+ $(this).prop("checked"));
+			checkClumnsShowHide1();
+		});
+		
+		function checkClumnsShowHide()
+		{
+		
+			$(".chkItem").each(function(i,item) {
+				//console.log(item.value + " "+ item.checked);
+				var column = table.column(item.value);
+				column.visible(item.checked);
+			});
+		}
+		function checkClumnsShowHide1()
+		{
+		
+			$(".chkItem1").each(function(i,item) {
+				//console.log(item.value + " "+ item.checked);
+				var column = table1.column(item.value);
+				column.visible(item.checked);
+			});
+		}
+		
+		function orderStatus(status)
+		{
+			if(status == 2)
+				return "成功";
+			else if(status == 3)
+				return "失败";
+			else
+				return "异常";
+		}
+	});
+	
+	
+</script>

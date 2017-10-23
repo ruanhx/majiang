@@ -1,0 +1,171 @@
+
+<div class="tab">
+	<h1>位置：服务器后台管理->充值统计</h1>
+
+	<div id="channelServer" ></div>
+	
+	<br>
+	
+	<div>
+		<label>选择日期:</label>
+		<input type="text" id="dateFrom" class="ui-corner-top"/>
+		<input type="text" id="dateTo" class="ui-corner-top"/>
+	</div>
+	
+	<br>
+	
+	<div>
+		<button id="choseAll">全选</button>
+        <input class="chkItem" type="checkbox" value="1" checked="true" />当日注册人数
+        <input class="chkItem" type="checkbox" value="2" checked="true"  />当日充值人数
+        <input class="chkItem" type="checkbox" value="3" checked="true"  />当日充值总次数
+        <input class="chkItem" type="checkbox" value="4" checked="true"  />当日充值总金额
+        <input class="chkItem" type="checkbox" value="5" checked="true"  />新注册首充人數
+        <input class="chkItem" type="checkbox" value="6" checked="true"  />新注册首充/充值人數比
+        <input class="chkItem" type="checkbox" value="7" checked="true"  />新注册首充總額
+        <input class="chkItem" type="checkbox" value="8" checked="true"  />新注册首充/充值額度比
+    </div>
+	<br><br>
+	<button id="search">查询</button>
+	<br><br>
+	<div class="staticsList">
+		<table id="staticsTable"  class="display" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th>日期</th>
+					<th>当日注册人数</th>
+					<th>当日充值人数</th>
+					<th>当日充值总次数</th>
+					<th>当日充值总金额</th>
+					<th>新注册首充人數</th>
+					<th>新注册首充/充值人數比</th>
+					<th>新注册首充總額</th>
+					<th>新注册首充/充值額度比</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>
+		
+	</div>
+</div><!-- Introduction Page Ends -->
+<script>
+	var table;
+	var channelID = 0;
+	var serverID = 0;
+	$(document).ready(function(e) {
+		$("div#channelServer").load('channelServer.html?payStatistics');
+		$("#dateFrom").datepicker({
+				dateFormat: 'yy-mm-dd'});
+		$("#dateTo").datepicker({
+				dateFormat: 'yy-mm-dd'});
+		
+		//初始化datatable
+		table = $("#staticsTable").DataTable({});
+		
+		$("table#staticsTable").on( 'click', 'tr', function () {
+			if ( $(this).hasClass('selected') ) {
+				$(this).removeClass('selected');
+			}
+			else {
+				table.$('tr.selected').removeClass('selected');
+				$(this).addClass('selected');
+			}
+		} );
+		
+		// 全选
+		$("#choseAll").click(function(){
+     
+			$(".chkItem").prop("checked",'true');//全选
+			checkClumnsShowHide();
+		})
+		
+		$(".chkItem").change(function(){
+			checkClumnsShowHide();
+		});
+		
+		$("#search").click(function(){
+			var dataFrom = $("#dateFrom").datepicker( 'getDate' );
+			var sFrom = Date.parse(new Date());
+			if(dataFrom != null)
+				sFrom = dataFrom.valueOf(); //获取时间戳 毫秒
+			var dataTo = $("#dateTo").datepicker( 'getDate' );
+			var sTo = Date.parse(new Date())
+			if(dataTo != null)
+				sTo = dataTo.valueOf(); 
+			sTo += 86400000;
+			if(sTo < sFrom){//时间不能倒退
+				sTo = sFrom;
+			}
+			var channelId = $("#channelSelect  option:selected").val();
+			var serverId = $("#severSelect  option:selected").val();
+			if(channelId == null)
+			{
+				return;
+			}
+			var objjson = '{';
+			objjson += '"channelIds":"'+channelId+'",';
+			if(channelId != 0)
+				objjson += '"serverIds":"'+serverId+'",';
+			objjson += '"begin":"'+sFrom+'",';
+			objjson += '"end":"'+sTo+'"';
+			objjson += '}';
+			$.post("/chargeStatistics",
+					  JSON.parse(objjson),
+					  function(data,status){
+						console.log("chargeStatistics:status-" + status + "  data.code-" + data.code);
+						console.log(data);
+						if(status == "success")
+						{
+							if(data.code == CODE.OK)
+							{
+								table.clear();
+								$.each(data.results, function(i, item){ 	
+									table.row.add( [
+										getDateStr(item.createTime),
+										item.todayCreatedUser,
+										item.todayEverChargeUser,
+										item.todayChargeTotalCount,
+										item.todayChargeTotalMoney,
+										item.todayCreatedAndChargeTotal,
+										item.todayChargePercent,
+										item.todayCreatedFirstChargeTotal,
+										item.firstChargeMoneyPercent,
+									] );
+								});
+								table.draw();
+							}
+							else 
+							{
+								alert("获取信息失败");
+							}
+						}
+						else
+						{
+							console.log("加载数据失败。");
+						}
+					  });
+			
+		});
+		
+		
+		function checkClumnsShowHide()
+		{
+			$(".chkItem").each(function(i,item) {
+				var column = table.column(item.value);
+				column.visible(item.checked);
+			});
+		}
+	});
+	
+	function channelOnChange(valueNow)
+	{
+		channelID = valueNow;
+	}
+	
+	function serverOnChange(valueNow)
+	{
+		serverID = valueNow;
+	}
+</script>

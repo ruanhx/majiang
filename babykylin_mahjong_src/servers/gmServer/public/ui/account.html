@@ -1,0 +1,304 @@
+
+<div id="contentMe">
+	<h1>位置：服务器后台管理->账号管理</h1>
+	<button id="logout">退出当前帐号</button>
+	<h2>新增账号：  (只支持英文和数字)</h2>
+	
+	<table id="newAccountTable">
+		<tr id="newAcount_tr">
+			<th valign="top">输入账号:</th>
+			<th><input type="text" id="newAcount" onKeyUp="value=value.replace(/[^\w]/ig,'')" /></th>
+		</tr>
+		<tr id="pwd1_tr">
+			<th valign="top">输入密码:</th>
+			<th><input type="password" id="pwd1" onKeyUp="value=value.replace(/[^\w]/ig,'')" /></th>
+		</tr>
+		<tr id="pwd2_tr">
+			<th valign="top">确认密码:</th>
+			<th><input type="password" id="pwd2" onKeyUp="value=value.replace(/[^\w]/ig,'')" /></th>
+		</tr>
+		<tr id="zhuce_tr">
+			<th align="center" colspan=2><button id="newAccButton" >注册</button></th>
+		</tr>
+	</table>
+	<br><br>
+	<h2>账号列表</h2>
+	<div class="accountList">
+		<table id="accountTable" width="100%">
+			<thead>
+				<tr>
+					<th width="150">账号名称</th>
+					<th width="150">账号权限</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>
+	</div>
+	<button id="changeAccButton" >提交修改</button>
+</div><!-- Introduction Page Ends -->
+
+<script>
+	var table;
+	$(document).ready(function(e) {
+		$("#logout").click(function(){
+			$.get("/logout",
+					function(data,status){
+						if(status == "success")
+						{
+							if(data.code == CODE.OK)
+							{
+								makeDialog();
+							}
+							else 
+							{
+								console.log("登出失败");
+							}
+						}
+						else
+						{
+							console.log("加载数据失败。");
+						}
+					});
+		});
+		//初始化datatable
+		table = $("table#accountTable").DataTable({
+			//ajax: "/listAccounts",//获取列表的url????????????
+			//columns:[
+			//	{data:'name'},
+			//	{data:'px'}
+			//],
+			columnDefs:[
+				{
+				"targets": 1,
+				"sortable":false,
+				"render": function ( data, type, full, meta ) {
+						var ret = '';//名字不能有空格，不然onchange时会报错的
+						if(data == "S") 
+							ret += '<select onchange=selectOnChange("'+full+'",this.value)><option value="S" selected="selected">S</option><option value="A">A</option><option value="B">B</option><option value="C">C</option></select>';
+						if(data == "A")
+							ret += '<select onchange=selectOnChange("'+full+'",this.value)><option value="S">S</option><option value="A"  selected="selected">A</option><option value="B">B</option><option value="C">C</option></select>';
+						if(data == "B")
+							ret += '<select onchange=selectOnChange("'+full+'",this.value)><option value="S">S</option><option value="A">A</option><option value="B" selected="selected">B</option><option value="C">C</option></select>';
+						if(data == "C")
+							ret += '<select onchange=selectOnChange("'+full+'",this.value)><option value="S">S</option><option value="A">A</option><option value="B">B</option><option value="C" selected="selected">C</option></select>';
+						return ret;
+					}
+				},
+			]
+		});
+		
+		
+		$("table#accountTable").on( 'click', 'tr', function () {
+			//console.log(table.row( this ).data().name +" "+table.row( this ).data().px);
+			//console.log($("#s1  option:selected").text());
+			//console.log(this.lastChild.firstChild.value);
+			if ( $(this).hasClass('selected') ) {
+				$(this).removeClass('selected');
+			}
+			else {
+				table.$('tr.selected').removeClass('selected');
+				$(this).addClass('selected');
+			}
+			
+			
+		} );
+		//账号输入框失去光标时
+		$("#newAcount").blur(function(){		 
+			//var len = $(this).val().length;
+			if($("#newAcount").val().length < 6)
+			{
+				$("table#newAccountTable tr#newAcount_tr").append("<th id='notice_6' style='color:red'>*不能小于6位</th>");
+			}
+		}
+		);
+		//账号输入框获取光标时
+		$("#newAcount").focus(function(){
+			$("table#newAccountTable tr#newAcount_tr th").remove("#notice_6");
+			
+			$("#zhuce_tr th").children().remove("#notice_sending");
+		}	
+		);
+		
+		//第一个密码输入框失去光标时
+		$("#pwd1").blur(function(){		 
+			//var len = $(this).val().length;
+			if($("#pwd1").val().length < 6)
+			{
+				$("table#newAccountTable tr#pwd1_tr").append("<th id='notice_6' style='color:red'>*不能小于6位</th>");
+			}
+		}
+		);
+		//第一个密码输入框获取光标时
+		$("#pwd1").focus(function(){
+			$("table#newAccountTable tr#pwd1_tr th").remove("#notice_6");
+			$("table#newAccountTable tr#pwd2_tr th").remove("#notice_dif");
+			
+			$("#zhuce_tr th").children().remove("#notice_sending");
+		}	
+		);
+		//第二个密码输入框获取光标时
+		$("#pwd2").focus(function(){
+			$("table#newAccountTable tr#pwd2_tr th").remove("#notice_dif");
+			
+			$("#zhuce_tr th").children().remove("#notice_sending");
+		}	
+		);		
+		//点击注册事件
+        $("#newAccButton").click(function(){
+			var defaultPx = "C";
+			var acc = $.trim($("#newAcount").val());
+			$("#newAcount").val(acc);
+			if(acc.length == 0)//密码为空
+			{
+				alert("账号不能为空");
+			}
+			else if(acc.length < 6)
+			{
+				alert("账号不能小于6位");
+			}
+			else if($("#pwd1").val().length < 6)
+			{
+				alert("密码不能小于6位");
+			}
+			else if($("#pwd1").val() != $("#pwd2").val())
+			{			
+				$("table#newAccountTable tr#pwd2_tr th").remove("#notice_dif");
+				$("table#newAccountTable tr#pwd2_tr").append("<th id='notice_dif' style='color:red'>*密码不一致</th>");
+			}
+			else
+			{//JSON.parse
+			//console.log("name:"+$('#newAcount').val()+"  valueNow:"+$('#pwd1').val());
+			//var jstr = '{"username":"'+ $("#newAcount").val()+'","password":"'+ $("#pwd1").val()+'"}';
+				$("#zhuce_tr th").children().remove("#notice_sending");
+				$("#zhuce_tr th").append("<label id='notice_sending' style='color:#CCCC00'>*提交中</label>");
+				$.post("/addGMAccount",
+					  //JSON.parse(jstr),
+					  {
+						username: $(newAcount).val(),
+						password: $('#pwd1').val()
+					  },
+					  function(data,status){
+						console.log(data);
+						$("#zhuce_tr th").children().remove("#notice_sending");
+						if(status == "success")
+						{
+							if(data.code == 200)
+							{
+								table.row.add([
+									acc,
+									defaultPx
+								]).draw();
+								$("#zhuce_tr th").append("<label id='notice_sending' style='color:green'>*提交成功</label>");
+							}
+							else
+							{
+								$("#zhuce_tr th").append("<label id='notice_sending' style='color:red'>*提交失败</label>");
+							}
+						}
+						else
+						{
+							$("#zhuce_tr th").append("<label id='notice_sending' style='color:red'>*提交失败</label>");
+							console.log("加载数据失败。");
+						}
+					  });
+			}
+		});
+		//更改权限		
+		$("#changeAccButton").click(function(){
+				var data = table.data();
+				var json2 = '[';
+				$.each(data, function(index, element) {
+					if(index != 0)
+						json2 += ",";
+                    json2 += '{"username":"';
+					json2 += element[0];
+					json2 += '","privilege":"';
+					json2 += element[1];
+					json2 += '"}';
+                });
+				json2 += "]";
+				var objjson = eval('(' + json2 + ')');//str to json object
+				
+				var  aa = JSON.parse(json2);						
+				
+				$("#changeAccButton").parent().children().remove("#changeAccButton_sending");
+				$("#changeAccButton").parent().append("<label id='changeAccButton_sending' style='color:#CCCC00'>*提交中</label>");
+				$.post("/updatePrivilege",
+					  {userList:json2},
+					  function(data,status){
+						console.log(data);
+						$("#changeAccButton").parent().children().remove("#changeAccButton_sending");
+						if(status == "success")
+						{
+							if(data.code == 200)
+							{
+								$("#changeAccButton").parent().append("<label id='changeAccButton_sending' style='color:green'>*提交成功</label>");
+							}
+							else
+							{
+								$("#changeAccButton").parent().append("<label id='changeAccButton_sending' style='color:red'>*提交失败</label>");
+							}
+						}
+						else
+						{
+							$("#changeAccButton").parent().append("<label id='changeAccButton_sending' style='color:red'>*提交失败</label>");
+							console.log("加载数据失败。");
+						}
+					  });
+		});
+		//$("#newAcount").focus();
+		
+		$.get("/listAccounts",
+				function(data,status){
+					if(status == "success")
+					{
+					console.log(data);
+						if(data.code == CODE.OK)
+						{
+							table.clear();
+							$.each(data.accounts, function(i, item){ 	
+								table.row.add( [
+									item.username,
+									item.px
+								] );
+							});
+							table.draw();
+						}
+						else if(data.code == CODE.NO_LOGIN)
+						{
+							makeDialog();
+						}
+						else if(data.code == CODE.LACK_PRIVILEGE)
+						{
+							$("#contentMe").load('noRight.html');
+						}
+						else 
+						{
+							alert("获取帐号列表失败");
+						}
+					}
+					else
+					{
+						console.log("加载数据失败。");
+					}
+		});
+    });
+	
+	function selectOnChange(name,valueNow)
+	{
+		//console.log("name:"+name+"  valueNow:"+valueNow);
+		$("#changeAccButton").parent().children().remove("#changeAccButton_sending");
+		var strs = new Array();
+		strs = name.split(',');
+		var dataddd = table.data();
+		$.each(dataddd, function(i, item){     
+		   if(strs[0] == item[0])
+		   {
+			item[1] = valueNow; 
+			}			
+		});  
+	}
+</script>
+   

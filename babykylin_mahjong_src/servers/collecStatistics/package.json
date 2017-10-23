@@ -1,0 +1,15 @@
+{
+  "name": "collectStatistics",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "async": "^2.0.0-rc.5",
+    "commander": "^2.9.0",
+    "generic-pool": "^2.4.2",
+    "mysql": "^2.10.2",
+    "underscore": "^1.8.3",
+	"moment":"2.15.1",
+    "iconv-lite":"0.4.13",
+    "json2csv":"3.6.3"
+  }
+}

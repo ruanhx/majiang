@@ -1,0 +1,1 @@
+{"default":{"enable":true,"uri":"http://127.0.0.1:3701/getSNAward?sn=","code":{"ok":200,"invalid":500},"type":{"world":1,"player":2}}}

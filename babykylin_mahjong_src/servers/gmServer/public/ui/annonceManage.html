@@ -1,0 +1,363 @@
+
+<div class="tab">
+	<h1>位置：服务器后台管理->公告管理</h1>
+	<div id="channelServer" ></div>
+	<br>
+	<div >
+		<h2>填写公告内容</h2>
+		<table>
+			<!--<tr id="priority_tr">-->
+				<!--<td>-->
+					<!--<label>优先级(限数字):</label>-->
+				<!--</td>-->
+				<!--<td>-->
+					<!--<input type="text" id="priority"/>-->
+				<!--</td>-->
+			<!--</tr>-->
+
+			<tr>
+				<td>
+					<label>显示位置:</label>	
+				</td>
+				<td>				
+					<select id="annocePos">
+						<option value="0" selected="true">系统频道&跑马灯</option>
+						<option value="1">系统频道</option>
+						<option value="2">跑马灯</option>
+					</select>			
+				</td>
+			</tr>
+			
+			
+			<!--<tr id="times_tr">-->
+				<!--<td>-->
+					<!--<label>次数(限数字):</label>-->
+				<!--</td>-->
+				<!--<td>-->
+					<!--<input type="text" id="times"/>					-->
+				<!--</td>-->
+			<!--</tr>-->
+			<!---->
+			<!--<tr id="Interval_tr">-->
+				<!--<td>-->
+					<!--<label>发送间隔(ms)(限数字):</label>-->
+				<!--</td>-->
+				<!--<td>-->
+					<!--<input type="text" id="Interval"/>				-->
+				<!--</td>-->
+			<!--</tr>-->
+			
+		</table>
+		
+		<label>公告文字:</label>
+		<br>
+		<textarea rows="15" cols="60" id="textareaContent"></textarea>	
+	</div>
+	
+	<br>
+	<!--<div >-->
+		<!--<label>发送时间:</label>-->
+		<!--<input type="text" id="sendTime" class="ui-corner-top"/>-->
+		<!--<select id="hour_select">-->
+		<!--</select>		-->
+		<!--<label>时</label>-->
+		<!--<select id="min_select">-->
+		<!--</select>		-->
+		<!--<label>分</label>-->
+		<!--<select id="sec_select">-->
+		<!--</select>		-->
+		<!--<label>秒</label>-->
+	<!--</div>-->
+	
+	<br><br>
+	<div >	
+		<button id="annoceSendButton">提交</button>
+	</div>
+	
+	
+	<br><br>
+	<!--<button id="search">查询待发送公告</button>-->
+	<div class="staticsList">
+		<table id="staticsTable"  class="display" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th>渠道id</th>
+					<th>服务器id</th>
+					<th>emitterId</th>
+					<th>公告内容</th>
+					<th>次数</th>
+					<th>发送间隔</th>
+					<th>优先级</th>
+					<th>发送位置</th>
+					<th>发送时间</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+
+			</tbody>
+		</table>
+	</div>
+</div><!-- Introduction Page Ends -->
+<script>
+	var annocePos = 0;
+	var sendHour = 0;
+	var sendMin = 0;
+	var sendSec = 0;
+	var table;
+	$(document).ready(function(e) {
+		$("div#channelServer").load('channelServer.html?annonceManage',
+			function(response,status,xhr)
+			{
+				$("#channelSelect").append('<option value="0" selected="selected">全部</option>');	
+				$("#severSelect").append('<option value="0" selected="selected">全部</option>');		
+			}
+		);
+		
+		table = $("#staticsTable").DataTable({
+			"language": {
+					"zeroRecords": "未找到该玩家"
+				  },
+			columnDefs:[
+					{
+					"targets": 9,
+					"sortable":false,
+					"render": function ( data, type, full, meta ) {
+							var v = full[0]+","+full[1]+","+full[2];
+							return '<button onclick=moveOut("'+v+'")>移除</button>';//full.name
+						}
+					},
+				]
+			});
+									
+		$("#sendTime").datepicker({
+				dateFormat: 'yy-mm-dd'});
+				
+		for(var i = 0 ; i < 24 ; i ++)
+			$("#hour_select").append('<option value="' + i + '">'+ i +'</option>');
+		for(var i = 0 ; i < 60 ; i ++)
+		{
+			$("#min_select").append('<option value="' + i + '">'+ i +'</option>');
+			$("#sec_select").append('<option value="' + i + '">'+ i +'</option>');
+		}
+			
+		//输入框失去光标时
+//		$("#priority").blur(function(){
+//			if(isNaN($("#priority").val())){$("#priority_tr").append("<td id='notice_priority' style='color:red'>*只能填写数字</td>");}
+//		});
+//		$("#times").blur(function(){
+//			if(isNaN($("#times").val())){$("#times_tr").append("<td id='notice_priority' style='color:red'>*只能填写数字</td>");}
+//		});
+//		$("#Interval").blur(function(){
+//			if(isNaN($("#Interval").val())){$("#Interval_tr").append("<td id='notice_priority' style='color:red'>*只能填写数字</td>");}
+//		});
+		
+		//输入框获取光标时
+//		$("#priority").focus(function(){
+//			$("#priority_tr td").remove("#notice_priority");
+//		});
+//		$("#times").focus(function(){
+//			$("#times_tr td").remove("#notice_priority");
+//		});
+//		$("#Interval").focus(function(){
+//			$("#Interval_tr td").remove("#notice_priority");
+//		});
+		
+		$("#annoceSendButton").click(function(){
+//			if(isNaN($("#priority").val()) || isNaN($("#times").val()) || isNaN($("#Interval").val()) )//密码为空
+//			{
+//				alert("只能是数字");
+//			}
+//			else
+//			{
+				
+				var priority = $.trim($("#priority").val());
+				var times = $.trim($("#times").val());
+				var Interval = $.trim($("#Interval").val());
+				var textareaContent = $.trim($("#textareaContent").val());
+				var pos = $("#annocePos  option:selected").val();
+				
+				
+				if(textareaContent == "")//内容为空，不让发送
+				{
+					alert("公告文字不能为空");
+					return;
+				}
+				
+				var dataDay = $("#sendTime").datepicker( 'getDate' );
+				var sdataDay = Date.parse(new Date())/1000;
+				if(dataDay != null)
+					sdataDay = dataDay.valueOf()/1000; //获取时间戳
+				
+				sdataDay += $("#hour_select  option:selected").val()*3600;
+				sdataDay += $("#min_select  option:selected").val()*60;
+				sdataDay += $("#sec_select  option:selected").val()*1;
+				
+				var channelId = $("#channelSelect  option:selected").val();
+				var serverId = $("#severSelect  option:selected").val();
+				if(channelId == null)
+				{
+					return;
+				}
+				var objjson = '{';
+				objjson += '"channelIds":"'+channelId+'",';
+				if(channelId != 0)
+					objjson += '"serverIds":"'+serverId+'",';	
+					
+				objjson += '"priority":"'+priority+'",';
+				objjson += '"pos":"'+$("#annocePos  option:selected").val()+'",';
+				objjson += '"sendCount":"'+times+'",';
+				objjson += '"interval":"'+Interval+'",';
+				objjson += '"announcement":"'+textareaContent+'",';
+				objjson += '"sendTime":"'+sdataDay+'"';
+				objjson += '}';
+				$.post("/sysMsgManage",
+					  JSON.parse(objjson),
+					  function(data,status){
+						console.log(data);
+						if(status == "success")
+						{
+							if(data.code == CODE.OK)
+							{
+								var Str = "服务器返回：";
+								$.each(data.results, function(i, item){ 
+									$.each(serverAllData, function(j, itemJ){ 
+										if(itemJ.ID == item.serverId && itemJ.channelId == item.channelId)
+										{
+											Str += itemJ.channelName;											
+											Str += "-";
+											Str += itemJ.name;											
+											Str += "-";
+											if(item.success)
+												Str += "success";
+											else												
+												Str += "failed";
+											Str += "  ";
+										}
+									});
+									
+								});
+								
+//								$("#search").click();
+								alert(Str);
+							}
+							else 
+							{
+								alert("发送失败");
+							}
+						}
+						else
+						{
+							console.log("加载数据失败。");
+						}
+					  });
+//			}
+		});
+	
+		$("#search").click(function(){	
+			var channelId = $("#channelSelect  option:selected").val();
+			var serverId = $("#severSelect  option:selected").val();
+			if(channelId == null)
+			{
+				return;
+			}
+			var objjson = '{';
+			objjson += '"channelIds":"'+channelId+'",';
+			if(channelId != 0)
+				objjson += '"serverIds":"'+serverId+'"';
+			else
+				objjson = objjson.substring(0,objjson.length-1);
+			objjson += '}';
+			$.post("/getAnnouncements",
+					  JSON.parse(objjson),
+					  function(data,status){
+						console.log("getAnnouncements-" + status + "  data.code-" + data.code);
+						console.log(data);
+						if(status == "success")
+						{
+							if(data.code == CODE.OK)
+							{
+								table.clear();	
+								
+								$.each(data.results, function(i, result){ 
+									$.each(result.announcements, function(i, announcement){ 
+										table.row.add( [
+											result.channelId,
+											result.serverId,
+											announcement.emitterId,
+											announcement.announcement,
+											announcement.sendCount,
+											announcement.interval,
+											announcement.priority,
+											getPosStr(announcement.pos),
+											getDateTimeStr(announcement.sendTime/1000),
+											result.success
+										] );
+									});
+									
+								});
+								table.draw();
+							}
+							else 
+							{
+								alert("获取信息失败");
+							}
+						}
+						else
+						{
+							console.log("加载数据失败。");
+						}
+					  });
+			
+		});
+	});
+	function moveOut(dataFull)
+	{
+		var str = dataFull.split(',');
+		
+		var objjson = '{';
+		objjson += '"channelId":"'+str[0]+'",';
+		if(str[0] != 0)
+			objjson += '"serverId":"'+str[1]+'",';
+			
+		objjson += '"emitterId":"'+str[2]+'"';
+			
+		objjson += '}';
+		$.post("/cancelAnnouncement",
+				  JSON.parse(objjson),
+			function(data,status){
+				console.log("cancelAnnouncement:status-" + status + "  data.code-" + data.code);
+				console.log(data);
+				if(status == "success")
+				{
+					if(data.code == CODE.OK)
+					{
+						$("#search").click();
+					}
+					else 
+					{
+						alert("删除信息失败");
+					}
+				}
+				else
+				{
+					console.log("数据失败。");
+				}
+				
+			}
+		);
+	}
+	
+	function getPosStr(pos)
+	{
+		if(pos == 0)
+			return "频道&公告";
+		else if(pos == 1)
+			return "综合频道";
+		else if(pos == 2)
+			return "公告栏";
+		else
+			return "";
+		end
+	}
+</script>

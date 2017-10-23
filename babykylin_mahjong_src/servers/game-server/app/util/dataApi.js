@@ -1,136 +1,67 @@
-// require json files
-var area = require('../../config/data/area');
-var role = require('../../config/data/role');
-var treasure = require('../../config/data/treasure');
-
 /**
- * Data model `new Data()`
- *
- * @param {Array}
+ * Created by lishaoshen on 2015/10/9.
  */
-var DataApi = function(data) {
-  var fields = {};
-  data[1].forEach(function(i, k) {
-    fields[i] = k;
-  });
-  data.splice(0, 2);
 
-  var result = {},
-    ids = [],
-    item;
-  data.forEach(function(k) {
-    item = mapData(fields, k);
-    result[item.id] = item;
-    ids.push(item.id);
-  });
+var chokidar = require('chokidar');
 
-  this.data = result;
-  this.ids = ids;
+var loader = require('./loader'),
+    parsers = loader.load(__dirname + '/rowParser');
+
+var exp = module.exports = {};
+exp.modules = {};
+var ready = false;
+
+exp.isReady = function () {
+    return ready;
 };
-
-/**
- * map the array data to object
- *
- * @param {Object}
- * @param {Array}
- * @return {Object} result
- * @api private
- */
-var mapData = function(fields, item) {
-  var obj = {};
-  for (var k in fields) {
-    obj[k] = item[fields[k]];
-  }
-  return obj;
+/*
+ *   目前只Shop和Goods进行动态加载
+ *   *其他表如HeroAttribute，如果进行动态加载，由于相关实现缓存了相关数据的引用，将导致旧表的部分数据，由于引用的玩家未下线，而不释放
+ * */
+var dynamicWhiteDict = {
+    "Shop": true,
+    "Goods": true,
+    "Activity": true,
+    "ActivityCond": true,
+    "ActivityGoods": true,
+    "ActivityNotice": true,
+    "ActivetyStrength":true,
+    "ActivetyRecharge":true,
+    "Recharge": true,
+    "InvitCfg": true    //邀请码表
 };
-
-/**
- * find items by attribute
- *
- * @param {String} attribute name
- * @param {String|Number} the value of the attribute
- * @return {Array} result
- * @api public
- */
-DataApi.prototype.findBy = function(attr, value) {
-  var result = [];
-  //console.log(' findBy ' + attr + '  value:' + value + '  index: ' + index);
-  var i, item;
-  for (i in this.data) {
-    item = this.data[i];
-    if (item[attr] == value) {
-      result.push(item);
-    }
-  }
-  return result;
-};
-
-/**
- * find item by id
- *
- * @param id
- * @return {Obj}
- * @api public
- */
-DataApi.prototype.findById = function(id) {
-  return this.data[id];
-};
-
-DataApi.prototype.random = function() {
-  var length = this.ids.length;
-  var rid = this.ids[Math.floor(Math.random() * length)];
-  return this.data[rid];
-};
-
-/**
- * find all item
- *
- * @return {array}
- * @api public
- */
-DataApi.prototype.all = function() {
-  return this.data;
-};
-
-var DataApiUtil = function() {
-  this.areaData = null;
-  this.roleData = null;
-  this.treasureData = null;
-}
-
-DataApiUtil.prototype.area = function() {
-  if (this.areaData) {
-    return this.areaData;
-  }
-
-  this.areaData = new DataApi(area);
-  return this.areaData;
-}
-
-DataApiUtil.prototype.role = function() {
-  if (this.roleData) {
-    return this.roleData;
-  }
-
-  this.roleData = new DataApi(role);
-  return this.roleData;
-}
-
-DataApiUtil.prototype.treasure = function() {
-  if (this.treasureData) {
-    return this.treasureData;
-  }
-
-  this.treasureData = new DataApi(treasure);
-  return this.treasureData;
-}
-
-module.exports = {
-  id: "dataApiUtil",
-  func: DataApiUtil
-}
-// module.exports = {
-//   area: new DataApi(area),
-//   role: new DataApi(role),
-//   treasure: new DataApi(treasure)
-// };
+var dataPath = require('path').join(__dirname, '../../config/data');
+chokidar.watch(dataPath, {ignored: /[\/\\]\./, persistent: true})
+    .on('add', function (filename) {
+        var name = loader.getFileName(filename, '.json'.length);
+        //console.log('add design data %s', name);
+        Object.defineProperty(exp, name, {
+            get: (function (name) {
+                return function () {
+                    var mod = this.modules[name];
+                    if (!mod && !!parsers[name]) {
+                        mod = this.modules[name] = parsers[name](loader.loadFile(filename));
+                        console.log('add design data [%s] load ok!', name);
+                    }
+                    return mod;
+                }
+            })(name)
+        });
+    })
+    .on('change', function (filename) {
+        var name = loader.getFileName(filename, '.json'.length),
+            tableObj = exp.modules[name];
+        if (!!dynamicWhiteDict[name] && tableObj) {
+            var tableObj = exp.modules[name];
+            tableObj.reload(loader.loadFile(filename));
+            tableObj.emit('change');
+            console.log('change design data [%s] reload ok!', name);
+        }
+    })
+    .on('error', function (error) {
+        console.error('watch %s err %s', dataPath, error);
+    })
+    .on('ready', function () {
+        console.info('design data ready!');
+        ready = true;
+    });

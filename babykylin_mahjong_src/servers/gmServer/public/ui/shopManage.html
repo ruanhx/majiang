@@ -1,0 +1,140 @@
+
+<div class="tab">
+	<h1>位置：服务器后台管理->商店管理</h1>
+	<div id="channelServer" ></div>
+	
+	<br>	
+	<div>
+		<button id="search">查询</button>
+	</div>
+	
+	
+	<br>
+	<div id="shopEdit">
+		<label>编辑商店运营标识:</label>
+		<input type="text" id="shopText" size="120"/>		
+		<button id="shopButton" >提交</button>
+	</div>
+	
+	<br><br>
+</div><!-- Introduction Page Ends -->
+<script>
+	$(document).ready(function(e) {
+		$("div#channelServer").load('channelServer.html?shopManage',
+			function(response,status,xhr)
+			{
+				$("#channelSelect").append('<option value="0" selected="selected">全部</option>');	
+				$("#severSelect").append('<option value="0" selected="selected">全部</option>');		
+			}
+		);
+		$("#shopEdit").hide();
+		
+		$("#search").click(function(){
+			var channelId = $("#channelSelect  option:selected").val();
+			var serverId = $("#severSelect  option:selected").val();
+			if(channelId == null)
+			{
+				return;
+			}
+			var objjson = '{';
+			objjson += '"channelIds":"'+channelId+'",';
+			if(channelId != 0)
+				objjson += '"serverIds":"'+serverId+'"';
+			objjson += '}';
+			
+			$.post("/shopManager.getShopFlags",
+				JSON.parse(objjson),
+				function(data,status){		
+					console.log(data);
+					$("#shopEdit").show();
+					
+					if(status == "success")
+					{
+						if(data.code == CODE.OK)
+						{		
+							var Str = "";
+							if(data.results.length != 0)
+							{
+								var result = JSON.parse(data.results[0].result);
+								$.each(result, function(i, item){ 
+									
+									Str += item;
+									Str += "#";
+								});
+								Str=Str.substring(0,Str.length-1);
+							}
+							
+							$("#shopText").val(Str);
+						}
+						else 
+						{
+							alert("获取信息失败");
+						}
+					}
+					else
+					{
+						console.log("加载数据失败。");
+					}
+				}
+			);
+		});
+		
+		$("#shopButton").click(function(){
+			if(false)
+			{
+				alert("只能是数字");
+			}
+			else
+			{
+				$("#shopEdit").children().remove("#notice_sending");
+				$("#shopEdit").append("<label id='notice_sending' style='color:#CCCC00'>*提交中</label>");
+				
+				var channelId = $("#channelSelect  option:selected").val();
+				var serverId = $("#severSelect  option:selected").val();
+				if(channelId == null)
+				{
+					return;
+				}
+				var objjson = '{';
+				objjson += '"channelIds":"'+channelId+'",';
+				if(channelId != 0)
+					objjson += '"serverIds":"'+serverId+'",';
+				
+				objjson += '"opFlags":"'+$("#shopText").val()+'"';
+				
+				objjson += '}';
+			  
+				$.post("/shopManager.changeShopFlags",
+					JSON.parse(objjson),
+					function(data,status){
+						console.log(data);
+						$("#shopEdit").children().remove("#notice_sending");
+						if(status == "success")
+						{
+							if(data.code == CODE.OK)
+							{
+								$("#shopEdit").append("<label id='notice_sending' style='color:green'>*提交成功</label>");
+							}
+							else 
+							{
+								$("#shopEdit").append("<label id='notice_sending' style='color:#CCCC00'>*提交失败</label>");
+							}
+						}
+						else
+						{
+							console.log("加载数据失败。");
+						}
+					});
+				
+			}
+		});
+		
+		$("input").focus(function(){
+			$("#shopEdit").children().remove("#notice_sending");
+		});
+		
+	});
+	
+	
+	
+</script>

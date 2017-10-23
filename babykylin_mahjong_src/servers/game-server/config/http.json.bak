@@ -1,0 +1,18 @@
+{
+	"development": {
+	  "gmhttp": {
+		"port": 3601
+	  },
+	  "order": {
+		"port": 3801
+	  }
+	},
+	"production": {
+	  "gmhttp": {
+		"port": 3601
+	  },
+	  "order": {
+		"port": 3801
+	  }
+	}
+}

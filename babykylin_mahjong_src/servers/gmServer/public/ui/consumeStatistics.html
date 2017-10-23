@@ -1,0 +1,338 @@
+
+<div class="tab">
+	<h1>位置：服务器后台管理->消耗统计</h1>
+
+	<div id="channelServer" ></div>
+	
+	<br>
+	
+	<div>
+		<label>选择日期:</label>
+		<input type="text" id="dateFrom" class="ui-corner-top"/>
+		<input type="text" id="dateTo" class="ui-corner-top"/>
+	</div>
+	
+	<br>
+	
+	<div>
+		<button id="choseAll">全选</button>
+        <input class="chkItem" type="checkbox" value="1" checked="true" />消费商品ID
+        <input class="chkItem" type="checkbox" value="2" checked="true"  />消费次数
+        <input class="chkItem" type="checkbox" value="3" checked="true"  />开服以来总消费次数
+    </div>
+	<button id="search">查询</button>
+		
+	<br><br>
+	<div>
+		<button id="choseAll1">全选</button>
+        <input class="chkItem1" type="checkbox" value="1" checked="true"  />消费管道
+        <input class="chkItem1" type="checkbox" value="2" checked="true"  />消费管道名称
+        <input class="chkItem1" type="checkbox" value="3" checked="true"  />消费总金额
+        <input class="chkItem1" type="checkbox" value="4" checked="true"  />开服以来总消费金额
+    </div>
+	<button id="search1">查询1</button>
+	
+	<br><br>
+	<div class="staticsList">
+		<table id="staticsTable"  class="display" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th>日期</th>
+					<th>消费商品ID</th>
+					<th>消费次数</th>
+					<th>开服以来总消费次数</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>		
+	</div>
+		
+	<div class="staticsList1">
+		<table id="staticsTable1"  class="display" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th>日期</th>
+					<th>消费管道</th>
+					<th>消费管道名称</th>
+					<th>消费总金额</th>
+					<th>开服以来总消费金额</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>		
+	</div>
+</div><!-- Introduction Page Ends -->
+<script>
+	$("#staticsTable").hide();
+	$("#staticsTable1").hide();
+	var table;
+	var table1;
+	var channelID = 0;
+	var serverID = 0;
+	$(document).ready(function(e) {
+		$("div#channelServer").load('channelServer.html?consumeStatistics');
+		$("#dateFrom").datepicker({
+				dateFormat: 'yy-mm-dd'});
+		$("#dateTo").datepicker({
+				dateFormat: 'yy-mm-dd'});
+		
+		//初始化datatable
+		//table = $("#staticsTable").DataTable({});
+		//table1 = $("#staticsTable1").DataTable({});
+		//table.destroy();
+		//table1.destroy();
+		
+		$("table#staticsTable").on( 'click', 'tr', function () {
+			if ( $(this).hasClass('selected') ) {
+				$(this).removeClass('selected');
+			}
+			else {
+				table.$('tr.selected').removeClass('selected');
+				$(this).addClass('selected');
+			}
+		} );
+		$("table#staticsTable1").on( 'click', 'tr', function () {
+			if ( $(this).hasClass('selected') ) {
+				$(this).removeClass('selected');
+			}
+			else {
+				table.$('tr.selected').removeClass('selected');
+				$(this).addClass('selected');
+			}
+		} );
+		
+		// 全选
+		$("#choseAll").click(function(){
+     
+			$(".chkItem").prop("checked",'true');//全选
+			checkClumnsShowHide();
+		})
+		// 全选1
+		$("#choseAll1").click(function(){
+     
+			$(".chkItem1").prop("checked",'true');//全选
+			checkClumnsShowHide1();
+		})
+		
+		$(".chkItem").change(function(){
+			checkClumnsShowHide();
+		});
+		$(".chkItem1").change(function(){
+			checkClumnsShowHide1();
+		});
+		
+		$("#search").click(function(){	
+			$("#staticsTable").show();
+			$("#staticsTable1").hide();
+			if(table == null)
+			{
+				table = $("#staticsTable").DataTable({});
+				$(".chkItem").prop("checked",'true');//全选
+			}
+			if(table1 != null)
+			{
+				table1.destroy();
+				table1 = null;
+			}
+			
+			var dataFrom = $("#dateFrom").datepicker( 'getDate' );
+			var sFrom = Date.parse(new Date());
+			if(dataFrom != null)
+				sFrom = dataFrom.valueOf(); //获取时间戳 毫秒
+			var dataTo = $("#dateTo").datepicker( 'getDate' );
+			var sTo = Date.parse(new Date())
+			if(dataTo != null)
+				sTo = dataTo.valueOf(); 
+			sTo += 86400000;
+			if(sTo < sFrom){//时间不能倒退
+				sTo = sFrom;
+			}
+			var channelId = $("#channelSelect  option:selected").val();
+			var serverId = $("#severSelect  option:selected").val();
+			if(channelId == null)
+			{
+				return;
+			}
+			var objjson = '{';
+			objjson += '"channelIds":"'+channelId+'",';
+			if(channelId != 0)
+				objjson += '"serverIds":"'+serverId+'",';
+			objjson += '"begin":"'+sFrom+'",';
+			objjson += '"end":"'+sTo+'"';
+			objjson += '}';
+			$.post("/consumeStatisticsByItemId",
+					  JSON.parse(objjson),
+					  function(data,status){
+						console.log("consumeStatisticsByItemId:status-" + status + "  data.code-" + data.code);
+						console.log(data);
+						if(status == "success")
+						{
+							if(data.code == CODE.OK)
+							{
+								table.clear();
+								$.each(data.results, function(i, item){ 
+									var report = JSON.parse(item.report);
+									$.each(report, function(j, itemReport){
+										table.row.add( [
+											getDateStr(item.createTime),
+											itemReport.itemId,
+											itemReport.dailyCount,
+											itemReport.totalCount
+										] );
+									});
+								});
+								table.draw();
+							}
+							else 
+							{
+								alert("获取信息失败");
+							}
+						}
+						else
+						{
+							console.log("加载数据失败。");
+						}
+					  });
+			
+		});
+		
+		$("#search1").click(function(){		
+			$("#staticsTable").hide();
+			$("#staticsTable1").show();
+			if(table1 == null)
+			{
+			   table1 = $("#staticsTable1").DataTable({});
+			   $(".chkItem1").prop("checked",'true');//全选
+			}
+			if(table != null)
+			{
+				table.destroy();
+				table = null;
+			}
+			
+			var dataFrom = $("#dateFrom").datepicker( 'getDate' );
+			var sFrom = Date.parse(new Date());
+			if(dataFrom != null)
+				sFrom = dataFrom.valueOf(); //获取时间戳 毫秒
+			var dataTo = $("#dateTo").datepicker( 'getDate' );
+			var sTo = Date.parse(new Date())
+			if(dataTo != null)
+				sTo = dataTo.valueOf(); 
+			sTo += 86400000;
+			if(sTo < sFrom){//时间不能倒退
+				sTo = sFrom;
+			}
+			var channelId = $("#channelSelect  option:selected").val();
+			var serverId = $("#severSelect  option:selected").val();
+			if(channelId == null)
+			{
+				return;
+			}
+			var objjson = '{';
+			objjson += '"channelIds":"'+channelId+'",';
+			if(channelId != 0)
+				objjson += '"serverIds":"'+serverId+'",';
+			objjson += '"begin":"'+sFrom+'",';
+			objjson += '"end":"'+sTo+'"';
+			objjson += '}';
+			$.post("/consumeStatisticsByType",
+					  JSON.parse(objjson),
+					  function(data,status){
+						console.log("consumeStatisticsByType:status-" + status + "  data.code-" + data.code);
+						console.log(data);
+						if(status == "success")
+						{
+							if(data.code == CODE.OK)
+							{
+								table1.clear();
+								$.each(data.results, function(i, item){ 
+									var report = JSON.parse(item.report);
+									$.each(report, function(j, itemReport){
+										table1.row.add( [
+											getDateStr(item.createTime),
+											itemReport.type,
+											getTypeName(itemReport.type),
+											itemReport.dailyTotal,
+											itemReport.total
+										] );	
+									});
+									
+								});
+								table1.draw();
+							}
+							else 
+							{
+								alert("获取信息失败");
+							}
+						}
+						else
+						{
+							console.log("加载数据失败。");
+						}
+					  });
+			
+		});
+		
+		function getTypeName(type)
+		{
+			var retStr = '';
+			switch(type)
+			{
+				case 200  :retStr =  '其他';break;
+				case 201:retStr =  '购买体力';break; 
+				case 202:retStr =  '金币兑换';break; 
+				case 203:retStr =  '购买暴走魔法书小游戏次数';break; 
+				case 204:retStr =  '购买保卫金矿小游戏次数';break; 
+				case 205:retStr =  '购买钻石猎手小游戏次数';break; 
+				case 206:retStr =  '购买飞奔大法师小游戏次数';break; 
+				case 207:retStr =  '建筑升级加速';break; 
+				case 211:retStr =  '试练之地购买面包';break; 
+				case 212:retStr =  '试炼之地付费传送';break; 
+				case 213 :retStr = '试炼之地重置';break; 
+				case 214 :retStr = '试炼之地手动复活卡牌';break; 
+				case 215 :retStr = '个人挑战购买挑战次数';break; 
+				case 216 :retStr = '创建公会';break; 
+				case 217 :retStr = '公会掠夺购买挑战次数';break; 
+				case 218 :retStr = '公会掠夺购买保护时间';break; 
+				case 219 :retStr = '远征重置';break; 
+				case 220 :retStr = '扫荡关卡';break; 
+				case 221 :retStr = '重置魔王关卡';break; 
+				case 222 :retStr = '重置英雄关卡';break; 
+				case 223 :retStr = '卡牌属性转移';break; 
+				case 224 :retStr = '钻石祭坛召唤卡牌';break; 
+				case 225 :retStr = '钻石商店购买商品';break; 
+				case 226 :retStr = '商店刷新';break; 
+			}
+			return retStr;
+		}
+		
+		function checkClumnsShowHide()
+		{
+			$(".chkItem").each(function(i,item) {
+				var column = table.column(item.value);
+				column.visible(item.checked);
+			});
+		}
+		function checkClumnsShowHide1()
+		{
+			$(".chkItem1").each(function(i,item) {
+				var column = table1.column(item.value);
+				column.visible(item.checked);
+			});
+		}
+	});
+	
+	function channelOnChange(valueNow)
+	{
+		channelID = valueNow;
+	}
+	
+	function serverOnChange(valueNow)
+	{
+		serverID = valueNow;
+	}
+</script>

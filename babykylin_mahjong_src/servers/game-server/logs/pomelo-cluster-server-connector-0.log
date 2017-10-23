@@ -1,0 +1,217 @@
+[2017-10-19 17:15:31.893] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39mapplication inited: "cluster-server-connector-0"
+[2017-10-19 17:15:32.315] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-connector-0" enter after start...
+[2017-10-19 17:15:32.330] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-connector-0" finish start
+[2017-10-19 17:15:32.330] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-connector-0" startup in 390 ms
+[2017-10-19 17:15:32.393] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\modules\monitorwatcher.js] [39m[cluster-server-connector-0] receive addServer signal: {"action":"addServer","server":{"main":"D:\\servers\\game-server\\app.js","env":"development","id":"cluster-server-connector-1","host":"127.0.0.1","port":3151,"clientHost":"127.0.0.1","clientPort":3011,"clusterCount":2,"frontend":"true","auto-restart":"true","serverType":"connector","pid":7584}}
+[2017-10-19 17:20:17.931] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39mapplication inited: "cluster-server-connector-0"
+[2017-10-19 17:20:18.311] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-connector-0" enter after start...
+[2017-10-19 17:20:18.311] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-connector-0" finish start
+[2017-10-19 17:20:18.311] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-connector-0" startup in 333 ms
+[2017-10-19 17:20:18.343] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\modules\monitorwatcher.js] [39m[cluster-server-connector-0] receive addServer signal: {"action":"addServer","server":{"main":"D:\\servers\\game-server\\app.js","env":"development","id":"cluster-server-connector-1","host":"127.0.0.1","port":3151,"clientHost":"127.0.0.1","clientPort":3011,"clusterCount":2,"frontend":"true","auto-restart":"true","serverType":"connector","pid":8316}}
+[2017-10-19 17:20:18.358] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\modules\monitorwatcher.js] [39m[cluster-server-connector-0] receive addServer signal: {"action":"addServer","server":{"main":"D:\\servers\\game-server\\app.js","env":"development","id":"cluster-server-area-0","host":"127.0.0.1","port":3250,"clusterCount":1,"area":1,"serverType":"area","pid":9568}}
+[2017-10-19 19:55:50.252] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39mapplication inited: "cluster-server-connector-0"
+[2017-10-19 19:55:50.673] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-connector-0" enter after start...
+[2017-10-19 19:55:50.673] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-connector-0" finish start
+[2017-10-19 19:55:50.673] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-connector-0" startup in 375 ms
+[2017-10-19 20:11:59.026] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39mapplication inited: "cluster-server-connector-0"
+[2017-10-19 20:11:59.432] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-connector-0" enter after start...
+[2017-10-19 20:11:59.432] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-connector-0" finish start
+[2017-10-19 20:11:59.432] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-connector-0" startup in 375 ms
+[2017-10-19 20:14:25.468] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] getSession session is created with session id: 1
+[2017-10-19 20:14:25.486] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] handleMessage session id: 1, msg: {"id":2,"type":0,"compressRoute":0,"route":"connector.entryHandler.entey","body":{"account":"1504755975115"},"compressGzip":0}
+[2017-10-19 20:14:25.490] [WARN] pomelo - [33m[D:\servers\game-server\node_modules\pomelo\lib\common\service\handlerService.js] [39mcould not find the method entey in handler: entryHandler
+[2017-10-19 20:14:25.491] [ERROR] pomelo - [31m[D:\servers\game-server\node_modules\pomelo\lib\common\service\handlerService.js] [39m[handleManager]: fail to find handler for "connector.entryHandler.entey"
+[2017-10-19 20:14:25.492] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\server\server.js] [39mno default error handler to resolve unknown exception. Error: fail to find handler for connector.entryHandler.entey
+    at Service.handle (D:\servers\game-server\node_modules\pomelo\lib\common\service\handlerService.js:35:30)
+    at handle (D:\servers\game-server\node_modules\pomelo\lib\server\server.js:375:25)
+    at next (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:50:7)
+    at Filter.before (D:\servers\game-server\node_modules\pomelo\lib\filters\handler\time.js:17:3)
+    at next (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:58:15)
+    at Filter.before (D:\servers\game-server\node_modules\pomelo\lib\filters\handler\timeout.js:34:3)
+    at next (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:58:15)
+    at Service.beforeFilter (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:65:3)
+    at beforeFilter (D:\servers\game-server\node_modules\pomelo\lib\server\server.js:242:8)
+    at doHandle (D:\servers\game-server\node_modules\pomelo\lib\server\server.js:388:3)
+[2017-10-19 20:14:25.493] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] send message reqId: 2, route: connector.entryHandler.entey, msg: {"code":500}, receivers: [1], opts: {"type":"response","userOptions":{},"isResponse":true}
+[2017-10-19 20:34:29.774] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39mapplication inited: "cluster-server-connector-0"
+[2017-10-19 20:34:30.166] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-connector-0" enter after start...
+[2017-10-19 20:34:30.176] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-connector-0" finish start
+[2017-10-19 20:34:30.176] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-connector-0" startup in 352 ms
+[2017-10-19 20:34:30.196] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\modules\monitorwatcher.js] [39m[cluster-server-connector-0] receive addServer signal: {"action":"addServer","server":{"main":"D:\\servers\\game-server\\app.js","env":"development","id":"cluster-server-area-0","host":"127.0.0.1","port":3250,"clusterCount":1,"area":1,"serverType":"area","pid":14100}}
+[2017-10-19 20:41:52.517] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39mapplication inited: "cluster-server-connector-0"
+[2017-10-19 20:41:53.757] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-connector-0" enter after start...
+[2017-10-19 20:41:53.789] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-connector-0" finish start
+[2017-10-19 20:41:53.790] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-connector-0" startup in 1027 ms
+[2017-10-19 20:41:53.982] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\modules\monitorwatcher.js] [39m[cluster-server-connector-0] receive addServer signal: {"action":"addServer","server":{"main":"D:\\servers\\game-server\\app.js","env":"development","id":"gate-server-1","host":"127.0.0.1","clientHost":"127.0.0.1","clientPort":3014,"frontend":"true","serverType":"gate","pid":14008}}
+[2017-10-19 20:41:56.893] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] getSession session is created with session id: 1
+[2017-10-19 20:41:56.910] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] handleMessage session id: 1, msg: {"id":2,"type":0,"compressRoute":0,"route":"connector.entryHandler.entey","body":{"account":"1504755975115"},"compressGzip":0}
+[2017-10-19 20:41:56.914] [WARN] pomelo - [33m[D:\servers\game-server\node_modules\pomelo\lib\common\service\handlerService.js] [39mcould not find the method entey in handler: entryHandler
+[2017-10-19 20:41:56.914] [ERROR] pomelo - [31m[D:\servers\game-server\node_modules\pomelo\lib\common\service\handlerService.js] [39m[handleManager]: fail to find handler for "connector.entryHandler.entey"
+[2017-10-19 20:41:56.915] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\server\server.js] [39mno default error handler to resolve unknown exception. Error: fail to find handler for connector.entryHandler.entey
+    at Service.handle (D:\servers\game-server\node_modules\pomelo\lib\common\service\handlerService.js:35:30)
+    at handle (D:\servers\game-server\node_modules\pomelo\lib\server\server.js:375:25)
+    at next (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:50:7)
+    at Filter.before (D:\servers\game-server\node_modules\pomelo\lib\filters\handler\time.js:17:3)
+    at next (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:58:15)
+    at Filter.before (D:\servers\game-server\node_modules\pomelo\lib\filters\handler\timeout.js:34:3)
+    at next (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:58:15)
+    at Service.beforeFilter (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:65:3)
+    at beforeFilter (D:\servers\game-server\node_modules\pomelo\lib\server\server.js:242:8)
+    at doHandle (D:\servers\game-server\node_modules\pomelo\lib\server\server.js:388:3)
+[2017-10-19 20:41:56.916] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] send message reqId: 2, route: connector.entryHandler.entey, msg: {"code":500}, receivers: [1], opts: {"type":"response","userOptions":{},"isResponse":true}
+[2017-10-19 20:41:59.330] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] handleMessage session id: 1, msg: {"id":3,"type":0,"compressRoute":1,"route":"connector.roleHandler.createPlayer","body":{"account":"1504755975115","pwd":"123456","name":"夏侯稳赢"},"compressGzip":0}
+[2017-10-19 20:41:59.880] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] send message reqId: 3, route: connector.roleHandler.createPlayer, msg: {"code":501,"error":"ER_WRONG_VALUE_COUNT_ON_ROW: Column count doesn't match value count at row 1"}, receivers: [1], opts: {"type":"response","userOptions":{},"isResponse":true}
+[2017-10-19 20:42:47.711] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39mapplication inited: "cluster-server-connector-0"
+[2017-10-19 20:42:48.191] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-connector-0" enter after start...
+[2017-10-19 20:42:48.202] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-connector-0" finish start
+[2017-10-19 20:42:48.203] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-connector-0" startup in 443 ms
+[2017-10-19 20:42:55.875] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] getSession session is created with session id: 1
+[2017-10-19 20:42:55.892] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] handleMessage session id: 1, msg: {"id":2,"type":0,"compressRoute":0,"route":"connector.entryHandler.entey","body":{"account":"1504755975115"},"compressGzip":0}
+[2017-10-19 20:42:55.896] [WARN] pomelo - [33m[D:\servers\game-server\node_modules\pomelo\lib\common\service\handlerService.js] [39mcould not find the method entey in handler: entryHandler
+[2017-10-19 20:42:55.897] [ERROR] pomelo - [31m[D:\servers\game-server\node_modules\pomelo\lib\common\service\handlerService.js] [39m[handleManager]: fail to find handler for "connector.entryHandler.entey"
+[2017-10-19 20:42:55.897] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\server\server.js] [39mno default error handler to resolve unknown exception. Error: fail to find handler for connector.entryHandler.entey
+    at Service.handle (D:\servers\game-server\node_modules\pomelo\lib\common\service\handlerService.js:35:30)
+    at handle (D:\servers\game-server\node_modules\pomelo\lib\server\server.js:375:25)
+    at next (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:50:7)
+    at Filter.before (D:\servers\game-server\node_modules\pomelo\lib\filters\handler\time.js:17:3)
+    at next (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:58:15)
+    at Filter.before (D:\servers\game-server\node_modules\pomelo\lib\filters\handler\timeout.js:34:3)
+    at next (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:58:15)
+    at Service.beforeFilter (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:65:3)
+    at beforeFilter (D:\servers\game-server\node_modules\pomelo\lib\server\server.js:242:8)
+    at doHandle (D:\servers\game-server\node_modules\pomelo\lib\server\server.js:388:3)
+[2017-10-19 20:42:55.899] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] send message reqId: 2, route: connector.entryHandler.entey, msg: {"code":500}, receivers: [1], opts: {"type":"response","userOptions":{},"isResponse":true}
+[2017-10-19 20:42:57.153] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] handleMessage session id: 1, msg: {"id":3,"type":0,"compressRoute":1,"route":"connector.roleHandler.createPlayer","body":{"account":"1504755975115","pwd":"123456","name":"东阳有钱"},"compressGzip":0}
+[2017-10-19 20:42:57.257] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] send message reqId: 3, route: connector.roleHandler.createPlayer, msg: {"code":501,"error":"ER_BAD_NULL_ERROR: Column 'MAC' cannot be null"}, receivers: [1], opts: {"type":"response","userOptions":{},"isResponse":true}
+[2017-10-19 20:44:25.771] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\common\service\sessionService.js] [39msession on [cluster-server-connector-0] is closed with session id: 1
+[2017-10-19 20:44:31.866] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] getSession session is created with session id: 2
+[2017-10-19 20:44:31.876] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] handleMessage session id: 2, msg: {"id":2,"type":0,"compressRoute":1,"route":"connector.entryHandler.entry","body":{"MAC":"1504755975115","password":"123456"},"compressGzip":0}
+[2017-10-19 20:44:34.876] [ERROR] pomelo - [31m[D:\servers\game-server\node_modules\pomelo\lib\filters\handler\timeout.js] [39mrequest "connector.entryHandler.entry" timeout.
+[2017-10-19 20:45:21.213] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39mapplication inited: "cluster-server-connector-0"
+[2017-10-19 20:45:21.675] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-connector-0" enter after start...
+[2017-10-19 20:45:21.691] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-connector-0" finish start
+[2017-10-19 20:45:21.692] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-connector-0" startup in 432 ms
+[2017-10-19 20:45:28.414] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] getSession session is created with session id: 1
+[2017-10-19 20:45:28.443] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] handleMessage session id: 1, msg: {"id":2,"type":0,"compressRoute":1,"route":"connector.entryHandler.entry","body":{"MAC":"1504755975115","password":"123456"},"compressGzip":0}
+[2017-10-19 20:45:28.533] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] send message reqId: 2, route: connector.entryHandler.entry, msg: {"code":1003}, receivers: [1], opts: {"type":"response","userOptions":{},"isResponse":true}
+[2017-10-19 20:45:29.869] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] handleMessage session id: 1, msg: {"id":3,"type":0,"compressRoute":1,"route":"connector.roleHandler.createPlayer","body":{"account":"1504755975115","pwd":"123456","name":"端木有钱"},"compressGzip":0}
+[2017-10-19 20:45:29.882] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39msession on [cluster-server-connector-0] bind with uid: 10000
+[2017-10-19 20:45:29.883] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] send message reqId: 3, route: connector.roleHandler.createPlayer, msg: {"code":200}, receivers: [1], opts: {"type":"response","userOptions":{},"isResponse":true}
+[2017-10-19 20:45:29.941] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] getSession session is created with session id: 2
+[2017-10-19 20:45:29.952] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] handleMessage session id: 2, msg: {"id":5,"type":0,"compressRoute":1,"route":"connector.entryHandler.entry","body":{"MAC":"1504755975115","password":"123456"},"compressGzip":0}
+[2017-10-19 20:45:29.960] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39msession on [cluster-server-connector-0] bind with uid: 10000
+[2017-10-19 20:45:29.966] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] send message reqId: 5, route: connector.entryHandler.entry, msg: {"code":200,"userid":10000,"lv":1,"gems":100,"ip":"127.0.0.1","sex":1}, receivers: [2], opts: {"type":"response","userOptions":{},"isResponse":true}
+[2017-10-19 20:45:30.136] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] handleMessage session id: 2, msg: {"id":6,"type":0,"compressRoute":0,"route":"area.playerHandler.getUserStatus","body":{"sign":0},"compressGzip":0}
+[2017-10-19 20:45:30.173] [ERROR] pomelo - [31m[D:\servers\game-server\node_modules\pomelo\lib\server\server.js] [39mfail to process remote message:Error: player not exist!
+    at Filter.pro.before (D:\servers\game-server\app\servers\area\filter\unregisterFilter.js:25:18)
+    at next (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:58:15)
+    at Filter.before (D:\servers\game-server\node_modules\pomelo\lib\filters\handler\time.js:17:3)
+    at next (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:58:15)
+    at Filter.before (D:\servers\game-server\node_modules\pomelo\lib\filters\handler\timeout.js:34:3)
+    at next (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:58:15)
+    at Service.beforeFilter (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:65:3)
+    at beforeFilter (D:\servers\game-server\node_modules\pomelo\lib\server\server.js:242:8)
+    at doHandle (D:\servers\game-server\node_modules\pomelo\lib\server\server.js:388:3)
+    at Server.pro.handle (D:\servers\game-server\node_modules\pomelo\lib\server\server.js:125:3)
+[2017-10-19 20:45:30.173] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] send message reqId: 6, route: area.playerHandler.getUserStatus, msg: {"code":500}, receivers: [2], opts: {"type":"response","userOptions":{},"isResponse":true}
+[2017-10-19 20:46:24.902] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\common\service\sessionService.js] [39msession on [cluster-server-connector-0] is closed with session id: 1
+[2017-10-19 20:46:24.904] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\common\service\sessionService.js] [39msession on [cluster-server-connector-0] is closed with session id: 2
+[2017-10-19 20:46:40.500] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] getSession session is created with session id: 3
+[2017-10-19 20:46:40.510] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] handleMessage session id: 3, msg: {"id":2,"type":0,"compressRoute":1,"route":"connector.entryHandler.entry","body":{"MAC":"1504755975115","password":"123456"},"compressGzip":0}
+[2017-10-19 20:46:40.523] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39msession on [cluster-server-connector-0] bind with uid: 10000
+[2017-10-19 20:46:40.524] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] send message reqId: 2, route: connector.entryHandler.entry, msg: {"code":200,"userid":10000,"lv":1,"gems":100,"ip":"127.0.0.1","sex":1}, receivers: [3], opts: {"type":"response","userOptions":{},"isResponse":true}
+[2017-10-19 20:46:40.653] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] handleMessage session id: 3, msg: {"id":3,"type":0,"compressRoute":0,"route":"area.playerHandler.getUserStatus","body":{"sign":0},"compressGzip":0}
+[2017-10-19 20:46:40.678] [ERROR] pomelo - [31m[D:\servers\game-server\node_modules\pomelo\lib\server\server.js] [39mfail to process remote message:Error: player not exist!
+    at Filter.pro.before (D:\servers\game-server\app\servers\area\filter\unregisterFilter.js:25:18)
+    at next (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:58:15)
+    at Filter.before (D:\servers\game-server\node_modules\pomelo\lib\filters\handler\time.js:17:3)
+    at next (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:58:15)
+    at Filter.before (D:\servers\game-server\node_modules\pomelo\lib\filters\handler\timeout.js:34:3)
+    at next (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:58:15)
+    at Service.beforeFilter (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:65:3)
+    at beforeFilter (D:\servers\game-server\node_modules\pomelo\lib\server\server.js:242:8)
+    at doHandle (D:\servers\game-server\node_modules\pomelo\lib\server\server.js:388:3)
+    at Server.pro.handle (D:\servers\game-server\node_modules\pomelo\lib\server\server.js:125:3)
+[2017-10-19 20:46:40.678] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] send message reqId: 3, route: area.playerHandler.getUserStatus, msg: {"code":500}, receivers: [3], opts: {"type":"response","userOptions":{},"isResponse":true}
+[2017-10-19 20:50:45.422] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39mapplication inited: "cluster-server-connector-0"
+[2017-10-19 20:50:45.974] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-connector-0" enter after start...
+[2017-10-19 20:50:45.993] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-connector-0" finish start
+[2017-10-19 20:50:45.994] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-connector-0" startup in 527 ms
+[2017-10-19 20:50:51.038] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] getSession session is created with session id: 1
+[2017-10-19 20:50:51.055] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] handleMessage session id: 1, msg: {"id":2,"type":0,"compressRoute":1,"route":"connector.entryHandler.entry","body":{"MAC":"1504755975115","password":"123456"},"compressGzip":0}
+[2017-10-19 20:50:51.145] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39msession on [cluster-server-connector-0] bind with uid: 10000
+[2017-10-19 20:50:51.152] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] send message reqId: 2, route: connector.entryHandler.entry, msg: {"code":200,"userid":10000,"lv":1,"gems":100,"ip":"127.0.0.1","sex":1}, receivers: [1], opts: {"type":"response","userOptions":{},"isResponse":true}
+[2017-10-19 20:50:51.262] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] handleMessage session id: 1, msg: {"id":3,"type":0,"compressRoute":0,"route":"area.playerHandler.getUserStatus","body":{"sign":0},"compressGzip":0}
+[2017-10-19 20:50:51.321] [ERROR] pomelo - [31m[D:\servers\game-server\node_modules\pomelo\lib\server\server.js] [39mfail to process remote message:Error: player not exist!
+    at Filter.pro.before (D:\servers\game-server\app\servers\area\filter\unregisterFilter.js:25:18)
+    at next (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:58:15)
+    at Filter.before (D:\servers\game-server\node_modules\pomelo\lib\filters\handler\time.js:17:3)
+    at next (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:58:15)
+    at Filter.before (D:\servers\game-server\node_modules\pomelo\lib\filters\handler\timeout.js:34:3)
+    at next (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:58:15)
+    at Service.beforeFilter (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:65:3)
+    at beforeFilter (D:\servers\game-server\node_modules\pomelo\lib\server\server.js:242:8)
+    at doHandle (D:\servers\game-server\node_modules\pomelo\lib\server\server.js:388:3)
+    at Server.pro.handle (D:\servers\game-server\node_modules\pomelo\lib\server\server.js:125:3)
+[2017-10-19 20:50:51.321] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] send message reqId: 3, route: area.playerHandler.getUserStatus, msg: {"code":500}, receivers: [1], opts: {"type":"response","userOptions":{},"isResponse":true}
+[2017-10-19 20:55:38.376] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39mapplication inited: "cluster-server-connector-0"
+[2017-10-19 20:55:38.818] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-connector-0" enter after start...
+[2017-10-19 20:55:38.836] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-connector-0" finish start
+[2017-10-19 20:55:38.837] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-connector-0" startup in 415 ms
+[2017-10-19 20:56:00.515] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] getSession session is created with session id: 1
+[2017-10-19 20:56:00.534] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] handleMessage session id: 1, msg: {"id":2,"type":0,"compressRoute":1,"route":"connector.entryHandler.entry","body":{"MAC":"1504755975115","password":"123456"},"compressGzip":0}
+[2017-10-19 20:56:00.624] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39msession on [cluster-server-connector-0] bind with uid: 10000
+[2017-10-19 20:56:00.631] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] send message reqId: 2, route: connector.entryHandler.entry, msg: {"code":200,"userid":10000,"lv":1,"gems":100,"ip":"127.0.0.1","sex":1}, receivers: [1], opts: {"type":"response","userOptions":{},"isResponse":true}
+[2017-10-19 20:56:00.749] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] handleMessage session id: 1, msg: {"id":3,"type":0,"compressRoute":0,"route":"area.playerHandler.getUserStatus","body":{"sign":0},"compressGzip":0}
+[2017-10-19 20:56:00.792] [ERROR] pomelo - [31m[D:\servers\game-server\node_modules\pomelo\lib\server\server.js] [39mfail to process remote message:Error: player not exist!
+    at Filter.pro.before (D:\servers\game-server\app\servers\area\filter\unregisterFilter.js:25:18)
+    at next (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:58:15)
+    at Filter.before (D:\servers\game-server\node_modules\pomelo\lib\filters\handler\time.js:17:3)
+    at next (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:58:15)
+    at Filter.before (D:\servers\game-server\node_modules\pomelo\lib\filters\handler\timeout.js:34:3)
+    at next (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:58:15)
+    at Service.beforeFilter (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:65:3)
+    at beforeFilter (D:\servers\game-server\node_modules\pomelo\lib\server\server.js:242:8)
+    at doHandle (D:\servers\game-server\node_modules\pomelo\lib\server\server.js:388:3)
+    at Server.pro.handle (D:\servers\game-server\node_modules\pomelo\lib\server\server.js:125:3)
+[2017-10-19 20:56:00.792] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] send message reqId: 3, route: area.playerHandler.getUserStatus, msg: {"code":500}, receivers: [1], opts: {"type":"response","userOptions":{},"isResponse":true}
+[2017-10-19 20:57:24.524] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39mapplication inited: "cluster-server-connector-0"
+[2017-10-19 20:57:25.017] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-connector-0" enter after start...
+[2017-10-19 20:57:25.040] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-connector-0" finish start
+[2017-10-19 20:57:25.041] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-connector-0" startup in 467 ms
+[2017-10-19 20:57:30.220] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] getSession session is created with session id: 1
+[2017-10-19 20:57:30.237] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] handleMessage session id: 1, msg: {"id":2,"type":0,"compressRoute":1,"route":"connector.entryHandler.entry","body":{"MAC":"1504755975115","password":"123456"},"compressGzip":0}
+[2017-10-19 20:57:30.327] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39msession on [cluster-server-connector-0] bind with uid: 10000
+[2017-10-19 20:57:30.333] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] send message reqId: 2, route: connector.entryHandler.entry, msg: {"code":200,"userid":10000,"lv":1,"gems":100,"ip":"127.0.0.1","sex":1}, receivers: [1], opts: {"type":"response","userOptions":{},"isResponse":true}
+[2017-10-19 20:57:30.460] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] handleMessage session id: 1, msg: {"id":3,"type":0,"compressRoute":0,"route":"area.playerHandler.getUserStatus","body":{"sign":0},"compressGzip":0}
+[2017-10-19 20:57:30.497] [ERROR] pomelo - [31m[D:\servers\game-server\node_modules\pomelo\lib\server\server.js] [39mfail to process remote message:Error: player not exist!
+    at Filter.pro.before (D:\servers\game-server\app\servers\area\filter\unregisterFilter.js:25:18)
+    at next (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:58:15)
+    at Filter.before (D:\servers\game-server\node_modules\pomelo\lib\filters\handler\time.js:17:3)
+    at next (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:58:15)
+    at Filter.before (D:\servers\game-server\node_modules\pomelo\lib\filters\handler\timeout.js:34:3)
+    at next (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:58:15)
+    at Service.beforeFilter (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:65:3)
+    at beforeFilter (D:\servers\game-server\node_modules\pomelo\lib\server\server.js:242:8)
+    at doHandle (D:\servers\game-server\node_modules\pomelo\lib\server\server.js:388:3)
+    at Server.pro.handle (D:\servers\game-server\node_modules\pomelo\lib\server\server.js:125:3)
+[2017-10-19 20:57:30.498] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] send message reqId: 3, route: area.playerHandler.getUserStatus, msg: {"code":500}, receivers: [1], opts: {"type":"response","userOptions":{},"isResponse":true}
+[2017-10-19 20:59:39.917] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39mapplication inited: "cluster-server-connector-0"
+[2017-10-19 20:59:40.388] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-connector-0" enter after start...
+[2017-10-19 20:59:40.407] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-connector-0" finish start
+[2017-10-19 20:59:40.407] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-connector-0" startup in 443 ms
+[2017-10-19 21:00:04.909] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] getSession session is created with session id: 1
+[2017-10-19 21:00:04.926] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] handleMessage session id: 1, msg: {"id":2,"type":0,"compressRoute":1,"route":"connector.entryHandler.entry","body":{"MAC":"1504755975115","password":"123456"},"compressGzip":0}
+[2017-10-19 21:00:05.023] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39msession on [cluster-server-connector-0] bind with uid: 10000
+[2017-10-19 21:00:05.030] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] send message reqId: 2, route: connector.entryHandler.entry, msg: {"code":200,"userid":10000,"lv":1,"gems":100,"ip":"127.0.0.1","sex":1}, receivers: [1], opts: {"type":"response","userOptions":{},"isResponse":true}
+[2017-10-19 23:00:06.302] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\common\service\sessionService.js] [39msession on [cluster-server-connector-0] is closed with session id: 1
+[2017-10-20 14:21:20.057] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39mapplication inited: "cluster-server-connector-0"
+[2017-10-20 14:21:22.242] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-connector-0" enter after start...
+[2017-10-20 14:21:22.272] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-connector-0" finish start
+[2017-10-20 14:21:22.272] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-connector-0" startup in 1855 ms
+[2017-10-20 14:21:22.272] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\modules\monitorwatcher.js] [39m[cluster-server-connector-0] receive addServer signal: {"action":"addServer","server":{"main":"D:\\servers\\game-server\\app.js","env":"development","id":"cluster-server-area-0","host":"127.0.0.1","port":3250,"clusterCount":1,"area":1,"serverType":"area","pid":8740}}
+[2017-10-20 14:21:31.833] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] getSession session is created with session id: 1
+[2017-10-20 14:21:31.851] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] handleMessage session id: 1, msg: {"id":2,"type":0,"compressRoute":1,"route":"connector.entryHandler.entry","body":{"MAC":"1504755975115","password":"123456"},"compressGzip":0}
+[2017-10-20 14:21:32.309] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39msession on [cluster-server-connector-0] bind with uid: 10000
+[2017-10-20 14:21:32.316] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\components\connector.js] [39m[cluster-server-connector-0] send message reqId: 2, route: connector.entryHandler.entry, msg: {"code":200,"userid":10000,"lv":1,"gems":100,"ip":"127.0.0.1","sex":1}, receivers: [1], opts: {"type":"response","userOptions":{},"isResponse":true}
+[2017-10-20 16:21:36.850] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\common\service\sessionService.js] [39msession on [cluster-server-connector-0] is closed with session id: 1

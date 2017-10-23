@@ -1,0 +1,7 @@
+{
+  "name": "client",
+  "description": "Simplified HTTP request client.",
+  "dependencies": {
+    "request": "2.36.0"
+  }
+}

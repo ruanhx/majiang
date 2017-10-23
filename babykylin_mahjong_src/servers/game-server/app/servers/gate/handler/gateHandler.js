@@ -1,49 +1,35 @@
-var Code = require('../../../../../shared/code');
-var bearcat = require('bearcat');
 /**
- * Gate handler that dispatch user to connectors.
+ * Created by lishaoshen on 2015/09/26.
  */
-var GateHandler = function(app) {
-	this.app = app;
-	this.dispatcher = null;
+
+var crc = require('crc');
+var Code = require('../../../../shared/code');
+
+module.exports = function (app) {
+    return new Handler(app);
 };
 
-GateHandler.prototype.queryEntry = function(msg, session, next) {
-	var uid = msg.uid;
-	if (!uid) {
-		next(null, {
-			code: Code.FAIL
-		});
-		return;
-	}
-
-	var connectors = this.app.getServersByType('connector');
-	if (!connectors || connectors.length === 0) {
-		next(null, {
-			code: Code.GATE.NO_SERVER_AVAILABLE
-		});
-		return;
-	}
-
-	var res = this.dispatcher.dispatch(uid, connectors);
-	next(null, {
-		code: Code.OK,
-		host: res.host,
-		port: res.clientPort
-	});
+var Handler = function (app) {
+    this.app = app;
 };
 
-module.exports = function(app) {
-	return bearcat.getBean({
-		id: "gateHandler",
-		func: GateHandler,
-		args: [{
-			name: "app",
-			value: app
-		}],
-		props: [{
-			name: "dispatcher",
-			ref: "dispatcher"
-		}]
-	});
+var handler = Handler.prototype;
+
+handler.queryEntry = function (msg, session, next) {
+    var uid = msg.uid;
+
+    if (!uid) {
+        next(null, {
+            code: Code.FAIL
+        });
+        return;
+    }
+    var connectors = this.app.getServersByType('connector') || [];
+    if (connectors.length === 0) {
+        return next(null, {code: Code.GATE.FA_NO_SERVER_AVAILABLE});
+    }
+    var index = Math.abs(crc.crc32(uid)) % connectors.length,
+        res = connectors[index];
+
+    next(null, {code: Code.OK, host: res.clientHost ? res.clientHost : res.host, port: res.clientPort});
 };

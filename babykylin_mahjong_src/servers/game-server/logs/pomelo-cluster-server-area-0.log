@@ -1,0 +1,119 @@
+[2017-10-19 17:15:31.783] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39mapplication inited: "cluster-server-area-0"
+[2017-10-19 17:15:32.111] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-area-0" enter after start...
+[2017-10-19 17:15:32.127] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-area-0" finish start
+[2017-10-19 17:15:32.127] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-area-0" startup in 297 ms
+[2017-10-19 17:15:32.221] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\modules\monitorwatcher.js] [39m[cluster-server-area-0] receive addServer signal: {"action":"addServer","server":{"main":"D:\\servers\\game-server\\app.js","env":"development","id":"gate-server-1","host":"127.0.0.1","clientHost":"127.0.0.1","clientPort":3014,"frontend":"true","serverType":"gate","pid":6956}}
+[2017-10-19 17:15:32.299] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\modules\monitorwatcher.js] [39m[cluster-server-area-0] receive addServer signal: {"action":"addServer","server":{"main":"D:\\servers\\game-server\\app.js","env":"development","id":"cluster-server-connector-0","host":"127.0.0.1","port":3150,"clientHost":"127.0.0.1","clientPort":3010,"clusterCount":2,"frontend":"true","auto-restart":"true","serverType":"connector","pid":8336}}
+[2017-10-19 17:15:32.392] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\modules\monitorwatcher.js] [39m[cluster-server-area-0] receive addServer signal: {"action":"addServer","server":{"main":"D:\\servers\\game-server\\app.js","env":"development","id":"cluster-server-connector-1","host":"127.0.0.1","port":3151,"clientHost":"127.0.0.1","clientPort":3011,"clusterCount":2,"frontend":"true","auto-restart":"true","serverType":"connector","pid":7584}}
+[2017-10-19 17:20:18.012] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39mapplication inited: "cluster-server-area-0"
+[2017-10-19 17:20:18.374] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-area-0" enter after start...
+[2017-10-19 17:20:18.374] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-area-0" finish start
+[2017-10-19 17:20:18.374] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-area-0" startup in 312 ms
+[2017-10-19 19:55:50.283] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39mapplication inited: "cluster-server-area-0"
+[2017-10-19 19:55:50.611] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-area-0" enter after start...
+[2017-10-19 19:55:50.626] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-area-0" finish start
+[2017-10-19 19:55:50.626] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-area-0" startup in 296 ms
+[2017-10-19 19:55:50.642] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\modules\monitorwatcher.js] [39m[cluster-server-area-0] receive addServer signal: {"action":"addServer","server":{"main":"D:\\servers\\game-server\\app.js","env":"development","id":"cluster-server-connector-0","host":"127.0.0.1","port":3150,"clientHost":"127.0.0.1","clientPort":3010,"clusterCount":1,"frontend":"true","auto-restart":"true","serverType":"connector","pid":9312}}
+[2017-10-19 20:11:59.072] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39mapplication inited: "cluster-server-area-0"
+[2017-10-19 20:11:59.400] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-area-0" enter after start...
+[2017-10-19 20:11:59.400] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-area-0" finish start
+[2017-10-19 20:11:59.400] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-area-0" startup in 281 ms
+[2017-10-19 20:11:59.415] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\modules\monitorwatcher.js] [39m[cluster-server-area-0] receive addServer signal: {"action":"addServer","server":{"main":"D:\\servers\\game-server\\app.js","env":"development","id":"cluster-server-connector-0","host":"127.0.0.1","port":3150,"clientHost":"127.0.0.1","clientPort":3010,"clusterCount":1,"frontend":"true","auto-restart":"true","serverType":"connector","pid":7824}}
+[2017-10-19 20:34:29.844] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39mapplication inited: "cluster-server-area-0"
+[2017-10-19 20:34:30.206] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-area-0" enter after start...
+[2017-10-19 20:34:30.206] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-area-0" finish start
+[2017-10-19 20:34:30.206] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-area-0" startup in 300 ms
+[2017-10-19 20:41:52.643] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39mapplication inited: "cluster-server-area-0"
+[2017-10-19 20:41:53.527] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-area-0" enter after start...
+[2017-10-19 20:41:53.530] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-area-0" finish start
+[2017-10-19 20:41:53.532] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-area-0" startup in 801 ms
+[2017-10-19 20:41:53.731] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\modules\monitorwatcher.js] [39m[cluster-server-area-0] receive addServer signal: {"action":"addServer","server":{"main":"D:\\servers\\game-server\\app.js","env":"development","id":"cluster-server-connector-0","host":"127.0.0.1","port":3150,"clientHost":"127.0.0.1","clientPort":3010,"clusterCount":1,"frontend":"true","auto-restart":"true","serverType":"connector","pid":14020}}
+[2017-10-19 20:41:53.961] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\modules\monitorwatcher.js] [39m[cluster-server-area-0] receive addServer signal: {"action":"addServer","server":{"main":"D:\\servers\\game-server\\app.js","env":"development","id":"gate-server-1","host":"127.0.0.1","clientHost":"127.0.0.1","clientPort":3014,"frontend":"true","serverType":"gate","pid":14008}}
+[2017-10-19 20:42:47.713] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39mapplication inited: "cluster-server-area-0"
+[2017-10-19 20:42:48.103] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-area-0" enter after start...
+[2017-10-19 20:42:48.107] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-area-0" finish start
+[2017-10-19 20:42:48.109] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-area-0" startup in 338 ms
+[2017-10-19 20:42:48.164] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\modules\monitorwatcher.js] [39m[cluster-server-area-0] receive addServer signal: {"action":"addServer","server":{"main":"D:\\servers\\game-server\\app.js","env":"development","id":"cluster-server-connector-0","host":"127.0.0.1","port":3150,"clientHost":"127.0.0.1","clientPort":3010,"clusterCount":1,"frontend":"true","auto-restart":"true","serverType":"connector","pid":11908}}
+[2017-10-19 20:45:21.257] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39mapplication inited: "cluster-server-area-0"
+[2017-10-19 20:45:21.635] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-area-0" enter after start...
+[2017-10-19 20:45:21.639] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-area-0" finish start
+[2017-10-19 20:45:21.641] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-area-0" startup in 327 ms
+[2017-10-19 20:45:21.651] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\modules\monitorwatcher.js] [39m[cluster-server-area-0] receive addServer signal: {"action":"addServer","server":{"main":"D:\\servers\\game-server\\app.js","env":"development","id":"cluster-server-connector-0","host":"127.0.0.1","port":3150,"clientHost":"127.0.0.1","clientPort":3010,"clusterCount":1,"frontend":"true","auto-restart":"true","serverType":"connector","pid":11408}}
+[2017-10-19 20:45:30.165] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\server\server.js] [39mno default error handler to resolve unknown exception. Error: player not exist!
+    at Filter.pro.before (D:\servers\game-server\app\servers\area\filter\unregisterFilter.js:25:18)
+    at next (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:58:15)
+    at Filter.before (D:\servers\game-server\node_modules\pomelo\lib\filters\handler\time.js:17:3)
+    at next (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:58:15)
+    at Filter.before (D:\servers\game-server\node_modules\pomelo\lib\filters\handler\timeout.js:34:3)
+    at next (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:58:15)
+    at Service.beforeFilter (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:65:3)
+    at beforeFilter (D:\servers\game-server\node_modules\pomelo\lib\server\server.js:242:8)
+    at doHandle (D:\servers\game-server\node_modules\pomelo\lib\server\server.js:388:3)
+    at Server.pro.handle (D:\servers\game-server\node_modules\pomelo\lib\server\server.js:125:3)
+[2017-10-19 20:46:40.655] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\server\server.js] [39mno default error handler to resolve unknown exception. Error: player not exist!
+    at Filter.pro.before (D:\servers\game-server\app\servers\area\filter\unregisterFilter.js:25:18)
+    at next (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:58:15)
+    at Filter.before (D:\servers\game-server\node_modules\pomelo\lib\filters\handler\time.js:17:3)
+    at next (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:58:15)
+    at Filter.before (D:\servers\game-server\node_modules\pomelo\lib\filters\handler\timeout.js:34:3)
+    at next (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:58:15)
+    at Service.beforeFilter (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:65:3)
+    at beforeFilter (D:\servers\game-server\node_modules\pomelo\lib\server\server.js:242:8)
+    at doHandle (D:\servers\game-server\node_modules\pomelo\lib\server\server.js:388:3)
+    at Server.pro.handle (D:\servers\game-server\node_modules\pomelo\lib\server\server.js:125:3)
+[2017-10-19 20:50:45.442] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39mapplication inited: "cluster-server-area-0"
+[2017-10-19 20:50:45.895] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-area-0" enter after start...
+[2017-10-19 20:50:45.903] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-area-0" finish start
+[2017-10-19 20:50:45.905] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-area-0" startup in 378 ms
+[2017-10-19 20:50:45.948] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\modules\monitorwatcher.js] [39m[cluster-server-area-0] receive addServer signal: {"action":"addServer","server":{"main":"D:\\servers\\game-server\\app.js","env":"development","id":"cluster-server-connector-0","host":"127.0.0.1","port":3150,"clientHost":"127.0.0.1","clientPort":3010,"clusterCount":1,"frontend":"true","auto-restart":"true","serverType":"connector","pid":11688}}
+[2017-10-19 20:50:51.295] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\server\server.js] [39mno default error handler to resolve unknown exception. Error: player not exist!
+    at Filter.pro.before (D:\servers\game-server\app\servers\area\filter\unregisterFilter.js:25:18)
+    at next (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:58:15)
+    at Filter.before (D:\servers\game-server\node_modules\pomelo\lib\filters\handler\time.js:17:3)
+    at next (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:58:15)
+    at Filter.before (D:\servers\game-server\node_modules\pomelo\lib\filters\handler\timeout.js:34:3)
+    at next (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:58:15)
+    at Service.beforeFilter (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:65:3)
+    at beforeFilter (D:\servers\game-server\node_modules\pomelo\lib\server\server.js:242:8)
+    at doHandle (D:\servers\game-server\node_modules\pomelo\lib\server\server.js:388:3)
+    at Server.pro.handle (D:\servers\game-server\node_modules\pomelo\lib\server\server.js:125:3)
+[2017-10-19 20:55:38.352] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39mapplication inited: "cluster-server-area-0"
+[2017-10-19 20:55:38.733] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-area-0" enter after start...
+[2017-10-19 20:55:38.737] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-area-0" finish start
+[2017-10-19 20:55:38.739] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-area-0" startup in 329 ms
+[2017-10-19 20:55:38.794] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\modules\monitorwatcher.js] [39m[cluster-server-area-0] receive addServer signal: {"action":"addServer","server":{"main":"D:\\servers\\game-server\\app.js","env":"development","id":"cluster-server-connector-0","host":"127.0.0.1","port":3150,"clientHost":"127.0.0.1","clientPort":3010,"clusterCount":1,"frontend":"true","auto-restart":"true","serverType":"connector","pid":8116}}
+[2017-10-19 20:56:00.777] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\server\server.js] [39mno default error handler to resolve unknown exception. Error: player not exist!
+    at Filter.pro.before (D:\servers\game-server\app\servers\area\filter\unregisterFilter.js:25:18)
+    at next (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:58:15)
+    at Filter.before (D:\servers\game-server\node_modules\pomelo\lib\filters\handler\time.js:17:3)
+    at next (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:58:15)
+    at Filter.before (D:\servers\game-server\node_modules\pomelo\lib\filters\handler\timeout.js:34:3)
+    at next (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:58:15)
+    at Service.beforeFilter (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:65:3)
+    at beforeFilter (D:\servers\game-server\node_modules\pomelo\lib\server\server.js:242:8)
+    at doHandle (D:\servers\game-server\node_modules\pomelo\lib\server\server.js:388:3)
+    at Server.pro.handle (D:\servers\game-server\node_modules\pomelo\lib\server\server.js:125:3)
+[2017-10-19 20:57:24.544] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39mapplication inited: "cluster-server-area-0"
+[2017-10-19 20:57:25.012] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-area-0" enter after start...
+[2017-10-19 20:57:25.015] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-area-0" finish start
+[2017-10-19 20:57:25.020] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-area-0" startup in 416 ms
+[2017-10-19 20:57:30.490] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\server\server.js] [39mno default error handler to resolve unknown exception. Error: player not exist!
+    at Filter.pro.before (D:\servers\game-server\app\servers\area\filter\unregisterFilter.js:25:18)
+    at next (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:58:15)
+    at Filter.before (D:\servers\game-server\node_modules\pomelo\lib\filters\handler\time.js:17:3)
+    at next (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:58:15)
+    at Filter.before (D:\servers\game-server\node_modules\pomelo\lib\filters\handler\timeout.js:34:3)
+    at next (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:58:15)
+    at Service.beforeFilter (D:\servers\game-server\node_modules\pomelo\lib\common\service\filterService.js:65:3)
+    at beforeFilter (D:\servers\game-server\node_modules\pomelo\lib\server\server.js:242:8)
+    at doHandle (D:\servers\game-server\node_modules\pomelo\lib\server\server.js:388:3)
+    at Server.pro.handle (D:\servers\game-server\node_modules\pomelo\lib\server\server.js:125:3)
+[2017-10-19 20:59:39.907] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39mapplication inited: "cluster-server-area-0"
+[2017-10-19 20:59:40.308] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-area-0" enter after start...
+[2017-10-19 20:59:40.314] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-area-0" finish start
+[2017-10-19 20:59:40.316] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-area-0" startup in 351 ms
+[2017-10-19 20:59:40.361] [DEBUG] pomelo - [36m[D:\servers\game-server\node_modules\pomelo\lib\modules\monitorwatcher.js] [39m[cluster-server-area-0] receive addServer signal: {"action":"addServer","server":{"main":"D:\\servers\\game-server\\app.js","env":"development","id":"cluster-server-connector-0","host":"127.0.0.1","port":3150,"clientHost":"127.0.0.1","clientPort":3010,"clusterCount":1,"frontend":"true","auto-restart":"true","serverType":"connector","pid":12340}}
+[2017-10-20 14:21:20.087] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39mapplication inited: "cluster-server-area-0"
+[2017-10-20 14:21:22.282] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-area-0" enter after start...
+[2017-10-20 14:21:22.282] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-area-0" finish start
+[2017-10-20 14:21:22.292] [INFO] pomelo - [32m[D:\servers\game-server\node_modules\pomelo\lib\application.js] [39m"cluster-server-area-0" startup in 1435 ms

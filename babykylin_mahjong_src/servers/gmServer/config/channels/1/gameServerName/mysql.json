@@ -1,0 +1,48 @@
+{
+  "development": {
+    "GameUser": {
+      "host": "127.0.0.1",
+      "port": 3306,
+      "database": "GameUser",
+      "user": "test",
+      "password": "MTIzNDU2"
+    },
+    "GameLog": {
+      "host": "127.0.0.1",
+      "port": 3306,
+      "database": "GameLog",
+      "user": "test",
+      "password": "MTIzNDU2"
+    },
+    "GameStat": {
+      "host": "127.0.0.1",
+      "port": 3306,
+      "database": "GameStat",
+      "user": "test",
+      "password": "MTIzNDU2"
+    }
+  },
+  "production": {
+    "GameUser": {
+      "host": "127.0.0.1",
+      "port": 3306,
+      "database": "GameUser",
+      "user": "test",
+      "password": "MTIzNDU2"
+    },
+    "GameLog": {
+      "host": "127.0.0.1",
+      "port": 3306,
+      "database": "GameLog",
+      "user": "test",
+      "password": "MTIzNDU2"
+    },
+    "GameStat": {
+      "host": "127.0.0.1",
+      "port": 3306,
+      "database": "GameStat",
+      "user": "test",
+      "password": "MTIzNDU2"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+Note (Code 1051): Unknown table 'servermanager3.serverinfo'
+Note (Code 1051): Unknown table 'servermanager3.playerinfo'
+Note (Code 1051): Unknown table 'servermanager3.transformdetail'
+Note (Code 1051): Unknown table 'servermanager3.transformdaily'
+Note (Code 1051): Unknown table 'servermanager3.recharge'
+Note (Code 1305): PROCEDURE servermanager3.dailySample does not exist

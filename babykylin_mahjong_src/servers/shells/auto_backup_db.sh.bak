@@ -1,0 +1,16 @@
+#!/bin/sh
+
+dbs=('GameLog{group}' 'serverManager{group}' 'GameUser{group}' 'GameStat{group}')
+
+for db in ${dbs[@]}
+do
+	/usr/bin/mysqldump -t -u{mysqlUser} -p{mysqlPassword} --default-character-set=utf8 --opt --extended-insert=false --triggers --hex-blob --single-transaction -c ${db} > ${db}.sql
+done
+
+d=$(date +%Y%m%d)
+echo $d
+mkdir -p "backup/$d/"
+cp GameLog{group}.sql "backup/$d/"
+cp GameUser{group}.sql "backup/$d/"
+cp GameStat{group}.sql "backup/$d/"
+cp serverManager{group}.sql "backup/$d/"

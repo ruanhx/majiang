@@ -1,0 +1,3 @@
+#!/bin/sh
+mysql -u user -ppassword -e "CREATE DATABASE IF NOT EXISTS databaseName;" && mysql -u user -ppassword --database=databaseName <./createTable.sql >createTable.log -f --batch --silent --show-warnings --line-numbers --table --column-names
+mysql -u user -ppassword -e "CREATE DATABASE IF NOT EXISTS databaseName;" && mysql -u user -ppassword --database=databaseName <./createTable4Log.sql >createTable4Log.log -f --batch --silent --show-warnings --line-numbers --table --column-names

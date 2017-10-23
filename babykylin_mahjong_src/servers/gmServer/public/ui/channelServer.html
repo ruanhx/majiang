@@ -1,0 +1,125 @@
+
+<div id="channelServer">
+	<div>
+		<label>选择渠道:</label>
+		<select id="channelSelect" onchange=channelOnChange(this.value)>
+		</select>
+	</div>
+	
+	<br>
+	
+	<div>
+		<label>选择区服:</label>
+		<select id="severSelect" onchange=serverOnChange(this.value)>
+		</select>
+	</div>
+</div>
+
+<script>
+	console.log("getContentHtml:"+getContentHtml());
+	
+    var chanelData = [];
+	var serverAllData;
+	$(document).ready(function(e) {
+	
+		$.post("/listChannelServers",
+					{page:getContentHtml()},
+					function(data,status){
+						console.log(data);
+						if(status == "success")
+						{
+							console.log("listChannelServers code:"+data.code);
+							if(data.code == CODE.OK)
+							{	
+							    console.log(data);
+								serverAllData = data.serverList;
+								parseServerList(data.serverList);
+								//$("#channelSelect").append('<option value="0">全部</option>');		
+								$.each(chanelData,function(i,item){							
+									$("#channelSelect").append('<option value="'+item.channelId+'">'+item.channelName+'</option>');	
+									
+									if(i == 0)
+									{
+										$.each(item.serverList,function(j,itemServer){
+											$("#severSelect").append('<option value="'+itemServer.ID+'">'+itemServer.name+'</option>');
+										});
+									}
+								});
+								
+								
+							}
+							else if(data.code == CODE.NO_LOGIN)
+							{
+								makeDialog();
+							}
+							else if(data.code == CODE.LACK_PRIVILEGE)
+							{
+								$("div#content").load('noRight.html');
+							}
+							else 
+							{
+								alert("获取服务器列表失败");
+							}
+						}
+						else
+						{
+							console.log("加载数据失败。");
+						}
+			});
+	});	
+	function parseServerList(serverList)
+	{
+		var index = 0;
+		$.each(serverList,function(i,item){
+			if(haveChannelId(item.channelId) == false)//没有找到的
+			{
+				chanelData[index] = {channelId:item.channelId,channelName:item.channelName,serverList:[]};
+			}
+			//服务器插入到相应的channel 的server中
+			insertServer(item);
+		});
+	}
+	function insertServer(itemServer)
+	{
+		$.each(chanelData,function(i,item){
+			if(itemServer.channelId == item.channelId)
+			{
+				var len = item.serverList.length;
+				item.serverList[len] = itemServer;
+			}
+		});
+	}
+	function haveChannelId(channelId)
+	{
+		var ret = false;
+		if(chanelData)
+		{
+			$.each(chanelData,function(i,item){
+				if(channelId == item.channelId)
+				{
+					ret = true;
+					return;
+				}
+			});
+		}
+		return ret;
+	}
+	
+	function channelOnChange(channelId)
+	{
+		$("#severSelect").empty();
+		if(channelId != 0)
+		{
+			$.each(chanelData,function(i,item){	
+				if(channelId == item.channelId)
+				{
+					//$("#severSelect").append('<option value="0">全部</option>');
+					$.each(item.serverList,function(i,itemServer){
+						$("#severSelect").append('<option value="'+itemServer.ID+'">'+itemServer.name+'</option>');
+					});
+					return;
+				}				
+			});			
+		}		
+	}
+</script>

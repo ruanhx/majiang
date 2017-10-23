@@ -1,0 +1,18 @@
+[2017-10-19 20:46:24.921] [ERROR] pomelo-rpc - [31m[mqtt-mailbox] [39mrpc client cluster-server-connector-0 process remote server cluster-server-area-0 message with error: TypeError: Cannot read property 'playerRemote' of undefined
+    at D:\servers\game-server\app\servers\connector\handler\entryHandler.js:118:26
+    at Object.Utils.applyCallback (D:\servers\game-server\node_modules\pomelo\node_modules\pomelo-rpc\lib\util\utils.js:11:6)
+    at D:\servers\game-server\node_modules\pomelo\node_modules\pomelo-rpc\lib\rpc-client\mailstation.js:268:15
+    at doFilter (D:\servers\game-server\node_modules\pomelo\node_modules\pomelo-rpc\lib\rpc-client\mailstation.js:356:5)
+    at D:\servers\game-server\node_modules\pomelo\node_modules\pomelo-rpc\lib\rpc-client\mailstation.js:264:7
+    at processMsg (D:\servers\game-server\node_modules\pomelo\node_modules\pomelo-rpc\lib\rpc-client\mailboxes\mqtt-mailbox.js:245:3)
+    at processMsgs (D:\servers\game-server\node_modules\pomelo\node_modules\pomelo-rpc\lib\rpc-client\mailboxes\mqtt-mailbox.js:224:5)
+    at Connection.<anonymous> (D:\servers\game-server\node_modules\pomelo\node_modules\pomelo-rpc\lib\rpc-client\mailboxes\mqtt-mailbox.js:77:9)
+    at emitOne (events.js:115:13)
+    at Connection.emit (events.js:210:7)
+[2017-10-19 20:46:54.905] [ERROR] pomelo-rpc - [31m[mqtt-mailbox] [39mrpc cluster-server-connector-0 callback timeout 30000, remote server 2 host: 127.0.0.1, port: 3250
+[2017-10-19 20:46:54.906] [ERROR] pomelo-rpc - [31m[MailStation] [39m[pomelo-rpc] fail to send message Error: rpc cluster-server-connector-0 callback timeout 30000, remote server 2 host: 127.0.0.1, port: 3250
+    at Timeout.<anonymous> (D:\servers\game-server\node_modules\pomelo\node_modules\pomelo-rpc\lib\rpc-client\mailboxes\mqtt-mailbox.js:257:16)
+    at ontimeout (timers.js:469:11)
+    at tryOnTimeout (timers.js:304:5)
+    at Timer.listOnTimeout (timers.js:264:5)
+[2017-10-19 20:46:54.906] [ERROR] pomelo-rpc - [31m[failprocess] [39mrpc failed with error, remote server: cluster-server-area-0, msg: {"namespace":"user","serverType":"area","service":"playerRemote","method":"playerLeave","args":[{"playerId":10000,"sessionId":2,"frontendId":"cluster-server-connector-0"}]}, error code: 5

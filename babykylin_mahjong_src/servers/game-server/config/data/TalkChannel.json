@@ -1,0 +1,1 @@
+[["频道Id","频道名","频道顺序","单位时间内允许发布信息条数","每条信息发布字数限制","消息发布间隔时间","聊天记录最高存储记录","时间显示开关"],["channelId","channelName","channelOrder","numberMessage","numberWords","messageInterval","talkRecord","timeShow"],[1,51000,1,"1&20",30,1,20,0],[2,51001,2,"1&20",30,1,20,0],[4,51003,4,"1&20",30,1,20,0]]
