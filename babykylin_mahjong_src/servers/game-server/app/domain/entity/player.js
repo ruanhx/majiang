@@ -36,16 +36,8 @@ var Entity = require('./entity'),
     inviteManager = require('../../domain/area/inviteManager'),
     Consts = require('../../consts/consts'),
     FLOW = require('../../consts/flow'),
-    PassedActivityEctypeManager = require('./../area/passedActivityEctypeManager'),
-    DivisionPersonMgr = require('../../domain/area/divisionPersonMgr'),
-    FriendPersonMgr = require('../area/friendPersonMgr'),
-    assistFightManager = require('../area/assistFightManager'),
-    PlayerRefreshMgr = require('../area/playerRefreshMgr'),
-    TrainMgr = require('../area/trainMgr'),
-    MailPersonMgr = require('../area/mailPersonMgr'),
-    EndlessPVPBoxMgr = require('../area/endlessPVPBoxMgr'),
-    BarrierPromoteMgr = require('../area/barrierPromoteMgr'),
-    CatchTreasureManager = require("./../area/catchTreasureManager");
+    assistFightManager = require('../area/assistFightManager');
+
 
 //推送玩家属性
 function onUpdateProp(prop, value) {
@@ -69,12 +61,14 @@ var Player = function (opts) {
 //  Character.call(this, opts);
     Entity.call(this, opts);
     this.saveProperties = [
-        'roleLevel','playername', 'gem','roomId'
+        'roleLevel', 'playername', 'gem', 'roomId'
     ];
 
     //游戏语言
     this.playername = opts.playername;
     this.gem = opts.gem;
+    this.MAC = opts.MAC;
+    this.id = opts.id;
     this.roomId = opts.roomId;
     // this.roleLevel = opts.roleLevel;
 
@@ -86,10 +80,26 @@ var pro = Player.prototype;
 
 
 pro.getClientInfo = function () {
-   var client = {};
-   client.playername = this.playername;
-   client.gem = this.gem;
-   client.roomId = this.roomId;
+    var client = {};
+    client.playername = this.playername;
+    client.gem = this.gem;
+    client.roomId = this.roomId;
+    client.account = this.MAC;
+    client.userid = this.id;
+    return client;
 };
+
+pro.clearLeaveTimer = function () {
+    clearTimeout(this.leaveTimer);
+    this.leaveTimer = 0;
+};
+pro.setFrontendId = function (frontendId) {
+    this.frontendId = frontendId;
+};
+
+pro.setSession = function (newSession) {
+    this.session = newSession;
+};
+
 module.exports = Player;
 

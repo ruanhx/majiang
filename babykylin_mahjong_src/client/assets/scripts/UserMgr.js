@@ -26,8 +26,9 @@ cc.Class({
             account = Date.now();
             cc.sys.localStorage.setItem("account",account);
         }
-        
-        cc.vv.http.sendRequest("/guest",{account:account},this.onAuth);
+        this.account = account;
+        this.login();
+        // cc.vv.http.sendRequest("/guest",{account:account},this.onAuth);
     },
     
     onAuth:function(ret){
@@ -47,10 +48,10 @@ cc.Class({
     login:function(){
         var self = this;
         var onLogin = function(ret){
-            if(ret.errcode != 0){
-                console.log(ret.errmsg);
-            }
-            else{
+            // if(ret.code != 200){
+            //     console.log(ret.errmsg);
+            // }
+            // else{
                 // cc.vv.pomeloNet.login("127.0.0.1",3014,self.account,"123456", function (ret) {
                 //     cc.log('login ret:', ret);
                 // });
@@ -63,9 +64,9 @@ cc.Class({
                     console.log(ret);
                     self.account = ret.account;
         			self.userId = ret.userid;
-        			self.userName = ret.name;
-        			self.lv = ret.lv;
-        			self.exp = ret.exp;
+        			self.userName = ret.playername;
+        			// self.lv = ret.lv;
+        			// self.exp = ret.exp;
         			self.coins = ret.coins;
         			self.gems = ret.gems;
                     self.roomData = ret.roomid;
@@ -76,11 +77,11 @@ cc.Class({
                     // });
         			cc.director.loadScene("hall");
                 }
-            }
+            // }
         };
         cc.vv.wc.show("正在登录游戏");
-        cc.vv.http.sendRequest("/login",{account:this.account,sign:this.sign},onLogin);
-        // this.pomeloLogin(this.account,onLogin);
+        // cc.vv.http.sendRequest("/login",{account:this.account,sign:this.sign},onLogin);
+        this.pomeloLogin(this.account,onLogin);
     },
     
     pomeloLogin:function(account,cb){
@@ -96,16 +97,20 @@ cc.Class({
         }, function () {
             var route = 'gate.gateHandler.queryEntry';
             pomelo.request(route, {uid:acc}, function (data) {
-                cc.log("####"+data);
+                cc.log("####%j",data);
                 if(data.code==200){
                     pomelo.init({
                         host : data.host,
                         port : data.port
                     }, function () {
-                    var route = 'connector.entryHandler.enter';
-                    pomelo.request(route, {account:acc}, function (data) {
-                        // cc.log("connector:"+data.msg);
-                        cb(data);
+                    var route = 'connector.entryHandler.entry';
+                    pomelo.request(route, {MAC:acc,password:"123456"}, function (data) {
+                        cc.log("connector:%j",data);
+                        pomelo.request('area.playerHandler.enterScene',{},function(result){
+                            cc.log("###enterScene#%j",result);
+                            cb(result.curPlayer);
+                        })
+                        
                     })
                 })
                 }
@@ -127,7 +132,7 @@ cc.Class({
     create:function(name){
         var self = this;
         var onCreate = function(ret){
-            if(ret.errcode !== 0){
+            if(ret.code !== 200){
                 console.log(ret.errmsg);
             }
             else{
@@ -137,10 +142,11 @@ cc.Class({
         
         var data = {
             account:this.account,
-            sign:this.sign,
+            pwd:"123456",
             name:name
         };
-        cc.vv.http.sendRequest("/create_user",data,onCreate);    
+        // cc.vv.http.sendRequest("/create_user",data,onCreate);    
+        pomelo.request("connector.roleHandler.createPlayer",data,onCreate);
     },
     
     enterRoom:function(roomId,callback){

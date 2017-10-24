@@ -106,12 +106,12 @@ cc.Class({
     refreshInfo:function(){
         var self = this;
         var onGet = function(ret){
-            if(ret.errcode !== 0){
+            if(ret.code != 200){
                 console.log(ret.errmsg);
             }
             else{
                 if(ret.gems != null){
-                    this.lblGems.string = ret.gems;    
+                    self.lblGems.string = ret.gems;    
                 }
             }
         };
@@ -120,8 +120,8 @@ cc.Class({
             account:cc.vv.userMgr.account,
             sign:cc.vv.userMgr.sign,
         };
-        cc.vv.http.sendRequest("/get_user_status",data,onGet.bind(this));
-        // pomelo.request("area.playerHandler.getUserStatus",data,onGet.bind(this));
+        // cc.vv.http.sendRequest("/get_user_status",data,onGet.bind(this));
+        pomelo.request("area.playerHandler.getUserStatus",data,onGet);
     },
     
     refreshGemsTip:function(){
@@ -142,7 +142,7 @@ cc.Class({
             type:"fkgm",
             version:cc.vv.userMgr.gemstip.version
         };
-        cc.vv.http.sendRequest("/get_message",data,onGet.bind(this));
+        // cc.vv.http.sendRequest("/get_message",data,onGet.bind(this));
     },
     
     refreshNotice:function(){
@@ -164,7 +164,7 @@ cc.Class({
             type:"notice",
             version:cc.vv.userMgr.notice.version
         };
-        cc.vv.http.sendRequest("/get_message",data,onGet.bind(this));
+        // cc.vv.http.sendRequest("/get_message",data,onGet.bind(this));
     },
     
     initButtonHandler:function(btnPath){

@@ -81,7 +81,7 @@ Handler.prototype.entry = function (msg, session, next) {
         } else {
             next(null, {code: Code.OK,account:msg.account,
                 userid:session.get('playerId'),
-                name:session.set('playerName'),
+                name:session.get('playerName'),
                 lv:1,
                 // exp:0,
                 // coins:100,

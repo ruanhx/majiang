@@ -93,12 +93,14 @@ cc.Class({
         initMgr();
         console.log('haha'); 
         this._mainScene = 'loading';
+        var self = this;
         this.showSplash(function(){
             var url = cc.url.raw('resources/ver/cv.txt');
             cc.loader.load(url,function(err,data){
                 cc.VERSION = data;
                 console.log('current core version:' + cc.VERSION);
-                this.getServerInfo();
+                cc.director.loadScene(self._mainScene);
+                // this.getServerInfo();
             }.bind(this));
         }.bind(this));
     },
