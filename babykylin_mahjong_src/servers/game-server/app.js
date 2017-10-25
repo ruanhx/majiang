@@ -90,7 +90,7 @@ function startApp() {
         // 这个开起来才有 con-log*.log
         app.filter(pomelo.filters.time());
     });
-    app.configure('production|development', 'area|connector|gate', function () {
+    app.configure('production|development', 'area|connector|gate|world', function () {
         configMysql(app);
     });
 
@@ -108,6 +108,7 @@ function startApp() {
 
 //app area
     app.configure('production|development', 'area', function () {
+        console.log("####3");
         app.before(unregisterFilter());
         app.filter(pomelo.filters.serial());
         var areas = app.get('servers').area;
@@ -133,9 +134,13 @@ function startApp() {
 
     });
 
-    // app.configure('production|development', 'world', function () {
-    //     world.init();
-    // });
+    app.configure('production|development', 'world', function () {
+        // app.set('connectorConfig',
+        //     {
+        //         connector: pomelo.connectors.hybridconnector//,
+        //         //useProtobuf : true
+        //     });
+    });
 
     app.configure('production|development', 'gate', function () {
         app.set('connectorConfig',
@@ -145,6 +150,13 @@ function startApp() {
             });
     });
 
+    app.configure('production|development', 'chat', function () {
+        app.set('connectorConfig',
+            {
+                connector: pomelo.connectors.hybridconnector//,
+                //useProtobuf : true
+            });
+    });
 
     // app.configure('production|development', function(){
     //     if(app.serverType === 'gmhttp' || app.serverType === 'order') {

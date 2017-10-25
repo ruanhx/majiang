@@ -27,7 +27,22 @@
         "host": "127.0.0.1",
         "port": "3250",
         "clusterCount": 1,
-        "area": 1
+        "area": 1,
+        "args":"--inspect=32404"
+      }
+    ],
+    "world": [
+      {
+        "id": "world-server",
+        "host": "127.0.0.1",
+        "port": 3552
+      }
+    ],
+    "chat": [
+      {
+        "id": "chat-server",
+        "host": "127.0.0.1",
+        "port": 3555
       }
     ]
   },
@@ -57,7 +72,8 @@
         "host": "127.0.0.1",
         "port": "3250",
         "clusterCount": 1,
-        "area": 1
+        "area": 1,
+        "args":"--debug=32404"
       }
     ]
   }

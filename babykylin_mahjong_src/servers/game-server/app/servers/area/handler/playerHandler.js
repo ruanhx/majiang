@@ -85,23 +85,24 @@ pro.enterScene = function (msg, session, next) {
 
     var language = msg.language || dataUtils.getLanguage();
     var isReconnect = msg.isReconnect;
-    // this.app.rpc.world.playerRemote.add(session,
-    //     {
-    //     id: session.get('playerId'),
-    //     areaName: this.app.getServerId(),
-    //     frontendId: session.frontendId,
-    //     sessionId: session.id,
-    //     username: session.get('MAC')
-    //     },
-    //     //--------------------
-    //     function (err, errCode) {
-    //     if (err) {
-    //         return next(null, {code: Code.FAIL});
-    //     }
-    //     if (errCode !== Code.OK) {
-    //         logger.error('enterScene world.playerRemote.add errCode %s', errCode);
-    //         return next(null, {code: Code.FAIL});
-    //     }
+    logger.error("#### %j",this.app.rpc);
+    this.app.rpc.world.playerRemote.add(session,
+        {
+        id: session.get('playerId'),
+        areaName: this.app.getServerId(),
+        frontendId: session.frontendId,
+        sessionId: session.id,
+        username: session.get('MAC')
+        },
+        //--------------------
+        function (err, errCode) {
+        if (err) {
+            return next(null, {code: Code.FAIL});
+        }
+        if (errCode !== Code.OK) {
+            logger.error('enterScene world.playerRemote.add errCode %s', errCode);
+            return next(null, {code: Code.FAIL});
+        }
 
         // playerDao.onUserLogon(playerId, function (err, success) {
             playerDao.getPlayerAllInfo(playerId, function (err, allInfo) {
@@ -152,7 +153,7 @@ pro.enterScene = function (msg, session, next) {
         //         console.log('enterScene setOnline failed!');
         //     }
         // });
-    // });
+    });
 };
 
 function createPlayer(session, allData,isReconnect, next) {
@@ -202,5 +203,7 @@ function createPlayer(session, allData,isReconnect, next) {
 
 pro.getUserStatus = function (msg, session, next) {
     var player = area.getPlayer(session.get('playerId'));
+    player.pushMsg('player.updateGem',{code: Code.OK,gems:20});
+
     next(null, {code: Code.OK,gems:player.gem});
 };

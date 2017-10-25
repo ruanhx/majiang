@@ -106,6 +106,7 @@ cc.Class({
     refreshInfo:function(){
         var self = this;
         var onGet = function(ret){
+            console.log("@@@ %j",ret);
             if(ret.code != 200){
                 console.log(ret.errmsg);
             }
@@ -122,6 +123,9 @@ cc.Class({
         };
         // cc.vv.http.sendRequest("/get_user_status",data,onGet.bind(this));
         pomelo.request("area.playerHandler.getUserStatus",data,onGet);
+        pomelo.on("player.updateGem",function(data){
+            console.log("player.updateGem %j",data);
+        });
     },
     
     refreshGemsTip:function(){
@@ -218,7 +222,46 @@ cc.Class({
             return;
         }
         console.log("onCreateRoomClicked");
-        this.createRoomWin.active = true;   
+        // this.createRoomWin.active = true;   
+        this.createRoom();
+    },
+
+
+    createRoom: function () {
+        var self = this;
+        var onCreate = function (ret) {
+            if (ret.errcode !== 0) {
+                cc.vv.wc.hide();
+                //console.log(ret.errmsg);
+                if (ret.errcode == 2222) {
+                    cc.vv.alert.show("提示", "钻石不足，创建房间失败!");
+                }
+                else {
+                    cc.vv.alert.show("提示", "创建房间失败,错误码:" + ret.errcode);
+                }
+            }
+            else {
+                cc.vv.gameNetMgr.connectGameServer(ret);
+            }
+        };
+
+        
+        var conf = {
+            di:0.5,
+            gui:2,
+            cnt:5, 
+        };
+
+        conf.type = 'zg';
+
+        var data = {
+            account: cc.vv.userMgr.account,
+            sign: cc.vv.userMgr.sign,
+            conf: JSON.stringify(conf)
+        };
+        console.log(data);
+        cc.vv.wc.show("正在创建房间");
+        cc.vv.http.sendRequest("/create_private_room", data, onCreate);
     },
     
     onBtnTaobaoClicked:function(){

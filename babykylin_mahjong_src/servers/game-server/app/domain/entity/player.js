@@ -101,5 +101,8 @@ pro.setSession = function (newSession) {
     this.session = newSession;
 };
 
+pro.pushMsg = function (route, msg) {
+    messageService.pushMessageToPlayer({uid: this.id, sid: this.frontendId}, route, msg);
+};
 module.exports = Player;
 

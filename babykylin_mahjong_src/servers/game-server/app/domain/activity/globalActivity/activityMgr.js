@@ -239,16 +239,16 @@ pro.checkRemoveActivities = function (app, opFlags, serverDay, cb) {
 };
 pro.init = function (cb) {
     var self = this;
-    activityDao.load(function (err, rec) {
-        if (!err) {
-            // rec.forEach(function (actData) {
-            //     self.load(actData);
-            // });
-            self.load(rec);
-            cb();
-        }
-        // self.publish(publisher.publish(pomelo.app.get('opFlags')));
-    });
+    // activityDao.load(function (err, rec) {
+    //     if (!err) {
+    //         // rec.forEach(function (actData) {
+    //         //     self.load(actData);
+    //         // });
+    //         self.load(rec);
+    //         cb();
+    //     }
+    //     // self.publish(publisher.publish(pomelo.app.get('opFlags')));
+    // });
 };
 var g_activityMgr;
 module.exports.getInstance = function () {

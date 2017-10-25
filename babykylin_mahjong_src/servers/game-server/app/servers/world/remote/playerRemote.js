@@ -34,34 +34,34 @@ pro.add = function (args, cb) {
         return cb(null, Code.WORLD.ALREADY_ONLINE);
     }
     // 延迟通知处理orderCache
-    function processOrderCache(){
-        orderCacheDao.getByUid(app.get('dbclient'), args.username, function(err, orderList){
-            if(orderList.length <= 0){
-                return;
-            }
-            async.mapSeries(orderList, function(orderRec, callback){
-                var msg = orderRec.orderInfo;
-                orderCacheDao.remove(app.get('dbclient'), orderRec.id, function(err, succss){
-                    if(succss){
-                        app.rpc.area.orderRemote.order.toServer(args.areaName, msg, args.uid, args.id, function(err, status, code){
-                            if(err){
-                                orderLogger.error('processOrderCache order rpc orderRemote err = %s, orderId = %s', err.stack, msg.orderId);
-                                return callback(err.message);
-                            }
-                            return callback();
-                        })
-                    }else{
-                        return callback(util.format('remove order cache failed!orderRec = %j', orderRec));
-                    }
-                });
-            }, function(err, results){
-                if(err){
-                    orderLogger.error('processOrderCache err = %s', err);
-                }
-            });
-        });
-    }
-    setTimeout(processOrderCache, 30 * 1000);
+    // function processOrderCache(){
+    //     orderCacheDao.getByUid(app.get('dbclient'), args.username, function(err, orderList){
+    //         if(orderList.length <= 0){
+    //             return;
+    //         }
+    //         async.mapSeries(orderList, function(orderRec, callback){
+    //             var msg = orderRec.orderInfo;
+    //             orderCacheDao.remove(app.get('dbclient'), orderRec.id, function(err, succss){
+    //                 if(succss){
+    //                     app.rpc.area.orderRemote.order.toServer(args.areaName, msg, args.uid, args.id, function(err, status, code){
+    //                         if(err){
+    //                             orderLogger.error('processOrderCache order rpc orderRemote err = %s, orderId = %s', err.stack, msg.orderId);
+    //                             return callback(err.message);
+    //                         }
+    //                         return callback();
+    //                     })
+    //                 }else{
+    //                     return callback(util.format('remove order cache failed!orderRec = %j', orderRec));
+    //                 }
+    //             });
+    //         }, function(err, results){
+    //             if(err){
+    //                 orderLogger.error('processOrderCache err = %s', err);
+    //             }
+    //         });
+    //     });
+    // }
+    // setTimeout(processOrderCache, 30 * 1000);
 
     logger.debug('add args = %j', args);
     return cb(null, Code.OK);

@@ -26,7 +26,7 @@ function initPairOccasionMatchQueues() {
     });
 }
 exp.init = function () {
-    initPairOccasionMatchQueues();
+    // initPairOccasionMatchQueues();
 };
 
 exp.getEndlessMatchQueueByOccasionId = function (occasionId) {

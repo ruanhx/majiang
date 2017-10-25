@@ -21,11 +21,11 @@ pro.dispatch = function () {
         if (!player) {
             return;
         }
-        if (player.isEnergyFull()) {
-            logger.debug('dispatch player %s energy full!', player.id);
-            return;
-        }
-        player.dispatchEnergy(dataUtils.getOptionValue('Sys_StrengthRenewNum', 1));
+        // if (player.isEnergyFull()) {
+        //     logger.debug('dispatch player %s energy full!', player.id);
+        //     return;
+        // }
+        // player.dispatchEnergy(dataUtils.getOptionValue('Sys_StrengthRenewNum', 1));
     });
 };
 

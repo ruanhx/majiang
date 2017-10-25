@@ -221,24 +221,25 @@ function  rankListMgrInit(cb) {
 }
 
 exp.beforeStartup = function (app, cb) {
-    async.parallel([
-        function (callback) {
-            loadServerStatus(app, callback);
-        },
-        loadScoreRankingList,
-        loadWeekScoreRankingList,
-        loadCatchRankingList,
-        loadDivisionRankingList,
-        loadBarrierRankingList,
-        divisionMgrInit,
-        loadFriends,
-        loadGlobalEndless,
-        loadStarRankingList,
-        loadPowerRankingList,
-        playerMiniDataInit
-    ], function (err) {
-        cb(err);
-    });
+    cb();
+    // async.parallel([
+    //     function (callback) {
+    //         loadServerStatus(app, callback);
+    //     },
+    //     loadScoreRankingList,
+    //     loadWeekScoreRankingList,
+    //     loadCatchRankingList,
+    //     loadDivisionRankingList,
+    //     loadBarrierRankingList,
+    //     divisionMgrInit,
+    //     loadFriends,
+    //     loadGlobalEndless,
+    //     loadStarRankingList,
+    //     loadPowerRankingList,
+    //     playerMiniDataInit
+    // ], function (err) {
+    //     cb(err);
+    // });
 };
 
 exp.afterStartup = function (app, cb) {
@@ -247,15 +248,16 @@ exp.afterStartup = function (app, cb) {
 
 exp.beforeShutdown = function (app, cb) {
     playerManager.get().beforeShutdown(app,function () {
-        scoreRankingListDao.save(scoreRankingList.getScoreRankingList().getData(), function (err) {
-            weekScoreRankingListDao.save(scoreRankingList.getWeekScoreRankingList().getData(), function(){
-                catchRankingListDao.save(catchRankingList.getCatchRankingList().getData(),function(){
-                    endlessReport.saveAll(function(){
-                        cb();
-                    });
-                });
-            });
-        });
+        cb();
+        // scoreRankingListDao.save(scoreRankingList.getScoreRankingList().getData(), function (err) {
+        //     weekScoreRankingListDao.save(scoreRankingList.getWeekScoreRankingList().getData(), function(){
+        //         catchRankingListDao.save(catchRankingList.getCatchRankingList().getData(),function(){
+        //             endlessReport.saveAll(function(){
+        //                 cb();
+        //             });
+        //         });
+        //     });
+        // });
     });
 };
 
