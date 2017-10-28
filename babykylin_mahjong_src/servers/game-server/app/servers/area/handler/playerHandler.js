@@ -17,14 +17,8 @@ var area = require('../../../domain/area/area'),
     dropUtils = require('../../../domain/area/dropUtils'),
     consts = require('../../../consts/consts'),
     flow = require('../../../consts/flow'),
-    guidePrizeManager = require('../../../domain/area/guidePrizeManager'),
-    playerShop = require('../../../domain/entity/playerShop'),
-    randomShop = require('../../../domain/entity/randomShop'),
-    playerRecharge = require('../../../domain/entity/playerRecharge'),
-    activityManager = require('../../../domain/activity/activityManager'),
     publisher = require('../../../domain/activity/publisher'),
     Utils =  require('../../../util/utils'),
-    inviteManager = require('../../../domain/area/inviteManager'),
     randBossRecordDao = require('../../../dao/randBossRecordDao'),
     common = require('../../../util/common'),
     randBossDao = require('../../../dao/randBossDao'),
@@ -203,7 +197,7 @@ function createPlayer(session, allData,isReconnect, next) {
 
 pro.getUserStatus = function (msg, session, next) {
     var player = area.getPlayer(session.get('playerId'));
-    player.pushMsg('player.updateGem',{code: Code.OK,gems:20});
+    // player.pushMsg('player.updateGem',{code: Code.OK,gems:20});
 
     next(null, {code: Code.OK,gems:player.gem});
 };

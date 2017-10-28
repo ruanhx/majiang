@@ -10,33 +10,18 @@ var _ = require('underscore'),
 
 var Entity = require('./entity'),
     consts = require('../../consts/consts'),
-    bag = require('./bag'),
-    Hero = require('./hero'),
-    Pet = require('./pet'),
-    SimpleBag = require('./simpleBag'),
-    PassedBarrierManager = require('./passedBarrierManager'),
     UnlockChapterManager = require('./unlockChapterManager'),
     dataApi = require('../../util/dataApi'),
     dataUtils = require('../../util/dataUtils'),
     utils = require('../../util/utils'),
     EVENTS = require('../event/events'),
     messageService = require('../messageService'),
-    Equip = require('./equip'),
-    ArmBag = require('./armEquipBag'),
-    equipWash = require('./equipWash'),
-    equipAchieved = require('./equipAchieved'),
     DailyResetManager = require('../../util/dailyResetManager'),
-    buffManager = require('../battle/buffManager'),
-    occasionManager = require('../battle/occasionManager'),
-    missionManager = require('./mission'),
     dropUtils = require('../area/dropUtils'),
-    itemLog = require('../area/itemLog'),
     DataStatisticManager = require('../dataStatistics/dataStatisticManager'),
     Code = require('../../../shared/code'),
-    inviteManager = require('../../domain/area/inviteManager'),
     Consts = require('../../consts/consts'),
-    FLOW = require('../../consts/flow'),
-    assistFightManager = require('../area/assistFightManager');
+    FLOW = require('../../consts/flow');
 
 
 //推送玩家属性
@@ -70,6 +55,7 @@ var Player = function (opts) {
     this.MAC = opts.MAC;
     this.id = opts.id;
     this.roomId = opts.roomId;
+    this.on(EVENTS.UPDATE_PROP, onUpdateProp.bind(this));
     // this.roleLevel = opts.roleLevel;
 
 };
@@ -77,6 +63,23 @@ var Player = function (opts) {
 util.inherits(Player, Entity);
 
 var pro = Player.prototype;
+
+pro.getData = function () {
+    var self = this;
+    var data = {};
+    var parentData = Entity.prototype.getData.call(this);
+
+    _.each(self.saveProperties, function (prop) {
+        data[prop] = self[prop];
+    });
+
+    for (var prop in parentData) {
+        if (parentData.hasOwnProperty(prop)) {
+            data[prop] = parentData[prop];
+        }
+    }
+    return data;
+};
 
 
 pro.getClientInfo = function () {

@@ -5,6 +5,12 @@ module.exports = {
     DB_ERROR: 501,
     // 钻石不足
     DIAMOND_NUM_NOT_ENOUGH: 502,
+    ROOM:{
+        ROOM_IS_EXIST:100,
+        ROOM_IS_NOT_EXIST:101,
+        ROOM_IS_IN_ROOM:102,
+    },
+
     CONNECTOR: {
         // MAC错误
         FA_MAC_ERROR: 1001,

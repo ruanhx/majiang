@@ -9,44 +9,8 @@ var logger = require('pomelo-logger').getLogger(__filename),
 var Player = require('../domain/entity/player'),
     utils = require('../util/utils'),
     dataApi = require('../util/dataApi'),
-    bagDao = require('./bagDao'),
-    heroBagDao = require('./heroBagDao'),
-    petBagDao = require('./petBagDao'),
-    passedBarrierDao = require('./passedBarrierDao'),
-    unlockChapterDao = require('./unlockChapterDao'),
-    hasBuyHeroDao = require('./hasBuyHeroDao'),
     dataUtils = require('../util/dataUtils'),
-    Consts = require('../consts/consts'),
-    guidePrizeDao = require('./guidePrizeDao'),
-    clientSaveDao = require('./clientSaveDao'),
-    playerShopDao = require('./playerShopDao'),
-    playerActivityDao = require('./playerActivityDao'),
-    equipBagDao = require('./equipBagDao'),
-    equipConfDao = require('./equipConfDao'),
-    endlessBuffDao = require('./endlessBuffDao'),
-    endlessOccasionDao = require('./endlessOccasionDao'),
-    wakeUpBagDao = require('./wakeUpBagDao'),
-    equipWashDao = require('./equipWashDao'),
-    equipAchievedDao = require('./equipAchievedDao'),
-    orderListDao =  require('./orderListDao'),
-    missionDao = require('./missionDao'),
-    randBossDao = require('./randBossDao'),
-    randomShopDao = require('./randomShopDao'),
-    statisticsDao = require('./statisticsDao'),
-    randBossRecordDao = require('./randBossRecordDao'),
-    heroHistoryDao = require('./heroHistoryDao'),
-    offlineFightRecordDao = require('./offlineFightRecordDao'),
-    passedActivityEctypeDao = require('./passedActivityEctypeDao'),
-    equipHistoryDao = require('./equipHistoryDao'),
-    friendPersonDao = require('./friendPersonDao'),
-    playerRefreshDao = require('./playerRefreshDao'),
-    assistFightDao = require('./assistFightDao'),
-    trainDao = require('./trainDao'),
-    catchTreasureDao = require('./catchTreasureDao'),
-    mailDao = require('./mailDao'),
-    endlessPVPBoxDao = require('./endlessPVPBoxDao'),
-    divisionPersonDao = require('./divisionPersonDao'),
-    barrierPromoteDao = require('./barrierPromoteDao');
+    Consts = require('../consts/consts');
 
 var playerDao = module.exports;
 
@@ -198,126 +162,13 @@ playerDao.getPlayerAllInfo = function (playerId, cb) {
             function (callback) {
                 playerDao.getPlayersById(playerId, callback);
             }
-            // ,
-            // function (callback) {
-            //     heroBagDao.getHeroBagByPlayerId(playerId, callback);
-            // },
-            // function (callback) {
-            //     petBagDao.getPetBagByPlayerId(playerId, callback);
-            // }, function (callback) {
-            //     passedBarrierDao.getByPlayerId(playerId, callback);
-            // }, function (callback) {
-            //     bagDao.getItemByPlayerId(playerId, callback);
-            // }, function (callback) {
-            //     unlockChapterDao.getByPlayerId(playerId, callback);
-            // }, function (callback) {
-            //     hasBuyHeroDao.getByPlayerId(playerId, callback);
-            // }, function (callback) {
-            //     guidePrizeDao.getByPlayerId(playerId, callback);
-            // }, function (callback) {
-            //     clientSaveDao.load(playerId, callback);
-            // }, function (callback) {
-            //     playerShopDao.getByPlayerId(playerId, callback);
-            // }, function (callback) {
-            //     playerActivityDao.getByPlayerId(playerId, callback);
-            // }, function (callback) {
-            //     equipBagDao.getByPlayerId(playerId, callback);
-            // }, function (callback) {
-            //     equipConfDao.getByPlayerId(playerId, callback);
-            // }, function (callback) {
-            //     endlessBuffDao.getByPlayerId(playerId, callback);
-            // }, function (callback) {
-            //     //endlessOccasionDao.getByPlayerId(playerId, callback);
-            //     pomelo.app.rpc.world.endlessRemote.getEndlessOccasion("*",playerId, callback);
-            // }, function (callback) {
-            //     wakeUpBagDao.getByPlayerId(playerId, callback);
-            // }, function (callback) {
-            //     equipWashDao.getByPlayerId(playerId, callback);
-            // },function (callback) {
-            //     equipAchievedDao.getByPlayerId(playerId, callback);
-            // },function (callback) {
-            //     orderListDao.getByPlayerId(playerId, callback);
-            // },function(callback){
-            //     missionDao.getByPlayerId(playerId,callback);
-            // },function(callback){
-            //     statisticsDao.getByPlayerId(playerId,callback);
-            // },function(callback){
-            //     randBossDao.getByPlayerId(playerId,callback);
-            // },function(callback){
-            //     randomShopDao.getByPlayerId(playerId,callback);
-            // },function(callback){
-            //     bagDao.getFragItemByPlayerId(playerId,callback);
-            // },function(callback){
-            //     //randBossRecordDao.getRecordByPlayerId(playerId,callback);
-            //     randBossRecordDao.getWinCntByWeekPlayerOnly(playerId,callback);
-            // },function(callback){
-            //     heroHistoryDao.getByPlayerId(playerId,callback);
-            // },function(callback){
-            //     offlineFightRecordDao.getRecordByPlayerId(playerId,callback);
-            // },function(callback){
-            //     passedActivityEctypeDao.getByPlayerId(playerId,callback);
-            // },function(callback){
-            //     equipHistoryDao.getByPlayerId(playerId,callback);
-            // },function(callback){
-            //     divisionPersonDao.getByPlayerId(playerId,callback);
-            // },function(callback){
-            //     friendPersonDao.getByPlayerId(playerId,callback);
-            // },function(callback){
-            //     playerRefreshDao.getByPlayerId(playerId,callback);
-            // },function(callback){
-            //     assistFightDao.getByPlayerId(playerId,callback);
-            // },function(callback){
-            //     trainDao.getByPlayerId(playerId,callback);
-            // },function(callback){
-            //     catchTreasureDao.getByPlayerId(playerId,callback);
-            // },function(callback){
-            //     mailDao.getByPlayerId(pomelo.app.get('dbclient'),playerId,Date.now(),callback);
-            // },function(callback){
-            //     endlessPVPBoxDao.getByPlayerId(playerId,callback);
-            // },function(callback){
-            //     barrierPromoteDao.getByPlayerId(playerId,callback);
-            // }
+
         ],
         function (err, results) {
             var allInfo = {};
             allInfo.player = results[0];
             // allInfo.heroBag = results[1];
-            // allInfo.petBag = results[2];
-            // allInfo.passedBarrier = results[3];
-            // allInfo.bagData = results[4];
-            // allInfo.unlockChapter = results[5];
-            // allInfo.hasBuyHeroIds = results[6];
-            // allInfo.guideIds = results[7];
-            // allInfo.clientSaveData = results[8];
-            // allInfo.shopInfo = results[9];
-            // allInfo.activityList = results[10];
-            // allInfo.equipBag = results[11];
-            // allInfo.equipConf = results[12];
-            // allInfo.buffs = results[13];
-            // allInfo.occasions = results[14];
-            // allInfo.wakeUpBag = results[15];
-            // allInfo.washData =  results[16];
-            // allInfo.equipAchievedList =  results[17];
-            // allInfo.orderList =  results[18];
-            // allInfo.missionList = results[19];
-            // allInfo.dataStatisticList = results[20];
-            // allInfo.barrierRandBoss = results[21];
-            // allInfo.randomShopInfo = results[22];
-            // allInfo.fragBag = results[23];
-            // allInfo.randBossRecordCnt = results[24];
-            // allInfo.heroHistorys = results[25];
-            // allInfo.offlineFightRecord = results[26];
-            // allInfo.passedActivityEctype = results[27];
-            // allInfo.equipHistorys = results[28];
-            // allInfo.divisionPerson = results[29];
-            // allInfo.friendPerson = results[30];
-            // allInfo.playerRefresh = results[31];
-            // allInfo.assistFight = results[32];
-            // allInfo.train = results[33];
-            // allInfo.catchTreasure = results[34];
-            // allInfo.mails = results[35];
-            // allInfo.endlessPVPBox = results[36];
-            // allInfo.barrierPromote = results[37];
+
             if (!!err) {
                 utils.invokeCallback(cb, err.message);
             } else {

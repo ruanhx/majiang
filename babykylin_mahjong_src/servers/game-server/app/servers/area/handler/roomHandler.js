@@ -1,5 +1,5 @@
 /**
- * Created by Administrator on 2017/10/25 0025.
+ * Created by Administrator on 2017/10/26 0026.
  */
 var pomelo = require('pomelo'),
     async = require('async'),
@@ -7,16 +7,19 @@ var pomelo = require('pomelo'),
     _ = require('underscore');
 
 var area = require('../../../domain/area/area'),
+    roomMgr = require('../../../domain/area/roomMgr'),
+    Room = require('../../../domain/entity/room'),
     Code = require('../../../../shared/code'),
-    playerDao = require('../../../dao/playerDao'),
     dataApi = require('../../../util/dataApi'),
+    roomDao = require('../../../dao/roomDao'),
     dataUtils = require('../../../util/dataUtils'),
     utils = require('../../../util/utils'),
     dropUtils = require('../../../domain/area/dropUtils'),
     consts = require('../../../consts/consts'),
     flow = require('../../../consts/flow'),
-    Utils =  require('../../../util/utils');
-
+    publisher = require('../../../domain/activity/publisher'),
+    Utils =  require('../../../util/utils'),
+    common = require('../../../util/common');
 
 var Handler = function (app) {
     this.app = app;
@@ -29,5 +32,51 @@ module.exports = function (app) {
 var pro = Handler.prototype;
 
 pro.createRoom = function (msg, session, next) {
+    logger.debug("createRoom %j",msg);
+    var player = area.getPlayer(session.get('playerId'));
+    if(player.gem <=0){
+        return next(null,{code:Code.FAIL});
+    }
+    // 是否已经创建过房间
+    if(roomMgr.getInstance().getRoomByOwner(session.get('playerId'))){
+        return next(null,{code:Code.ROOM.ROOM_IS_EXIST});
+    }
+    // 创建新房间
+    var member = [];
+    roomDao.roomInsert({ownerId:session.get('playerId'),  di:msg.di, gui:msg.gui, maxCnt:msg.maxCnt, member:JSON.stringify(member), createTime:Date.now()},function (err,roomId) {
+        if(err||!roomId){
+            return next(null,{code:300});
+        }
+        var room = new Room({id:roomId,ownerId:session.get('playerId'),  di:msg.di, gui:msg.gui, maxCnt:msg.maxCnt, member:[], createTime:Date.now()})
+        roomMgr.getInstance().setRoomById(room);
+        player.set('gem',player.gem -1);
+        player.set('roomId',roomId);
+        player.pushMsg('login_result',{});
+        return next(null,{code:Code.OK,roomId:roomId});
+    });
+};
 
+pro.enterRoom = function (msg, session, next) {
+    var player = area.getPlayer(session.get('playerId'));
+    var room = roomMgr.getInstance().getRoomById(msg.id);
+    // 房间不存在
+    if(!room){
+        return next(null,{code:Code.ROOM.ROOM_IS_NOT_EXIST});
+    }
+    if(room.isInRoom(session.get('playerId'))){
+        return next(null,{code:Code.ROOM.ROOM_IS_IN_ROOM});
+    }
+
+    room.enter();
+    return next(null,{code:Code.OK});
+};
+
+pro.getRoomInfo = function (msg, session, next) {
+    var player = area.getPlayer(session.get('playerId'));
+    var room = roomMgr.getInstance().getRoomById(msg.id);
+    // 房间不存在
+    if(!room){
+        return next(null,{code:Code.ROOM.ROOM_IS_NOT_EXIST});
+    }
+    return next(null,{code:Code.OK,info:room.getRoomClientInfo()});
 };

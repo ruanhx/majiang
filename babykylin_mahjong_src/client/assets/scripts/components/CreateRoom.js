@@ -84,14 +84,14 @@ cc.Class({
     createRoom: function () {
         var self = this;
         var onCreate = function (ret) {
-            if (ret.errcode !== 0) {
+            if (ret.code != 200) {
                 cc.vv.wc.hide();
                 //console.log(ret.errmsg);
-                if (ret.errcode == 2222) {
+                if (ret.code == 500) {
                     cc.vv.alert.show("提示", "钻石不足，创建房间失败!");
                 }
                 else {
-                    cc.vv.alert.show("提示", "创建房间失败,错误码:" + ret.errcode);
+                    cc.vv.alert.show("提示", "创建房间失败,错误码:" + ret.code);
                 }
             }
             else {
@@ -99,24 +99,25 @@ cc.Class({
             }
         };
 
-        var type = this.getType();
-        var conf = null;
-        if (type == 'xzdd') {
-            conf = this.constructSCMJConf();
-        }
-        else if (type == 'xlch') {
-            conf = this.constructSCMJConf();
-        }else if(type == 'zg'){
+        // var type = this.getType();
+        // var conf = null;
+        // if (type == 'xzdd') {
+        //     conf = this.constructSCMJConf();
+        // }
+        // else if (type == 'xlch') {
+        //     conf = this.constructSCMJConf();
+        // }else if(type == 'zg'){
 
-        }
+        // }
 
         var conf = {
             di:0.5,
             gui:2,
-            cnt:5, 
+            maxCnt:5,
+
         };
 
-        conf.type = 'zg';
+        // conf.type = 'zg';
 
         var data = {
             account: cc.vv.userMgr.account,
@@ -125,7 +126,10 @@ cc.Class({
         };
         console.log(data);
         cc.vv.wc.show("正在创建房间");
-        cc.vv.http.sendRequest("/create_private_room", data, onCreate);
+        // cc.vv.http.sendRequest("/create_private_room", data, onCreate);
+        pomelo.request("area.roomHandler.createRoom",conf,function(data){
+            onCreate(data);
+        });
     },
 
     constructSCMJConf: function () {

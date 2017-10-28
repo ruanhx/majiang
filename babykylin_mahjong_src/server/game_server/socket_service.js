@@ -114,7 +114,7 @@ exports.start = function(config,mgr){
 				var ramaingTime = (dr.endTime - Date.now()) / 1000;
 				var data = {
 					time:ramaingTime,
-					states:dr.states
+                    states:dr.states
 				}
 				userMgr.sendMsg(userId,'dissolve_notice_push',data);	
 			}

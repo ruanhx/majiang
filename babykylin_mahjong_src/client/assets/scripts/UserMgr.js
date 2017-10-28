@@ -56,7 +56,7 @@ cc.Class({
                 //     cc.log('login ret:', ret);
                 // });
 
-                if(!ret.userid){
+                if(!ret||!ret.userid){
                     //jump to register user info.
                     cc.director.loadScene("createrole");
                 }
@@ -69,7 +69,7 @@ cc.Class({
         			// self.exp = ret.exp;
         			self.coins = ret.coins;
         			self.gems = ret.gems;
-                    self.roomData = ret.roomid;
+                    self.roomData = ret.roomId;
                     self.sex = ret.sex;
                     self.ip = ret.ip;
                     // cc.vv.net.login("127.0.0.1",3014,self.account,"123456", function (ret) {
@@ -106,24 +106,29 @@ cc.Class({
                     var route = 'connector.entryHandler.entry';
                     pomelo.request(route, {MAC:acc,password:"123456"}, function (data) {
                         cc.log("connector:%j",data);
-                        pomelo.request('area.playerHandler.enterScene',{},function(result){
-                            cc.log("###enterScene#%j",result);
-                            cb(result.curPlayer);
-                        })
+                        if(data.code ==200){
+                            pomelo.request('area.playerHandler.enterScene',{},function(result){
+                                cc.log("###enterScene#%j",result);
+                                cb(result.curPlayer);
+                            })
+                        }else{
+                            cb(data);
+                        }
                         
                     })
                 })
                 }
-                // pomelo.disconnect(function () {
-                //     pomelo.init({
-                //         host : host2,
-                //         port : port2,
-                //         reconnect : true
-                //     }, function () {
-                //     })
-                // });
+                
             });
-            
+            pomelo.on("player.updateProp", function (data) {
+                console.log("player.updateProp %j", data);
+                if(data.prop == 'roomId'){
+                    self.roomData = data.value;
+                }
+                if(data.prop == 'gem'){
+                    self.gems = data.value;
+                }
+            });
         });
      },
 
@@ -175,12 +180,14 @@ cc.Class({
         };
         
         var data = {
-            account:cc.vv.userMgr.account,
+            playerId:cc.vv.userMgr.userId,
             sign:cc.vv.userMgr.sign,
-            roomid:roomId
+            id:roomId,
+            playerName:cc.vv.userMgr.userName
         };
         cc.vv.wc.show("正在进入房间 " + roomId);
-        cc.vv.http.sendRequest("/enter_private_room",data,onEnter);
+        // cc.vv.http.sendRequest("/enter_private_room",data,onEnter);
+        pomelo.request('area.roomHandler.enterRoom',data,onEnter);
     },
     getHistoryList:function(callback){
         var self = this;

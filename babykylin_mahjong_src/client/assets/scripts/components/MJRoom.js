@@ -32,7 +32,7 @@ cc.Class({
         
         this.initView();
         this.initSeats();
-        this.initEventHandlers();
+        // this.initEventHandlers();
     },
     
     initView:function(){

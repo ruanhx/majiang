@@ -10,7 +10,6 @@ var teamManager = require('./teamManager');
 var logger = require('pomelo-logger').getLogger(__filename);
 var barrierManager = require('./barrierManager');
 var teamTiming = require('./teamTiming'),
-    guidePrizeManager = require('./guidePrizeManager'),
     dataApi = require('../../util/dataApi'),
     offlineFightRecordDao = require('../../dao/offlineFightRecordDao'),
     Consts = require('../../consts/consts');
@@ -117,38 +116,6 @@ exp.removeEntity = function (entityId) {
 
     //清空所有对象的内容
     entity.activityMgr.clearActivityMgr();
-    entity.heroBag.clearHeroBag();
-    entity.assistFightMgr.clearAssistFight();
-    entity.bag.clearBag();
-    entity.missionMgr.clearMissionMgr();
-    entity.passedBarrierMgr.clearPassedBarrier();
-    entity.dataStatisticManager.clearDataStatistics();
-    entity.mailPersonMgr.clearMailPersonMgr();
-    entity.occasionManager.clearOccasionMgr();
-    entity.divisionPersonMgr.clearDivisionPersionMgr();
-    entity.fragBag.clearBag();
-    entity.barrierPromoteMgr.clearBarrierPromoteMgr();
-    entity.petBag.clearPetBag();
-    entity.armBag.clearArmBag();
-    entity.unlockChapterMgr.clearUnlockChapterMgr();
-    entity.wakeUpBag.clearBag();
-    entity.trainMgr.clearRrainMgr();
-    entity.refineResetMgr.clearDailyResetManager();
-    entity.weekHighScoreMgr.clearDailyResetManager();
-    entity.dailyEndlessBoxToHeroCntManager.clearDailyResetManager();
-    entity.endlessPVPBoxMgr.clearEndlessPVPBoxMgr();
-    entity.friendPersonMgr.clearFriendPersonMgr();
-    entity.shop.clearShop();
-    entity.equipAchievedList.clearEquipAchieved();
-    entity.equipWashAll.clearEquipWashAll();
-    entity.catchTreasureManager.clearCatchTreasureManager();
-    entity.randomShop.clearRandomShop();
-    entity.refreshMgr.clearRefreshMgr();
-    entity.buffManager.clearBuffManager();
-    entity.passedActivityEctypeManager.clearPassedActivityEctype();
-    if(!!entity.recharge){
-        entity.recharge.clearRecharge();
-    }
 
     //清空player所有属性
     for(var key in entity){
@@ -234,7 +201,6 @@ exp.removePlayer = function (playerId) {
 
             }
 
-            guidePrizeManager.remove(player);
             player.flush(function () {
                 if (oldSessionId === player.sessionId && oldFrontId === player.frontendId) {
                     console.log('removePlayer erase player %s.', player.id);

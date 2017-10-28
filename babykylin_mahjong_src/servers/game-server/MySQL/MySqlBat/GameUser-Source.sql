@@ -27,6 +27,25 @@ create table player
 ENGINE = InnoDB
 auto_increment = 10000
 default character set = utf8;
+drop table if exists room;
+
+/*==============================================================*/
+/* Table: room                                                */
+/*==============================================================*/
+create table room
+(
+   id                   int not null auto_increment,
+   ownerId              int(10) not null,
+   di                   int(10) default 0,
+   gui                  int(100) default 0,
+   maxCnt               int(40) default 0,
+   member               varchar(400) default "",
+   createTime           bigint(20) default 0,
+   primary key (id)
+)
+ENGINE = InnoDB
+auto_increment = 10000
+default character set = utf8;
 
 /*==============================================================*/
 /* PROCEDURE & FUNCTION                                           */

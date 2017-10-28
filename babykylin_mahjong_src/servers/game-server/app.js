@@ -8,7 +8,7 @@ var sync = require('./plugins/pomelo-sync-plugin-ex'),
     area = require('./app/domain/area/area'),
     cronTriggerManager = require('./app/util/cronTriggerManager'),
     stateReportConfig = require('./config/stateReport'),
-    activityMgr = require('./app/domain/activity/globalActivity/activityMgr'),
+    roomMgr = require('./app/domain/area/roomMgr'),
     unregisterFilter = require('./app/servers/area/filter/unregisterFilter'),
     world = require('./app/domain/world/world'),
     stateReport = require('./app/util/stateReport');
@@ -123,7 +123,7 @@ function startApp() {
 
         area.init({id: areaId});
 
-        // activityMgr.getInstance().init();
+        roomMgr.getInstance().roomInit();
         setInterval(function () {
             var mem = process.memoryUsage();
             var format = function (bytes) {
@@ -135,22 +135,10 @@ function startApp() {
     });
 
     app.configure('production|development', 'world', function () {
-        // app.set('connectorConfig',
-        //     {
-        //         connector: pomelo.connectors.hybridconnector//,
-        //         //useProtobuf : true
-        //     });
+
     });
 
     app.configure('production|development', 'gate', function () {
-        app.set('connectorConfig',
-            {
-                connector: pomelo.connectors.hybridconnector//,
-                //useProtobuf : true
-            });
-    });
-
-    app.configure('production|development', 'chat', function () {
         app.set('connectorConfig',
             {
                 connector: pomelo.connectors.hybridconnector//,

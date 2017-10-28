@@ -36,8 +36,8 @@ cc.Class({
         }
         this.addComponent("NoticeTip");
         this.addComponent("GameOver");
-        this.addComponent("DingQue");
-        this.addComponent("PengGangs");
+        // this.addComponent("DingQue");
+        // this.addComponent("PengGangs");
         this.addComponent("MJRoom");
         this.addComponent("TimePointer");
         this.addComponent("GameResult");
@@ -45,19 +45,19 @@ cc.Class({
         this.addComponent("Folds");
         this.addComponent("ReplayCtrl");
         this.addComponent("PopupMgr");
-        this.addComponent("HuanSanZhang");
+        // this.addComponent("HuanSanZhang");
         this.addComponent("ReConnect");
         this.addComponent("Voice");
         this.addComponent("UserInfoShow");
         this.addComponent("Status");
         
         this.initView();
-        this.initEventHandlers();
+        // this.initEventHandlers();
         
         this.gameRoot.active = false;
         this.prepareRoot.active = true;
         this.initWanfaLabel();
-        this.onGameBeign();
+        // this.onGameBeign();
         cc.vv.audioMgr.playBGM("bgFight.mp3");
         cc.vv.utils.addEscEvent(this.node);
     },
@@ -442,6 +442,12 @@ cc.Class({
             self.prepareRoot.active = true;
             console.log('login_result');
         });
+
+        pomelo.on('login_result', function () {
+            self.gameRoot.active = false;
+            self.prepareRoot.active = true;
+            console.log('login_result');
+        });
     },
     
     showChupai:function(){
@@ -533,15 +539,15 @@ cc.Class({
     
     onGameBeign:function(){
         
-        for(var i = 0; i < this._playEfxs.length; ++i){
-            this._playEfxs[i].node.active = false;
-        }
+        // for(var i = 0; i < this._playEfxs.length; ++i){
+        //     this._playEfxs[i].node.active = false;
+        // }
         
-        for(var i = 0; i < this._hupaiLists.length; ++i){
-            for(var j = 0; j < this._hupaiLists[i].childrenCount; ++j){
-                this._hupaiLists[i].children[j].active = false;
-            }
-        }
+        // for(var i = 0; i < this._hupaiLists.length; ++i){
+        //     for(var j = 0; j < this._hupaiLists[i].childrenCount; ++j){
+        //         this._hupaiLists[i].children[j].active = false;
+        //     }
+        // }
         
         for(var i = 0; i < cc.vv.gameNetMgr.seats.length; ++i){
             var seatData = cc.vv.gameNetMgr.seats[i];
@@ -607,7 +613,7 @@ cc.Class({
             cc.vv.gameNetMgr.curaction = null;
         }
         
-        this.checkQueYiMen();
+        // this.checkQueYiMen();
     },
     
     onMJClicked:function(event){
