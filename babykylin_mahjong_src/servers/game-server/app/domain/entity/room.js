@@ -3,6 +3,8 @@
  */
 var EventEmitter = require('events').EventEmitter;
 var _ = require('underscore'),
+    logger = require('pomelo-logger').getLogger(__filename),
+    roomDao = require('../../dao/roomDao'),
     area = require('../area/area');
 var Room = function (opts) {
     opts = opts || {};
@@ -24,10 +26,12 @@ var pro = Room.prototype;
 
 pro.getRoomData = function () {
     var data = {};
-    data.id = this.id;
+    // data.id = this.id;
     data.di = this.di;
+    data.ownerId = this.ownerId;
     data.gui = this.gui;
     data.maxCnt = this.maxCnt;
+    logger.error("###getRoomData:%j",this.member);
     data.member = JSON.stringify(this.member);
     return data;
 };
@@ -39,14 +43,15 @@ pro.getRoomClientInfo = function () {
     data.gui = this.gui;
     data.maxCnt = this.maxCnt;
     data.member = this.member;
+    // data.createTime =
     return data;
 };
 
-pro.isInRoom = function (playerId) {
-    var isInRoom = _.find(this.member,function (num) {
+pro.getRoomMemberById = function (playerId) {
+    var player = _.find(this.member,function (num) {
         return num.memberId = playerId;
     });
-    return isInRoom;
+    return player;
 };
 
 pro.pushAllRoomMember = function (route,msg) {
@@ -59,9 +64,30 @@ pro.pushAllRoomMember = function (route,msg) {
     });
 };
 
+pro.roomSave = function () {
+    roomDao.roomUpdate(this.getRoomData(),function () {
+
+    })  ;
+};
+
 pro.enter = function (playerId,playerName) {
-    this.member.push({memberId:playerId,memberName:playerName});
+    if(this.getRoomMemberById(playerId)){
+        logger.error("getPlayerById");
+        return;
+    }
+    logger.error("enter");
+    this.member.push({memberId:playerId,memberName:playerName,isReady:false});
+    this.roomSave();
     this.pushAllRoomMember('room.addMember',{memberId:playerId,memberName:playerName});
+};
+
+pro.setReady = function (playerId) {
+    var player = this.getRoomMemberById(playerId);
+    if(!player){
+        return;
+    }
+    player.isReady = true;
+    this.roomSave();
 };
 
 module.exports = Room;

@@ -38,6 +38,27 @@ dao.getByPlayerId = function (playerId,cb) {
     });
 }
 
+dao.roomUpdate = function(actData, cb) {
+    var sql = 'INSERT INTO room(ownerId,member) VALUES(?,?)'+
+            ' ON DUPLICATE KEY UPDATE ownerId=VALUES(ownerId),member=VALUES(member)',
+        args = [actData.ownerId,actData.member];
+    console.debug("roomInsert sql:%j args:%",sql,args);
+    pomelo.app.get('dbclient').query(sql, args, function (err, res) {
+        if (err) {
+            logger.error('upSert err = %s, args = %j', err.stack, args);
+            utils.invokeCallback(cb, err.message, false);
+        } else {
+            if (!!res && res.affectedRows > 0) {
+                var roomId = res.insertId;
+                utils.invokeCallback(cb, null, roomId);
+            } else {
+                logger.debug('upSert failed!args = %j', args);
+                utils.invokeCallback(cb, null, null);
+            }
+        }
+    });
+}
+
 dao.roomInsert = function(actData, cb) {
     var sql = 'INSERT INTO room(ownerId,di,gui,maxCnt,member,createTime) VALUES(?,?,?,?,?,?)'+
             ' ON DUPLICATE KEY UPDATE ownerId=VALUES(ownerId),di=VALUES(di),gui=VALUES(gui),'+

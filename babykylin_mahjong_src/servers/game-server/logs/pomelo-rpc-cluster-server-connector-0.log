@@ -94,3 +94,11 @@
     at tryOnTimeout (timers.js:304:5)
     at Timer.listOnTimeout (timers.js:264:5)
 [2017-10-25 18:47:15.371] [ERROR] pomelo-rpc - [31m[failprocess] [39mrpc failed with error, remote server: cluster-server-area-0, msg: {"namespace":"sys","serverType":"area","service":"msgRemote","method":"forwardMessage","args":[{"id":3,"type":0,"compressRoute":1,"route":"area.playerHandler.enterScene","body":{},"compressGzip":0},{"id":1,"frontendId":"cluster-server-connector-0","uid":10000,"settings":{"platform":"default","MAC":"1504755975115","rawUid":"1504755975115","deviceId":"123456","playerName":"端木有钱","playerId":10000}}]}, error code: 5
+[2017-10-29 21:19:41.686] [ERROR] pomelo-rpc - [31m[mqtt-mailbox] [39mmqtt rpc client cluster-server-connector-0 checkKeepAlive timeout from remote server cluster-server-area-0 for 20000 lastPing: 1509283161684 lastPong: -1
+[2017-10-29 21:19:42.713] [ERROR] pomelo-rpc - [31m[mqtt-mailbox] [39mrpc cluster-server-connector-0 callback timeout 30000, remote server 3 host: 127.0.0.1, port: 3250
+[2017-10-29 21:19:42.716] [ERROR] pomelo-rpc - [31m[MailStation] [39m[pomelo-rpc] fail to send message Error: rpc cluster-server-connector-0 callback timeout 30000, remote server 3 host: 127.0.0.1, port: 3250
+    at Timeout.<anonymous> (D:\project\majiang\babykylin_mahjong_src\servers\game-server\node_modules\pomelo\node_modules\pomelo-rpc\lib\rpc-client\mailboxes\mqtt-mailbox.js:257:16)
+    at ontimeout (timers.js:386:11)
+    at tryOnTimeout (timers.js:250:5)
+    at Timer.listOnTimeout (timers.js:214:5)
+[2017-10-29 21:19:42.717] [ERROR] pomelo-rpc - [31m[failprocess] [39mrpc failed with error, remote server: cluster-server-area-0, msg: {"namespace":"sys","serverType":"area","service":"msgRemote","method":"forwardMessage","args":[{"id":6,"type":0,"compressRoute":1,"route":"area.roomHandler.enterRoom","body":{"playerId":10000,"sign":0,"id":10000,"playerName":"宇文好运"},"compressGzip":0},{"id":1,"frontendId":"cluster-server-connector-0","uid":10000,"settings":{"platform":"default","MAC":"1508943401438","rawUid":"1508943401438","deviceId":"123456","playerName":"宇文好运","playerId":10000}}]}, error code: 5

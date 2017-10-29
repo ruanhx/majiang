@@ -63,11 +63,8 @@ pro.enterRoom = function (msg, session, next) {
     if(!room){
         return next(null,{code:Code.ROOM.ROOM_IS_NOT_EXIST});
     }
-    if(room.isInRoom(session.get('playerId'))){
-        return next(null,{code:Code.ROOM.ROOM_IS_IN_ROOM});
-    }
 
-    room.enter();
+    room.enter(session.get('playerId'),player.playername);
     return next(null,{code:Code.OK});
 };
 
@@ -79,4 +76,15 @@ pro.getRoomInfo = function (msg, session, next) {
         return next(null,{code:Code.ROOM.ROOM_IS_NOT_EXIST});
     }
     return next(null,{code:Code.OK,info:room.getRoomClientInfo()});
+};
+
+pro.setReady = function (msg, session, next) {
+    var player = area.getPlayer(session.get('playerId'));
+    var room = roomMgr.getInstance().getRoomById(msg.id);
+    // 房间不存在
+    if(!room){
+        return next(null,{code:Code.ROOM.ROOM_IS_NOT_EXIST});
+    }
+    room.setReady(session.get('playerId'));
+    return next(null,{code:Code.OK});
 };

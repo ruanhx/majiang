@@ -41,7 +41,9 @@ create table room
    maxCnt               int(40) default 0,
    member               varchar(400) default "",
    createTime           bigint(20) default 0,
-   primary key (id)
+   primary key (id,ownerId),
+   unique key INDEX_PLAYER_Room_ID (ownerId)
+
 )
 ENGINE = InnoDB
 auto_increment = 10000

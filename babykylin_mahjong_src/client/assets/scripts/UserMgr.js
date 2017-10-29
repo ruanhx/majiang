@@ -157,35 +157,27 @@ cc.Class({
     enterRoom:function(roomId,callback){
         var self = this;
         var onEnter = function(ret){
-            if(ret.errcode !== 0){
-                if(ret.errcode == -1){
-                    setTimeout(function(){
-                        self.enterRoom(roomId,callback);
-                    },5000);
-                }
-                else{
-                    cc.vv.wc.hide();
-                    if(callback != null){
-                        callback(ret);
-                    }
-                }
+            if(ret.code != 200){
+                console.log("######enterRoom error : %s",ret.code);
             }
             else{
                 cc.vv.wc.hide();
                 if(callback != null){
                     callback(ret);
                 }
-                cc.vv.gameNetMgr.connectGameServer(ret);
+                console.log("######enterRoom");
+                cc.director.loadScene("prepare");
+                // cc.vv.gameNetMgr.connectGameServer(ret);
             }
         };
         
         var data = {
             playerId:cc.vv.userMgr.userId,
             sign:cc.vv.userMgr.sign,
-            id:roomId,
+            id:self.roomData,
             playerName:cc.vv.userMgr.userName
         };
-        cc.vv.wc.show("正在进入房间 " + roomId);
+        cc.vv.wc.show("正在进入房间 " + data);
         // cc.vv.http.sendRequest("/enter_private_room",data,onEnter);
         pomelo.request('area.roomHandler.enterRoom',data,onEnter);
     },

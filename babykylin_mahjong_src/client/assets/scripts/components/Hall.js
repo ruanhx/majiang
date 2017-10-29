@@ -205,7 +205,11 @@ cc.Class({
 
     onReturnGameClicked: function () {
         cc.vv.wc.show('正在返回游戏房间');
-        cc.director.loadScene("mjgame");
+        // cc.director.loadScene("mjgame");
+        // cc.director.loadScene("prepare");
+        // console.log("onReturnGameClicked:"+cc.vv.userMgr.roomData);
+        console.log("onReturnGameClicked");
+        cc.vv.userMgr.enterRoom();
     },
 
     onBtnAddGemsClicked: function () {
@@ -288,9 +292,9 @@ cc.Class({
         }
         this.lblNotice.node.x = x;
 
-        if (cc.vv && cc.vv.userMgr.roomData != null) {
-            cc.vv.userMgr.enterRoom(cc.vv.userMgr.roomData);
-            cc.vv.userMgr.roomData = null;
-        }
+        // if (cc.vv && cc.vv.userMgr.roomData != 0) {
+        //     cc.vv.userMgr.enterRoom(cc.vv.userMgr.roomData);
+        //     cc.vv.userMgr.roomData = 0;
+        // }
     },
 });

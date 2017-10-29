@@ -28,7 +28,7 @@
         "port": "3250",
         "clusterCount": 1,
         "area": 1,
-        "args":"--inspect=32404"
+        "args":"--debug=32404"
       }
     ],
     "world": [
