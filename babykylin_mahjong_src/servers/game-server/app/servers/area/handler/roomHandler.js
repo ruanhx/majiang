@@ -88,3 +88,31 @@ pro.setReady = function (msg, session, next) {
     room.setReady(session.get('playerId'));
     return next(null,{code:Code.OK});
 };
+
+pro.gameBegin = function (msg, session, next) {
+    var player = area.getPlayer(session.get('playerId'));
+    var room = roomMgr.getInstance().getRoomById(msg.id);
+    // 房间不存在
+    if(!room){
+        return next(null,{code:Code.ROOM.ROOM_IS_NOT_EXIST});
+    }
+
+    if(room.isNotAllReady()){
+        logger.debug("gameBegin isNotAllReady");
+        return next(null,{code:Code.ROOM.ROOM_IS_NOT_ALL_READY});
+    }
+
+    room.begin();
+    return next(null,{code:Code.OK});
+}
+
+pro.test = function (msg, session, next) {
+    var player = area.getPlayer(session.get('playerId'));
+    var room = roomMgr.getInstance().getRoomById(msg.id);
+    // 房间不存在
+    if(!room){
+        return next(null,{code:Code.ROOM.ROOM_IS_NOT_EXIST});
+    }
+    room.test();
+    return next(null,{code:Code.OK});
+};

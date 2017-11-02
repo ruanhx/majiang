@@ -114,6 +114,7 @@ pro.enterScene = function (msg, session, next) {
                     {
                         player.clearLeaveTimer();
                         player.sessionId = session.id;
+                        logger.error("####1 %s",session.frontendId);
                         player.setFrontendId(session.frontendId);
                         player.setSession(session);
                         // player.setLanguage( language );
@@ -126,6 +127,7 @@ pro.enterScene = function (msg, session, next) {
                         // 替换前端信息
                         player.sessionId = session.id;
                         // player.setLanguage( language );
+                        logger.error("####2 %s",session.frontendId);
                         player.setFrontendId(session.frontendId);
                         next(null, {code: Code.OK, curPlayer: player.getClientInfo()});
                         // 踢掉旧连接

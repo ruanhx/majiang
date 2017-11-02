@@ -55,6 +55,8 @@ var Player = function (opts) {
     this.MAC = opts.MAC;
     this.id = opts.id;
     this.roomId = opts.roomId;
+    this.frontendId = opts.frontendId;
+    this.sessionId = opts.sessionId;
     this.on(EVENTS.UPDATE_PROP, onUpdateProp.bind(this));
     // this.roleLevel = opts.roleLevel;
 

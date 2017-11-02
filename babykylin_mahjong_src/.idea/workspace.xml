@@ -15,12 +15,14 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="playerHandler.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/servers/game-server/app/servers/area/handler/playerHandler.js">
+      <file leaf-file-name="room.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/entity/room.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="792">
-              <caret line="36" column="2" lean-forward="false" selection-start-line="36" selection-start-column="2" selection-end-line="36" selection-end-column="2" />
-              <folding />
+            <state relative-caret-position="280">
+              <caret line="63" column="24" lean-forward="false" selection-start-line="63" selection-start-column="24" selection-end-line="63" selection-end-column="24" />
+              <folding>
+                <element signature="e#0#55#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -28,52 +30,18 @@
       <file leaf-file-name="player.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/entity/player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="946">
-              <caret line="43" column="22" lean-forward="false" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
+            <state relative-caret-position="182">
+              <caret line="55" column="22" lean-forward="true" selection-start-line="55" selection-start-column="22" selection-end-line="55" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="roomHandler.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/servers/game-server/app/servers/area/handler/roomHandler.js">
+      <file leaf-file-name="playerHandler.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/servers/game-server/app/servers/area/handler/playerHandler.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="534">
-              <caret line="80" column="56" lean-forward="false" selection-start-line="80" selection-start-column="56" selection-end-line="80" selection-end-column="56" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="roomMgr.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/area/roomMgr.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="5" column="4" lean-forward="false" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="30" />
-              <folding>
-                <element signature="e#0#55#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="room.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/entity/room.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-148">
-              <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#55#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="socket_service.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/game_server/socket_service.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="151" column="60" lean-forward="false" selection-start-line="151" selection-start-column="60" selection-end-line="151" selection-end-column="60" />
+            <state relative-caret-position="202">
+              <caret line="158" column="22" lean-forward="false" selection-start-line="158" selection-start-column="13" selection-end-line="158" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -82,8 +50,70 @@
       <file leaf-file-name="area.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/area/area.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1738">
-              <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+            <state relative-caret-position="1072">
+              <caret line="128" column="0" lean-forward="false" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="messageService.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/messageService.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="channelService.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/servers/game-server/node_modules/pomelo/lib/common/service/channelService.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="22">
+              <caret line="96" column="0" lean-forward="false" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="playerManager.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/world/playerManager.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="22">
+              <caret line="45" column="25" lean-forward="true" selection-start-line="45" selection-start-column="25" selection-end-line="45" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="roomHandler.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/servers/game-server/app/servers/area/handler/roomHandler.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="114">
+              <caret line="108" column="8" lean-forward="false" selection-start-line="108" selection-start-column="4" selection-end-line="108" selection-end-column="8" />
+              <folding>
+                <marker date="1509609068503" expanded="true" signature="2160:2374" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="code.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/servers/game-server/shared/code.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="22">
+              <caret line="9" column="8" lean-forward="false" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="zhuogui.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/area/zhuogui.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="15" column="18" lean-forward="true" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -100,25 +130,8 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>roomMgr</find>
-      <find>game_dingque_push</find>
-      <find>/login</find>
-      <find>/auth</find>
-      <find>/aut</find>
-      <find>/au</find>
-      <find>/a</find>
-      <find>/</find>
-      <find>/lo</find>
-      <find>/log</find>
-      <find>onUserLogon</find>
-      <find>getUserStatus</find>
-      <find>/get_user_status</find>
-      <find>userId</find>
-      <find>/create_private_room</find>
-      <find>activityDao.load</find>
       <find>app.rpc.world</find>
       <find>REMOVE_SERVERS</find>
-      <find>####</find>
       <find>equipWash</find>
       <find>playerShopDao</find>
       <find>barrierPromoteDao</find>
@@ -130,6 +143,23 @@
       <find>inviteManager</find>
       <find>player.updateProp</find>
       <find>login</find>
+      <find>app</find>
+      <find>userMgr</find>
+      <find>msgRemote</find>
+      <find>players</find>
+      <find>di</find>
+      <find>.players</find>
+      <find>seatIndex</find>
+      <find>.seatIndex</find>
+      <find>Push Message</find>
+      <find>ot specified</find>
+      <find>pushAllRoomMember</find>
+      <find>getPlayerById</find>
+      <find>sendMessageByGroup</find>
+      <find>channelService</find>
+      <find>frontendId</find>
+      <find>register#</find>
+      <find>####</find>
     </findStrings>
     <dirStrings>
       <dir>D:\ProjectTest\majiang\babykylin_mahjong_src\server</dir>
@@ -138,7 +168,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/server/configs_win.js" />
         <option value="$PROJECT_DIR$/client/assets/scripts/components/Chat.js" />
         <option value="$PROJECT_DIR$/client/assets/scripts/GameNetMgr.js" />
         <option value="$PROJECT_DIR$/server/game_server/gamemgr_xmmj.js" />
@@ -170,22 +199,26 @@
         <option value="$PROJECT_DIR$/servers/game-server/app/domain/activity/globalActivity/activityMgr.js" />
         <option value="$PROJECT_DIR$/servers/game-server/app/domain/world/world.js" />
         <option value="$PROJECT_DIR$/servers/game-server/app/servers/room/lifecycle.js" />
-        <option value="$PROJECT_DIR$/servers/game-server/config/servers.json" />
         <option value="$PROJECT_DIR$/servers/game-server/config/crons.json" />
         <option value="$PROJECT_DIR$/servers/game-server/app/servers/world/lifecycle.js" />
         <option value="$PROJECT_DIR$/servers/game-server/app/dao/playerDao.js" />
         <option value="$PROJECT_DIR$/servers/game-server/app/domain/area/area.js" />
-        <option value="$PROJECT_DIR$/servers/game-server/app/servers/area/handler/playerHandler.js" />
         <option value="$PROJECT_DIR$/servers/game-server/app.js" />
         <option value="$PROJECT_DIR$/servers/game-server/MySQL/MySqlBat/GameUser-Source.sql" />
         <option value="$PROJECT_DIR$/servers/game-server/app/dao/roomDao.js" />
         <option value="$PROJECT_DIR$/servers/game-server/app/dao/mapping/playerSync.js" />
-        <option value="$PROJECT_DIR$/servers/game-server/app/domain/entity/player.js" />
-        <option value="$PROJECT_DIR$/servers/game-server/shared/code.js" />
         <option value="$PROJECT_DIR$/servers/game-server/app/domain/area/roomMgr.js" />
-        <option value="$PROJECT_DIR$/servers/game-server/app/domain/entity/room.js" />
         <option value="$PROJECT_DIR$/server/game_server/socket_service.js" />
+        <option value="$PROJECT_DIR$/servers/game-server/config/servers.json" />
+        <option value="$PROJECT_DIR$/servers/game-server/app/domain/area/zhuoguiMgr.js" />
+        <option value="$PROJECT_DIR$/servers/game-server/app/dao/zhuoguiDao.js" />
+        <option value="$PROJECT_DIR$/servers/game-server/shared/code.js" />
+        <option value="$PROJECT_DIR$/servers/game-server/app/domain/area/zhuogui.js" />
+        <option value="$PROJECT_DIR$/servers/game-server/app/domain/entity/room.js" />
         <option value="$PROJECT_DIR$/servers/game-server/app/servers/area/handler/roomHandler.js" />
+        <option value="$PROJECT_DIR$/servers/game-server/app/domain/messageService.js" />
+        <option value="$PROJECT_DIR$/servers/game-server/app/servers/area/handler/playerHandler.js" />
+        <option value="$PROJECT_DIR$/servers/game-server/app/domain/entity/player.js" />
       </list>
     </option>
   </component>
@@ -224,7 +257,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -238,244 +270,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="servers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="babykylin_mahjong_src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="babykylin_mahjong_src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="servers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="game-server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="babykylin_mahjong_src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="babykylin_mahjong_src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="servers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="game-server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shared" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="babykylin_mahjong_src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="babykylin_mahjong_src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="servers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="game-server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="babykylin_mahjong_src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="babykylin_mahjong_src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="servers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="game-server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="servers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="babykylin_mahjong_src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="babykylin_mahjong_src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="servers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="game-server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="servers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="area" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="babykylin_mahjong_src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="babykylin_mahjong_src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="servers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="game-server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="servers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="area" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="handler" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="babykylin_mahjong_src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="babykylin_mahjong_src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="servers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="game-server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="domain" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="babykylin_mahjong_src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="babykylin_mahjong_src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="servers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="game-server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="domain" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="entity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="babykylin_mahjong_src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="babykylin_mahjong_src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="servers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="game-server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="domain" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="area" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -604,6 +398,7 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -616,6 +411,7 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\ProjectTest\majiang\babykylin_mahjong_src\servers\game-server\app\dao" />
+      <recent name="D:\ProjectTest\majiang\babykylin_mahjong_src\servers\game-server\app\domain\area" />
       <recent name="D:\ProjectTest\majiang\babykylin_mahjong_src\server\game_server" />
       <recent name="D:\ProjectTest\mahjong_v1.0\babykylin_mahjong_src\babykylin_mahjong_src\server\game_server" />
       <recent name="D:\ProjectTest\mahjong_v1.0\babykylin_mahjong_src\babykylin_mahjong_src\servers\game-server\app\domain\area" />
@@ -852,21 +648,25 @@
       <workItem from="1508927850229" duration="33755000" />
       <workItem from="1509082843912" duration="11134000" />
       <workItem from="1509169348026" duration="6335000" />
+      <workItem from="1509420048766" duration="2337000" />
+      <workItem from="1509428766420" duration="35000" />
+      <workItem from="1509428813448" duration="23672000" />
+      <workItem from="1509601724728" duration="8336000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="178953000" />
+    <option name="totallyTimeSpent" value="213333000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
+    <frame x="-8" y="-8" width="1456" height="876" extended-state="7" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30747533" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30747533" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34030685" sideWeight="0.50282085" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29288703" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34030685" sideWeight="0.49717912" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34030685" sideWeight="0.49717912" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -904,44 +704,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/entity/hero.js" />
-    <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/entity/mission.js" />
-    <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/entity/equipAchieved.js" />
-    <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/entity/passedBarrierManager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/entity/pet.js" />
-    <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/entity/playerRecharge.js" />
-    <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/entity/playerShop.js" />
-    <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/entity/randomShop.js" />
-    <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/entity/skill.js" />
-    <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/entity/team.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/area/teamTiming.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1562">
-          <caret line="4" column="26" lean-forward="false" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/area/assistFightManager.js" />
-    <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/area/barrierManager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/area/catchTreasureManager.js" />
     <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/area/cronTrigger.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1050,13 +812,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/servers/game-server/app/dao/roomDao.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="45" column="4" lean-forward="true" selection-start-line="45" selection-start-column="4" selection-end-line="45" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/servers/game-server/app/dao/mapping/playerSync.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="22">
@@ -1085,67 +840,181 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/servers/game-server/shared/code.js">
+    <entry file="file://$PROJECT_DIR$/server/game_server/socket_service.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="23" lean-forward="false" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="23" />
+        <state relative-caret-position="3322">
+          <caret line="151" column="60" lean-forward="false" selection-start-line="151" selection-start-column="60" selection-end-line="151" selection-end-column="60" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/servers/game-server/app/servers/area/handler/playerHandler.js">
+    <entry file="file://$PROJECT_DIR$/servers/game-server/node_modules/pomelo/lib/components/connector.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="792">
-          <caret line="36" column="2" lean-forward="false" selection-start-line="36" selection-start-column="2" selection-end-line="36" selection-end-column="2" />
+        <state relative-caret-position="148">
+          <caret line="380" column="14" lean-forward="false" selection-start-line="380" selection-start-column="14" selection-end-line="380" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/servers/game-server/node_modules/pomelo/lib/components/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="64" column="3" lean-forward="true" selection-start-line="64" selection-start-column="3" selection-end-line="64" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/servers/game-server/node_modules/pomelo/lib/common/service/filterService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="49" column="6" lean-forward="false" selection-start-line="49" selection-start-column="6" selection-end-line="49" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/servers/game-server/app/servers/area/filter/unregisterFilter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="27" column="5" lean-forward="false" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/servers/game-server/node_modules/pomelo/lib/server/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="337" column="35" lean-forward="true" selection-start-line="337" selection-start-column="35" selection-end-line="337" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/servers/game-server/config/servers.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="33" column="7" lean-forward="false" selection-start-line="33" selection-start-column="7" selection-end-line="33" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/servers/game-server/app/dao/roomDao.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-324">
+          <caret line="26" column="17" lean-forward="false" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/entity/player.js">
+    <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/area/zhuoguiMgr.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="946">
-          <caret line="43" column="22" lean-forward="false" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
+        <state relative-caret-position="132">
+          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/game_server/zhuoguiMgr.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3916">
+          <caret line="178" column="0" lean-forward="false" selection-start-line="178" selection-start-column="0" selection-end-line="178" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/servers/game-server/app/dao/zhuoguiDao.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1364">
+          <caret line="62" column="41" lean-forward="false" selection-start-line="62" selection-start-column="41" selection-end-line="62" selection-end-column="41" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/area/roomMgr.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="5" column="4" lean-forward="false" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#55#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/area/area.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1738">
-          <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+        <state relative-caret-position="22">
+          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/game_server/socket_service.js">
+    <entry file="file://$PROJECT_DIR$/servers/game-server/app/servers/world/remote/playerRemote.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="151" column="60" lean-forward="false" selection-start-line="151" selection-start-column="60" selection-end-line="151" selection-end-column="60" />
+        <state relative-caret-position="148">
+          <caret line="11" column="51" lean-forward="true" selection-start-line="11" selection-start-column="51" selection-end-line="11" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/servers/game-server/shared/code.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="9" column="8" lean-forward="false" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/area/zhuogui.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="15" column="18" lean-forward="true" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/servers/game-server/app/servers/area/handler/roomHandler.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="534">
-          <caret line="80" column="56" lean-forward="false" selection-start-line="80" selection-start-column="56" selection-end-line="80" selection-end-column="56" />
+        <state relative-caret-position="114">
+          <caret line="108" column="8" lean-forward="false" selection-start-line="108" selection-start-column="4" selection-end-line="108" selection-end-column="8" />
+          <folding>
+            <marker date="1509609068503" expanded="true" signature="2160:2374" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/servers/game-server/node_modules/pomelo/lib/common/service/channelService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="96" column="0" lean-forward="false" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/messageService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/world/playerManager.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="45" column="25" lean-forward="true" selection-start-line="45" selection-start-column="25" selection-end-line="45" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/area/area.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1072">
+          <caret line="128" column="0" lean-forward="false" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/servers/game-server/app/servers/area/handler/playerHandler.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="158" column="22" lean-forward="false" selection-start-line="158" selection-start-column="13" selection-end-line="158" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/entity/player.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="55" column="22" lean-forward="true" selection-start-line="55" selection-start-column="22" selection-end-line="55" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/entity/room.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-148">
-          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+        <state relative-caret-position="280">
+          <caret line="63" column="24" lean-forward="false" selection-start-line="63" selection-start-column="24" selection-end-line="63" selection-end-column="24" />
           <folding>
             <element signature="e#0#55#0" expanded="false" />
           </folding>

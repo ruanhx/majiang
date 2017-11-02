@@ -6,6 +6,7 @@ var logger = require('pomelo-logger').getLogger(__filename),
 var exp = module.exports;
 
 exp.pushMessageByUids = function (uids, route, msg) {
+    logger.debug("pushMessageByUids# %j, %j,%j",route, msg, uids);
     pomelo.app.get('channelService').pushMessageByUids(route, msg, uids, function (err, fails) {
         if (err) {
             logger.error('Push Message uids = %j, route = %s, msg = %j, error = %s', uids, route, msg, err.stack);
@@ -23,6 +24,7 @@ exp.pushMessageToPlayer = function (uid, route, msg) {
 var playerById = {};
 exp.register = function (uid, playerId, frontendId) {
     playerById[playerId] = {uid: uid, sid: frontendId};
+    logger.debug("register# %j",playerById);
     return true;
 };
 

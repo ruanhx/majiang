@@ -245,6 +245,7 @@ cc.Class({
             }
             else {
                 // cc.director.loadScene("mjgame");
+                cc.vv.userMgr.roomData = ret.roomId;
                 cc.vv.userMgr.enterRoom(cc.vv.userMgr.roomData);
                 // cc.vv.gameNetMgr.connectGameServer(ret);
             }
