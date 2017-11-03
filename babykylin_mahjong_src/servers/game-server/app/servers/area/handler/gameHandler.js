@@ -31,7 +31,7 @@ module.exports = function (app) {
 
 var pro = Handler.prototype;
 
-pro.createRoom = function (msg, session, next) {
+pro.zhanGui = function (msg, session, next) {
     logger.debug("createRoom %j",msg);
     var player = area.getPlayer(session.get('playerId'));
     if(player.gem <=0){
@@ -54,69 +54,4 @@ pro.createRoom = function (msg, session, next) {
         player.pushMsg('login_result',{});
         return next(null,{code:Code.OK,roomId:roomId});
     });
-};
-
-pro.enterRoom = function (msg, session, next) {
-    var player = area.getPlayer(session.get('playerId'));
-    var room = roomMgr.getInstance().getRoomById(msg.id);
-    // 房间不存在
-    if(!room){
-        return next(null,{code:Code.ROOM.ROOM_IS_NOT_EXIST});
-    }
-    // 房间已满
-    if(room.isRoomFull()){
-        return next(null,{code:Code.ROOM.ROOM_IS_ROOM_FULL});
-    }
-
-    room.enter(session.get('playerId'),player.playername,player);
-    return next(null,{code:Code.OK});
-};
-
-pro.getRoomInfo = function (msg, session, next) {
-    var player = area.getPlayer(session.get('playerId'));
-    var room = roomMgr.getInstance().getRoomById(msg.id);
-    // 房间不存在
-    if(!room){
-        return next(null,{code:Code.ROOM.ROOM_IS_NOT_EXIST});
-    }
-    return next(null,{code:Code.OK,info:room.getRoomClientInfo()});
-};
-
-pro.setReady = function (msg, session, next) {
-    var player = area.getPlayer(session.get('playerId'));
-    var room = roomMgr.getInstance().getRoomById(msg.id);
-    // 房间不存在
-    if(!room){
-        return next(null,{code:Code.ROOM.ROOM_IS_NOT_EXIST});
-    }
-    room.setReady(session.get('playerId'));
-    return next(null,{code:Code.OK});
-};
-
-pro.gameBegin = function (msg, session, next) {
-    var player = area.getPlayer(session.get('playerId'));
-    var room = roomMgr.getInstance().getRoomById(msg.id);
-    // 房间不存在
-    if(!room){
-        return next(null,{code:Code.ROOM.ROOM_IS_NOT_EXIST});
-    }
-
-    if(room.isNotAllReady()){
-        logger.debug("gameBegin isNotAllReady");
-        return next(null,{code:Code.ROOM.ROOM_IS_NOT_ALL_READY});
-    }
-
-    room.begin();
-    return next(null,{code:Code.OK});
-}
-
-pro.test = function (msg, session, next) {
-    var player = area.getPlayer(session.get('playerId'));
-    var room = roomMgr.getInstance().getRoomById(msg.id);
-    // 房间不存在
-    if(!room){
-        return next(null,{code:Code.ROOM.ROOM_IS_NOT_EXIST});
-    }
-    room.test();
-    return next(null,{code:Code.OK});
 };

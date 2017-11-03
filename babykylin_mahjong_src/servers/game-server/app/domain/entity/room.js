@@ -20,10 +20,20 @@ var Room = function (opts) {
     } else {
         this.member = [];
     }
+    this.roomIndex = this.initCanAddIndex();
+
 };
 
 util.inherits(Room, EventEmitter);
 var pro = Room.prototype;
+
+pro.initCanAddIndex = function () {
+    var hasUseIndexList =[];
+    hasUseIndexList = _.pluck(this.member, 'index');
+    var canAddIndexList = _.difference([0,1,2,3,4,5,6,7,8,9,10,11],hasUseIndexList);
+    logger.debug("initCanAddIndex %j",canAddIndexList);
+    return canAddIndexList;
+};
 
 pro.getRoomData = function () {
     var data = {};
@@ -50,7 +60,7 @@ pro.getRoomClientInfo = function () {
 
 pro.getRoomMemberById = function (playerId) {
     var player = _.find(this.member, function (num) {
-        return num.memberId = playerId;
+        return num.memberId == playerId;
     });
     return player;
 };
@@ -78,21 +88,30 @@ pro.test = function () {
     this.pushAllRoomMember('room.addMember', {memberId: 10001, memberName: "rrrr"});
 }
 
-pro.enter = function (playerId, playerName) {
+pro.isRoomFull = function () {
+    if(this.member>=12){
+        return true;
+    }
+    return false;
+}
+
+pro.enter = function (playerId, playerName,player) {
 
     if (this.getRoomMemberById(playerId)) {
-        logger.error("getPlayerById");
+        logger.error("getPlayerById:%s,%j",playerId,this.member);
         return;
     }
     logger.error("enter");
-    this.member.push({memberId: playerId, memberName: playerName, isReady: false});
+    var index = this.roomIndex.shift();
+    this.member.push({memberId: playerId, memberName: playerName, isReady: false,index:index});
     this.roomSave();
+    player.set('roomId',this.id);
     this.pushAllRoomMember('room.addMember', {memberId: playerId, memberName: playerName});
 };
 
 pro.isNotAllReady = function () {
     var isReady = _.find(this.member, function (num) {
-        return num.isReady = false;
+        return num.isReady == false;
     });
     return isReady;
 };
@@ -104,7 +123,7 @@ pro.setReady = function (playerId) {
     }
     player.isReady = true;
     this.roomSave();
-
+    this.pushAllRoomMember('room.setReady',{playerId:playerId});
 };
 
 pro.begin = function () {

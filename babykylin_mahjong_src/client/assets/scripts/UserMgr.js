@@ -159,8 +159,12 @@ cc.Class({
         var onEnter = function(ret){
             if(ret.code != 200){
                 console.log("######enterRoom error : %s",ret.code);
+                if(ret.code == 104){
+                    cc.vv.alert.show("提示", "房间已满!");
+                }
             }
             else{
+                cc.vv.userMgr.roomData = roomId;
                 cc.vv.wc.hide();
                 if(callback != null){
                     callback(ret);
@@ -174,7 +178,7 @@ cc.Class({
         var data = {
             playerId:cc.vv.userMgr.userId,
             sign:cc.vv.userMgr.sign,
-            id:self.roomData,
+            id:roomId,
             playerName:cc.vv.userMgr.userName
         };
         cc.vv.wc.show("正在进入房间 " + data);

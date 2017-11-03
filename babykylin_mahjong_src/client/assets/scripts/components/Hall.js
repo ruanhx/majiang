@@ -49,7 +49,7 @@ cc.Class({
         }
         this.initLabels();
         cc.log("cc.vv.userMgr.roomData:%s",cc.vv.userMgr.roomData);
-        if (cc.vv.userMgr.roomData == null) {
+        if (cc.vv.userMgr.roomData ==0) {
             this.btnJoinGame.active = true;
             this.btnReturnGame.active = false;
         }
@@ -209,7 +209,7 @@ cc.Class({
         // cc.director.loadScene("prepare");
         // console.log("onReturnGameClicked:"+cc.vv.userMgr.roomData);
         console.log("onReturnGameClicked");
-        cc.vv.userMgr.enterRoom();
+        cc.vv.userMgr.enterRoom(cc.vv.userMgr.roomData);
     },
 
     onBtnAddGemsClicked: function () {
