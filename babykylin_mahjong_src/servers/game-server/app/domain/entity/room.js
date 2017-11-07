@@ -116,20 +116,24 @@ pro.isNotAllReady = function () {
     return isReady;
 };
 
-pro.setReady = function (playerId) {
+pro.setReady = function (playerId,leave) {
     var player = this.getRoomMemberById(playerId);
     if (!player) {
         return;
     }
-    player.isReady = true;
+    var isReady = leave==1? false:true;
+    logger.error("##isReady,%s,%s",isReady,leave);
+    player.isReady = isReady;
     this.roomSave();
-    this.pushAllRoomMember('room.setReady',{playerId:playerId});
+    this.pushAllRoomMember('room.setReady',{playerId:playerId,isReady:player.isReady});
 };
+
+
 
 pro.begin = function () {
     // 全部准备好了
-    this.game = new Zhuogui(this);
-    this.game.dingGui2();
+    this.games = new Zhuogui(this);
+    this.games.dingGui2();
 }
 
 module.exports = Room;

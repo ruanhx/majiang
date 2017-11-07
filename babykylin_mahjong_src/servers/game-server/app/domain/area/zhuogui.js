@@ -16,7 +16,7 @@ var Zhuogui = function (room) {
     this.trun = 0;
     this.maxDrank = room.maxCnt;
     this.countBySeat = {};
-    this.playersBySeat = {};
+    this.playersBySeat = _.indexBy(this.players,'index');
     this.thisShootDrank = {};
     this.thisTrunDrank = {};
 }
@@ -39,14 +39,16 @@ pro.dingGui2 = function () {
     }
     this.room.pushAllRoomMember('room.dingGui',{gui:this.gui});
 };
-pro.zhangui = function (seatIndex, craps) {
-    if (!this.gui) {
-        return;
+pro.zhangui = function (seatIndex) {
+    var memberGuis = [];
+    for (var i = 0; i < this.guiNum; i++) {
+        var gui = _.random(1, 6);
+        memberGuis.push(gui);
     }
-    this.countBySeat[seatIndex] = craps;
-    this.pushAll('zhangui', {seat: seatIndex, craps: craps});
-    if (this.countBySeat.length == this.players) {
-        this.pushAll('gameBegin', {trun: this.trun});
+    this.countBySeat[seatIndex] = memberGuis;
+    this.room.pushAllRoomMember('room.zhangui', {seat: seatIndex, craps: memberGuis});
+    if(this.countBySeat.length == this.players.length){
+        this.room.pushAllRoomMember('room.zhuogui', {trun: this.trun});
     }
 };
 pro.addDrankCnt = function (seatIndex, cnt) {
@@ -83,14 +85,14 @@ function zijhe(seatIndex) {
 }
 function calGuiHe(crap) {
     var keys = _.keys(this.countBySeat);
-    for (key in keys) {
-        var craps = this.countBySeat[key];
+    _.each(keys,function (data) {
+        var craps = this.countBySeat[data];
         for (var i = 0; i < craps.length; i++) {
             if (craps[i] == crap) {
-                this.addDrankCnt(key, this.di);
+                this.addDrankCnt(data, this.di);
             }
         }
-    }
+    })
 }
 
 pro.addTrun = function () {
@@ -103,11 +105,18 @@ pro.addTrun = function () {
     this.pushAll('trunUpdate', {trun: this.trun});
 }
 
-pro.shoot = function (seatIndex, crap1, crap2, zhidingSeat) {
+pro.shoot = function (seatIndex) {
     // 清空
     this.thisShootDrank = {};
+    var craps = [];
+    var totalValue = 0;
+    for (var i = 0; i < this.guiNum; i++) {
+        var gui = _.random(1, 6);
+        craps.push(gui);
+        totalValue +=gui;
+    }
     // 计算
-    var totalValue = crap1 + crap2;
+    // var totalValue = crap1 + crap2;
     switch (totalValue) {
         case 7:
             shangjiahe(seatIndex);
@@ -121,17 +130,22 @@ pro.shoot = function (seatIndex, crap1, crap2, zhidingSeat) {
         default :
             break;
     }
-    calGuiHe(crap1);
-    calGuiHe(crap2);
-    if (zhidingSeat) {
-        this.addDrankCnt(zhidingSeat, this.di);
-    }
-    this.pushAll('shootCrap', {trun: this.trun});
+    _.each(craps,function (crap) {
+        calGuiHe(crap);
+    })
+    // calGuiHe(crap1);
+    // calGuiHe(crap2);
+    // if (zhidingSeat) {
+    //     this.addDrankCnt(zhidingSeat, this.di);
+    // }
+    // this.room.pushAllRoomMember('shootCrap', {trun: this.trun});
+
     if (!this.thisShootDrank || this.thisShootDrank.length == 0) {
         this.trun++;
     }
-
-    return this.thisShootDrank;
+    this.room.pushAllRoomMember('room.zhuogui', {trun: this.trun});
+    this.room.pushAllRoomMember('room.dranks', {dranks: this.thisShootDrank});
+    // return this.thisShootDrank;
 }
 
 pro.addPlayer = function (uid) {

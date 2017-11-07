@@ -4,6 +4,7 @@
 
 var logger = require('pomelo-logger').getLogger(__filename);
 var area = require('../../../domain/area/area');
+
 var Code = require('../../../../shared/code');
 var utils = require('../../../util/utils');
 

@@ -93,6 +93,7 @@ Handler.prototype.entry = function (msg, session, next) {
 };
 
 var onUserLeave = function (app, session) {
+    logger.error("#######################");
     if (!session || !session.uid) {
         return;
     }
@@ -107,31 +108,31 @@ var onUserLeave = function (app, session) {
         deviceId = session.get('deviceId'),
         platform = session.get('platform'),
         playerName = session.get('playerName');
-    // if (!!playerId) {
-    //     app.rpc.area.playerRemote.playerLeave(session, {
-    //         playerId: playerId, sessionId: session.id,
-    //         frontendId: session.frontendId
-    //     }, function (err) {
-    //         if (!!err) {
-    //             logger.error('onPlayerLeave error %s', err.stack);
-    //         }
-    //         app.rpc.world.playerRemote.remove(session, {
-    //             playerId: playerId, frontendId: session.frontendId,
-    //             sessionId: session.id
-    //         }, function (err, code) {
-    //             if (!!err) {
-    //                 logger.error('onUserLeave leave world error %s', err.stack);
-    //             } else {
-    //                 if (code === Code.OK) {
-    //                     logger.info('onUserLeave leave world ok!');
-    //                     report.SCADA("writeLoginReg",{accountId:rawUid,deviceNum:deviceId,channelId:platform,addIp:ip,addtime:Date.now(),type:2,roleId:playerId,roleNickName:playerName,roleLevel:1},function(){});
-    //                 } else {
-    //                     logger.debug('onUserLeave leave world code = %s', code);
-    //                 }
-    //             }
-    //         });
-    //         app.rpc.chat.chatRemote.leave(session, session.id, session.frontendId, function(){});
-    //     });
-    // }
+    if (!!playerId) {
+        app.rpc.area.playerRemote.playerLeave(session, {
+            playerId: playerId, sessionId: session.id,
+            frontendId: session.frontendId
+        }, function (err) {
+            if (!!err) {
+                logger.error('onPlayerLeave error %s', err.stack);
+            }
+            // app.rpc.world.playerRemote.remove(session, {
+            //     playerId: playerId, frontendId: session.frontendId,
+            //     sessionId: session.id
+            // }, function (err, code) {
+            //     if (!!err) {
+            //         logger.error('onUserLeave leave world error %s', err.stack);
+            //     } else {
+            //         if (code === Code.OK) {
+            //             logger.info('onUserLeave leave world ok!');
+            //             report.SCADA("writeLoginReg",{accountId:rawUid,deviceNum:deviceId,channelId:platform,addIp:ip,addtime:Date.now(),type:2,roleId:playerId,roleNickName:playerName,roleLevel:1},function(){});
+            //         } else {
+            //             logger.debug('onUserLeave leave world code = %s', code);
+            //         }
+            //     }
+            // });
+            // app.rpc.chat.chatRemote.leave(session, session.id, session.frontendId, function(){});
+        });
+    }
     app.get('sessionService').kickBySessionId(session.id, null);
 };

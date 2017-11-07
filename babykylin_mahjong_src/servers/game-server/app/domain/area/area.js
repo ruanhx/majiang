@@ -7,6 +7,7 @@ var _ = require('underscore');
 var Player = require('../entity/player');
 var eventManager = require('../event/eventManager');
 var teamManager = require('./teamManager');
+var roomMgr = require('./roomMgr');
 var logger = require('pomelo-logger').getLogger(__filename);
 var barrierManager = require('./barrierManager');
 var teamTiming = require('./teamTiming'),
@@ -149,64 +150,15 @@ exp.removePlayer = function (playerId) {
     var oldSessionId = player.sessionId, oldFrontId = player.frontendId;
     if (player) {
         player.leaveTime = setTimeout(function () {
-            player.onLogoff();
-            //if (player.status === 1) {
-            if(barrierManager.isInBarrier(playerId)){
-                var barrier = barrierManager.getBarrier(playerId);
-                if (barrier) {
-                    //保存战斗状态，用于断线重连
-                    var opts = {};
-                    opts.barrierId = barrier.barrierId;
-                    opts.barrierDropList = barrier.barrierDropList;
-                    opts.activityDropDouble = barrier.dropDouble;
-                    opts.buyTimeCount = barrier.buyTimeCount;
-                    opts.reviveCnt = barrier.reviveCnt;
-                    offlineFightRecordDao.insertRecord(player.id,Consts.OFFLINE_FIGHT_TYPE.BARRIER, opts,function(err){
-                        if(err){
-                            logger.error("offlineFightRecordDao.insertRecord BARRIER fail! opts=%j",opts);
-                        }
-                    });
-
-                    barrierManager.destroyBarrier(player);
-                }
-            }
-            //随机boss断线重连
-            var randBoss = player.passedBarrierMgr.randBoss;
-            if(randBoss && randBoss.enterAtkRandBossTime){//正在打随机boss
-                var opts = {};
-                opts.enterAtkRandBossTime = randBoss.enterAtkRandBossTime;
-                opts.winCnt = randBoss.winCnt;
-
-                offlineFightRecordDao.insertRecord(player.id,Consts.OFFLINE_FIGHT_TYPE.RANDBOSS, opts,function(err){
-                    if(err){
-                        logger.error("offlineFightRecordDao.insertRecord RANDBOSS fail! opts=%j",opts);
-                    }
-                });
-                randBoss.enterAtkRandBossTime = null;
-            }
-            // 正在进行无尽个人赛
-            if(player.singleEndlessFighting){
-                var opts = {};
-                opts.singleEndlessOccasionId =  player.singleEndlessOccasionId
-                opts.effectBuffIds = player.effectBuffIds;
-                opts.singleEndlessFighting = player.singleEndlessFighting;
-                opts.singleEndlessReviveCnt = player.singleEndlessReviveCnt;
-                opts.singleEndlessCommitted = player.singleEndlessCommitted;
-                opts.singleReopenBoxCnt = player.singleReopenBoxCnt;
-                offlineFightRecordDao.insertRecord(player.id,Consts.OFFLINE_FIGHT_TYPE.ENDLESS, opts,function(err){
-                    if(err){
-                        logger.error("offlineFightRecordDao.insertRecord ENDLESS fail! opts=%j",opts);
-                    }
-                });
-
-            }
-
-            player.flush(function () {
-                if (oldSessionId === player.sessionId && oldFrontId === player.frontendId) {
-                    console.log('removePlayer erase player %s.', player.id);
-                    return exp.removeEntity(entityId);
-                }
-            });
+            // player.onLogoff();
+            var room = roomMgr.getInstance().getRoomById(player.roomId);
+            room.setReady(playerId,1);
+            // player.flush(function () {
+            //     if (oldSessionId === player.sessionId && oldFrontId === player.frontendId) {
+            //         console.log('removePlayer erase player %s.', player.id);
+            //         return exp.removeEntity(entityId);
+            //     }
+            // });
         }, 2000);
     }
 };

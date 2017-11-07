@@ -81,7 +81,13 @@ pro.getRoomInfo = function (msg, session, next) {
     }
     return next(null,{code:Code.OK,info:room.getRoomClientInfo()});
 };
-
+/**
+ * 准备
+ * @param msg
+ * @param session
+ * @param next
+ * @returns {*}
+ */
 pro.setReady = function (msg, session, next) {
     var player = area.getPlayer(session.get('playerId'));
     var room = roomMgr.getInstance().getRoomById(msg.id);
@@ -118,5 +124,39 @@ pro.test = function (msg, session, next) {
         return next(null,{code:Code.ROOM.ROOM_IS_NOT_EXIST});
     }
     room.test();
+    return next(null,{code:Code.OK});
+};
+/**
+ * 占鬼
+ * @param msg
+ * @param session
+ * @param next
+ * @returns {*}
+ */
+pro.zhanGui = function (msg, session, next) {
+    var player = area.getPlayer(session.get('playerId'));
+    var room = roomMgr.getInstance().getRoomById(msg.id);
+    // 房间不存在
+    if(!room){
+        return next(null,{code:Code.ROOM.ROOM_IS_NOT_EXIST});
+    }
+    room.games.zhangui(msg.index);
+    return next(null,{code:Code.OK});
+};
+/**
+ * 捉鬼
+ * @param msg
+ * @param session
+ * @param next
+ * @returns {*}
+ */
+pro.zhuoGui = function (msg, session, next) {
+    var player = area.getPlayer(session.get('playerId'));
+    var room = roomMgr.getInstance().getRoomById(msg.id);
+    // 房间不存在
+    if(!room){
+        return next(null,{code:Code.ROOM.ROOM_IS_NOT_EXIST});
+    }
+    room.games.shoot(msg.index);
     return next(null,{code:Code.OK});
 };
