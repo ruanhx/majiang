@@ -15,11 +15,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="room.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="room.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/entity/room.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="122" column="5" lean-forward="true" selection-start-line="122" selection-start-column="5" selection-end-line="122" selection-end-column="5" />
+            <state relative-caret-position="264">
+              <caret line="14" column="32" lean-forward="true" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
               <folding>
                 <element signature="e#0#55#0" expanded="false" />
               </folding>
@@ -30,18 +30,18 @@
       <file leaf-file-name="player.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/entity/player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
+            <state relative-caret-position="1980">
               <caret line="90" column="17" lean-forward="false" selection-start-line="90" selection-start-column="11" selection-end-line="90" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="zhuogui.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="zhuogui.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/area/zhuogui.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="94">
-              <caret line="68" column="37" lean-forward="false" selection-start-line="68" selection-start-column="30" selection-end-line="68" selection-end-column="37" />
+            <state relative-caret-position="2024">
+              <caret line="98" column="110" lean-forward="false" selection-start-line="98" selection-start-column="108" selection-end-line="98" selection-end-column="110" />
               <folding />
             </state>
           </provider>
@@ -50,8 +50,8 @@
       <file leaf-file-name="area.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/area/area.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="154" column="38" lean-forward="true" selection-start-line="154" selection-start-column="38" selection-end-line="154" selection-end-column="38" />
+            <state relative-caret-position="3388">
+              <caret line="154" column="38" lean-forward="false" selection-start-line="154" selection-start-column="38" selection-end-line="154" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -60,7 +60,7 @@
       <file leaf-file-name="playerRemote.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/servers/game-server/app/servers/area/remote/playerRemote.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
+            <state relative-caret-position="528">
               <caret line="24" column="21" lean-forward="false" selection-start-line="24" selection-start-column="21" selection-end-line="24" selection-end-column="21" />
               <folding />
             </state>
@@ -70,7 +70,7 @@
       <file leaf-file-name="entryHandler.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/servers/game-server/app/servers/connector/handler/entryHandler.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
+            <state relative-caret-position="2442">
               <caret line="111" column="38" lean-forward="false" selection-start-line="111" selection-start-column="38" selection-end-line="111" selection-end-column="38" />
               <folding />
             </state>
@@ -81,7 +81,7 @@
         <entry file="file://$PROJECT_DIR$/servers/game-server/app/servers/area/handler/roomHandler.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="268">
-              <caret line="159" column="18" lean-forward="false" selection-start-line="159" selection-start-column="18" selection-end-line="159" selection-end-column="18" />
+              <caret line="159" column="32" lean-forward="false" selection-start-line="159" selection-start-column="32" selection-end-line="159" selection-end-column="32" />
               <folding>
                 <marker date="1509962854621" expanded="true" signature="2160:2374" ph="{...}" />
               </folding>
@@ -92,7 +92,7 @@
       <file leaf-file-name="roomMgr.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/area/roomMgr.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
+            <state relative-caret-position="770">
               <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
               <folding />
             </state>
@@ -110,8 +110,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>guidePrizeManager</find>
-      <find>activityMgr</find>
       <find>EventEmitter</find>
       <find>login_result</find>
       <find>inviteManager</find>
@@ -140,6 +138,8 @@
       <find>isReady</find>
       <find>##isReady</find>
       <find>playersBySeat</find>
+      <find>zhangui#</find>
+      <find>calGuiHe</find>
     </findStrings>
     <dirStrings>
       <dir>D:\ProjectTest\majiang\babykylin_mahjong_src\server</dir>
@@ -209,6 +209,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/client/assets/scripts/node_modules" />
     <handled-path value="$PROJECT_DIR$/client/temp/quick-scripts/__node_modules/buffer/node_modules" />
     <handled-path value="$PROJECT_DIR$/server/node_modules" />
     <handled-path value="$PROJECT_DIR$/servers/authServer/node_modules" />
@@ -238,7 +239,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -711,6 +711,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -965,22 +966,24 @@
       <workItem from="1509428813448" duration="23672000" />
       <workItem from="1509601724728" duration="8923000" />
       <workItem from="1509621912906" duration="16163000" />
-      <workItem from="1509931951224" duration="30260000" />
+      <workItem from="1509931951224" duration="37933000" />
+      <workItem from="1510120290022" duration="8265000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="260343000" />
+    <option name="totallyTimeSpent" value="276281000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1456" height="876" extended-state="7" />
+    <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30747533" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34030685" sideWeight="0.50282085" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29288703" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34030685" sideWeight="0.49717912" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34030685" sideWeight="0.49717912" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1235,7 +1238,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="990">
           <caret line="45" column="25" lean-forward="false" selection-start-line="45" selection-start-column="25" selection-end-line="45" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1243,7 +1245,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
           <caret line="12" column="8" lean-forward="false" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1251,7 +1252,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="880">
           <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1267,13 +1267,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
           <caret line="77" column="5" lean-forward="true" selection-start-line="77" selection-start-column="5" selection-end-line="77" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/servers/game-server/app/servers/area/remote/playerRemote.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
+        <state relative-caret-position="528">
           <caret line="24" column="21" lean-forward="false" selection-start-line="24" selection-start-column="21" selection-end-line="24" selection-end-column="21" />
           <folding />
         </state>
@@ -1281,7 +1280,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/area/roomMgr.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
+        <state relative-caret-position="770">
           <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
           <folding />
         </state>
@@ -1289,7 +1288,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/entity/player.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
+        <state relative-caret-position="1980">
           <caret line="90" column="17" lean-forward="false" selection-start-line="90" selection-start-column="11" selection-end-line="90" selection-end-column="17" />
           <folding />
         </state>
@@ -1297,7 +1296,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/servers/game-server/app/servers/connector/handler/entryHandler.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
+        <state relative-caret-position="2442">
           <caret line="111" column="38" lean-forward="false" selection-start-line="111" selection-start-column="38" selection-end-line="111" selection-end-column="38" />
           <folding />
         </state>
@@ -1305,8 +1304,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/area/area.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="154" column="38" lean-forward="true" selection-start-line="154" selection-start-column="38" selection-end-line="154" selection-end-column="38" />
+        <state relative-caret-position="3388">
+          <caret line="154" column="38" lean-forward="false" selection-start-line="154" selection-start-column="38" selection-end-line="154" selection-end-column="38" />
           <folding />
         </state>
       </provider>
@@ -1314,28 +1313,28 @@
     <entry file="file://$PROJECT_DIR$/servers/game-server/app/servers/area/handler/roomHandler.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="268">
-          <caret line="159" column="18" lean-forward="false" selection-start-line="159" selection-start-column="18" selection-end-line="159" selection-end-column="18" />
+          <caret line="159" column="32" lean-forward="false" selection-start-line="159" selection-start-column="32" selection-end-line="159" selection-end-column="32" />
           <folding>
             <marker date="1509962854621" expanded="true" signature="2160:2374" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/entity/room.js">
+    <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/area/zhuogui.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="122" column="5" lean-forward="true" selection-start-line="122" selection-start-column="5" selection-end-line="122" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#55#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="2024">
+          <caret line="98" column="110" lean-forward="false" selection-start-line="98" selection-start-column="108" selection-end-line="98" selection-end-column="110" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/area/zhuogui.js">
+    <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/entity/room.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="68" column="37" lean-forward="false" selection-start-line="68" selection-start-column="30" selection-end-line="68" selection-end-column="37" />
-          <folding />
+        <state relative-caret-position="264">
+          <caret line="14" column="32" lean-forward="true" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#55#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -109,3 +109,66 @@
     at tryOnTimeout (timers.js:304:5)
     at Timer.listOnTimeout (timers.js:264:5)
 [2017-11-03 20:00:53.535] [ERROR] pomelo-rpc - [31m[failprocess] [39mrpc failed with error, remote server: cluster-server-area-0, msg: {"namespace":"sys","serverType":"area","service":"msgRemote","method":"forwardMessage","args":[{"id":5,"type":0,"compressRoute":1,"route":"area.roomHandler.enterRoom","body":{"playerId":10002,"sign":0,"id":"10000","playerName":"宇文自摸"},"compressGzip":0},{"id":2,"frontendId":"cluster-server-connector-0","uid":10002,"settings":{"platform":"default","MAC":"asdf2","rawUid":"asdf2","deviceId":"123456","playerName":"宇文自摸","playerId":10002}}]}, error code: 5
+[2017-11-08 10:03:02.270] [ERROR] pomelo-rpc - [31m[mqtt-mailbox] [39mrpc cluster-server-connector-0 callback timeout 30000, remote server 9 host: 127.0.0.1, port: 3250
+[2017-11-08 10:03:02.270] [ERROR] pomelo-rpc - [31m[MailStation] [39m[pomelo-rpc] fail to send message Error: rpc cluster-server-connector-0 callback timeout 30000, remote server 9 host: 127.0.0.1, port: 3250
+    at Timeout.<anonymous> (D:\ProjectTest\majiang\babykylin_mahjong_src\servers\game-server\node_modules\pomelo\node_modules\pomelo-rpc\lib\rpc-client\mailboxes\mqtt-mailbox.js:257:16)
+    at ontimeout (timers.js:469:11)
+    at tryOnTimeout (timers.js:304:5)
+    at Timer.listOnTimeout (timers.js:264:5)
+[2017-11-08 10:03:02.271] [ERROR] pomelo-rpc - [31m[failprocess] [39mrpc failed with error, remote server: cluster-server-area-0, msg: {"namespace":"sys","serverType":"area","service":"msgRemote","method":"forwardMessage","args":[{"id":8,"type":0,"compressRoute":1,"route":"area.roomHandler.zhanGui","body":{"id":10000,"index":0},"compressGzip":0},{"id":1,"frontendId":"cluster-server-connector-0","uid":10000,"settings":{"platform":"default","MAC":"1504755975115","rawUid":"1504755975115","deviceId":"123456","playerName":"子车好运","playerId":10000}}]}, error code: 5
+[2017-11-08 10:04:16.304] [ERROR] pomelo-rpc - [31m[mqtt-mailbox] [39mrpc cluster-server-connector-0 callback timeout 30000, remote server 9 host: 127.0.0.1, port: 3250
+[2017-11-08 10:04:16.304] [ERROR] pomelo-rpc - [31m[MailStation] [39m[pomelo-rpc] fail to send message Error: rpc cluster-server-connector-0 callback timeout 30000, remote server 9 host: 127.0.0.1, port: 3250
+    at Timeout.<anonymous> (D:\ProjectTest\majiang\babykylin_mahjong_src\servers\game-server\node_modules\pomelo\node_modules\pomelo-rpc\lib\rpc-client\mailboxes\mqtt-mailbox.js:257:16)
+    at ontimeout (timers.js:469:11)
+    at tryOnTimeout (timers.js:304:5)
+    at Timer.listOnTimeout (timers.js:264:5)
+[2017-11-08 10:04:16.305] [ERROR] pomelo-rpc - [31m[failprocess] [39mrpc failed with error, remote server: cluster-server-area-0, msg: {"namespace":"sys","serverType":"area","service":"msgRemote","method":"forwardMessage","args":[{"id":7,"type":0,"compressRoute":1,"route":"area.roomHandler.zhanGui","body":{"id":10000,"index":1},"compressGzip":0},{"id":1,"frontendId":"cluster-server-connector-0","uid":10001,"settings":{"platform":"default","MAC":"asdf2","rawUid":"asdf2","deviceId":"123456","playerName":"上官赌侠","playerId":10001}}]}, error code: 5
+[2017-11-08 10:19:25.500] [ERROR] pomelo-rpc - [31m[mqtt-mailbox] [39mrpc cluster-server-connector-0 callback timeout 30000, remote server 42 host: 127.0.0.1, port: 3250
+[2017-11-08 10:19:25.500] [ERROR] pomelo-rpc - [31m[MailStation] [39m[pomelo-rpc] fail to send message Error: rpc cluster-server-connector-0 callback timeout 30000, remote server 42 host: 127.0.0.1, port: 3250
+    at Timeout.<anonymous> (D:\ProjectTest\majiang\babykylin_mahjong_src\servers\game-server\node_modules\pomelo\node_modules\pomelo-rpc\lib\rpc-client\mailboxes\mqtt-mailbox.js:257:16)
+    at ontimeout (timers.js:469:11)
+    at tryOnTimeout (timers.js:304:5)
+    at Timer.listOnTimeout (timers.js:264:5)
+[2017-11-08 10:19:25.501] [ERROR] pomelo-rpc - [31m[failprocess] [39mrpc failed with error, remote server: cluster-server-area-0, msg: {"namespace":"sys","serverType":"area","service":"msgRemote","method":"forwardMessage","args":[{"id":10,"type":0,"compressRoute":1,"route":"area.roomHandler.zhuoGui","body":{"id":10000,"index":0},"compressGzip":0},{"id":5,"frontendId":"cluster-server-connector-0","uid":10000,"settings":{"platform":"default","MAC":"1504755975115","rawUid":"1504755975115","deviceId":"123456","playerName":"子车好运","playerId":10000}}]}, error code: 5
+[2017-11-08 10:21:33.216] [ERROR] pomelo-rpc - [31m[mqtt-mailbox] [39mrpc cluster-server-connector-0 callback timeout 30000, remote server 11 host: 127.0.0.1, port: 3250
+[2017-11-08 10:21:33.216] [ERROR] pomelo-rpc - [31m[MailStation] [39m[pomelo-rpc] fail to send message Error: rpc cluster-server-connector-0 callback timeout 30000, remote server 11 host: 127.0.0.1, port: 3250
+    at Timeout.<anonymous> (D:\ProjectTest\majiang\babykylin_mahjong_src\servers\game-server\node_modules\pomelo\node_modules\pomelo-rpc\lib\rpc-client\mailboxes\mqtt-mailbox.js:257:16)
+    at ontimeout (timers.js:469:11)
+    at tryOnTimeout (timers.js:304:5)
+    at Timer.listOnTimeout (timers.js:264:5)
+[2017-11-08 10:21:33.217] [ERROR] pomelo-rpc - [31m[failprocess] [39mrpc failed with error, remote server: cluster-server-area-0, msg: {"namespace":"sys","serverType":"area","service":"msgRemote","method":"forwardMessage","args":[{"id":9,"type":0,"compressRoute":1,"route":"area.roomHandler.zhuoGui","body":{"id":10000,"index":0},"compressGzip":0},{"id":1,"frontendId":"cluster-server-connector-0","uid":10000,"settings":{"platform":"default","MAC":"1504755975115","rawUid":"1504755975115","deviceId":"123456","playerName":"子车好运","playerId":10000}}]}, error code: 5
+[2017-11-08 10:23:54.143] [ERROR] pomelo-rpc - [31m[mqtt-mailbox] [39mrpc cluster-server-connector-0 callback timeout 30000, remote server 11 host: 127.0.0.1, port: 3250
+[2017-11-08 10:23:54.144] [ERROR] pomelo-rpc - [31m[MailStation] [39m[pomelo-rpc] fail to send message Error: rpc cluster-server-connector-0 callback timeout 30000, remote server 11 host: 127.0.0.1, port: 3250
+    at Timeout.<anonymous> (D:\ProjectTest\majiang\babykylin_mahjong_src\servers\game-server\node_modules\pomelo\node_modules\pomelo-rpc\lib\rpc-client\mailboxes\mqtt-mailbox.js:257:16)
+    at ontimeout (timers.js:469:11)
+    at tryOnTimeout (timers.js:304:5)
+    at Timer.listOnTimeout (timers.js:264:5)
+[2017-11-08 10:23:54.144] [ERROR] pomelo-rpc - [31m[failprocess] [39mrpc failed with error, remote server: cluster-server-area-0, msg: {"namespace":"sys","serverType":"area","service":"msgRemote","method":"forwardMessage","args":[{"id":9,"type":0,"compressRoute":1,"route":"area.roomHandler.zhuoGui","body":{"id":10000,"index":0},"compressGzip":0},{"id":1,"frontendId":"cluster-server-connector-0","uid":10000,"settings":{"platform":"default","MAC":"1504755975115","rawUid":"1504755975115","deviceId":"123456","playerName":"子车好运","playerId":10000}}]}, error code: 5
+[2017-11-08 11:07:17.106] [ERROR] pomelo-rpc - [31m[mqtt-mailbox] [39mrpc cluster-server-connector-0 callback timeout 30000, remote server 14 host: 127.0.0.1, port: 3250
+[2017-11-08 11:07:17.107] [ERROR] pomelo-rpc - [31m[MailStation] [39m[pomelo-rpc] fail to send message Error: rpc cluster-server-connector-0 callback timeout 30000, remote server 14 host: 127.0.0.1, port: 3250
+    at Timeout.<anonymous> (D:\ProjectTest\majiang\babykylin_mahjong_src\servers\game-server\node_modules\pomelo\node_modules\pomelo-rpc\lib\rpc-client\mailboxes\mqtt-mailbox.js:257:16)
+    at ontimeout (timers.js:469:11)
+    at tryOnTimeout (timers.js:304:5)
+    at Timer.listOnTimeout (timers.js:264:5)
+[2017-11-08 11:07:17.107] [ERROR] pomelo-rpc - [31m[failprocess] [39mrpc failed with error, remote server: cluster-server-area-0, msg: {"namespace":"sys","serverType":"area","service":"msgRemote","method":"forwardMessage","args":[{"id":11,"type":0,"compressRoute":1,"route":"area.roomHandler.zhuoGui","body":{"id":10000,"index":0},"compressGzip":0},{"id":1,"frontendId":"cluster-server-connector-0","uid":10000,"settings":{"platform":"default","MAC":"1504755975115","rawUid":"1504755975115","deviceId":"123456","playerName":"子车好运","playerId":10000}}]}, error code: 5
+[2017-11-08 11:24:58.396] [ERROR] pomelo-rpc - [31m[mqtt-mailbox] [39mrpc cluster-server-connector-0 callback timeout 30000, remote server 31 host: 127.0.0.1, port: 3250
+[2017-11-08 11:24:58.396] [ERROR] pomelo-rpc - [31m[MailStation] [39m[pomelo-rpc] fail to send message Error: rpc cluster-server-connector-0 callback timeout 30000, remote server 31 host: 127.0.0.1, port: 3250
+    at Timeout.<anonymous> (D:\ProjectTest\majiang\babykylin_mahjong_src\servers\game-server\node_modules\pomelo\node_modules\pomelo-rpc\lib\rpc-client\mailboxes\mqtt-mailbox.js:257:16)
+    at ontimeout (timers.js:469:11)
+    at tryOnTimeout (timers.js:304:5)
+    at Timer.listOnTimeout (timers.js:264:5)
+[2017-11-08 11:24:58.396] [ERROR] pomelo-rpc - [31m[failprocess] [39mrpc failed with error, remote server: cluster-server-area-0, msg: {"namespace":"sys","serverType":"area","service":"msgRemote","method":"forwardMessage","args":[{"id":10,"type":0,"compressRoute":1,"route":"area.roomHandler.zhuoGui","body":{"id":10000,"index":0},"compressGzip":0},{"id":4,"frontendId":"cluster-server-connector-0","uid":10000,"settings":{"platform":"default","MAC":"1504755975115","rawUid":"1504755975115","deviceId":"123456","playerName":"子车好运","playerId":10000}}]}, error code: 5
+[2017-11-08 11:49:18.139] [ERROR] pomelo-rpc - [31m[mqtt-mailbox] [39mrpc cluster-server-connector-0 callback timeout 30000, remote server 11 host: 127.0.0.1, port: 3250
+[2017-11-08 11:49:18.139] [ERROR] pomelo-rpc - [31m[MailStation] [39m[pomelo-rpc] fail to send message Error: rpc cluster-server-connector-0 callback timeout 30000, remote server 11 host: 127.0.0.1, port: 3250
+    at Timeout.<anonymous> (D:\ProjectTest\majiang\babykylin_mahjong_src\servers\game-server\node_modules\pomelo\node_modules\pomelo-rpc\lib\rpc-client\mailboxes\mqtt-mailbox.js:257:16)
+    at ontimeout (timers.js:469:11)
+    at tryOnTimeout (timers.js:304:5)
+    at Timer.listOnTimeout (timers.js:264:5)
+[2017-11-08 11:49:18.140] [ERROR] pomelo-rpc - [31m[failprocess] [39mrpc failed with error, remote server: cluster-server-area-0, msg: {"namespace":"sys","serverType":"area","service":"msgRemote","method":"forwardMessage","args":[{"id":9,"type":0,"compressRoute":1,"route":"area.roomHandler.zhuoGui","body":{"id":10000,"index":0},"compressGzip":0},{"id":1,"frontendId":"cluster-server-connector-0","uid":10000,"settings":{"platform":"default","MAC":"1504755975115","rawUid":"1504755975115","deviceId":"123456","playerName":"子车好运","playerId":10000}}]}, error code: 5
+[2017-11-08 14:50:54.793] [ERROR] pomelo-rpc - [31m[mqtt-mailbox] [39mrpc cluster-server-connector-0 callback timeout 30000, remote server 57 host: 127.0.0.1, port: 3250
+[2017-11-08 14:50:54.794] [ERROR] pomelo-rpc - [31m[MailStation] [39m[pomelo-rpc] fail to send message Error: rpc cluster-server-connector-0 callback timeout 30000, remote server 57 host: 127.0.0.1, port: 3250
+    at Timeout.<anonymous> (D:\ProjectTest\majiang\babykylin_mahjong_src\servers\game-server\node_modules\pomelo\node_modules\pomelo-rpc\lib\rpc-client\mailboxes\mqtt-mailbox.js:257:16)
+    at ontimeout (timers.js:469:11)
+    at tryOnTimeout (timers.js:304:5)
+    at Timer.listOnTimeout (timers.js:264:5)
+[2017-11-08 14:50:54.794] [ERROR] pomelo-rpc - [31m[failprocess] [39mrpc failed with error, remote server: cluster-server-area-0, msg: {"namespace":"sys","serverType":"area","service":"msgRemote","method":"forwardMessage","args":[{"id":10,"type":0,"compressRoute":1,"route":"area.roomHandler.zhuoGui","body":{"id":10000,"index":0},"compressGzip":0},{"id":7,"frontendId":"cluster-server-connector-0","uid":10000,"settings":{"platform":"default","MAC":"1504755975115","rawUid":"1504755975115","deviceId":"123456","playerName":"子车好运","playerId":10000}}]}, error code: 5

@@ -3,7 +3,8 @@
  */
 var _ = require('underscore');
 // var Player = require('./Player');
-var roomMgr = require("./roommgr");
+var roomMgr = require("./roommgr"),
+    logger = require('pomelo-logger').getLogger(__filename);
 // var userMgr = require("./usermgr");
 var games = {};
 var Zhuogui = function (room) {
@@ -47,11 +48,11 @@ pro.zhangui = function (seatIndex) {
     }
     this.countBySeat[seatIndex] = memberGuis;
     this.room.pushAllRoomMember('room.zhangui', {seat: seatIndex, craps: memberGuis});
-    if(this.countBySeat.length == this.players.length){
+    if(_.values(this.countBySeat).length == this.players.length){
         this.room.pushAllRoomMember('room.zhuogui', {trun: this.trun});
     }
 };
-pro.addDrankCnt = function (seatIndex, cnt) {
+pro.addDrankCnt = function(seatIndex, cnt) {
     var hasDrank = this.thisTrunDrank[seatIndex];
     if (hasDrank >= this.maxDrank) {
         return;
@@ -64,7 +65,8 @@ pro.addDrankCnt = function (seatIndex, cnt) {
     }
 }
 //
-function shangjiahe(seatIndex) {
+pro.shangjiahe = function(seatIndex) {
+    logger.debug("#####players: %j",this.players);
     if (seatIndex == 0) {
         this.addDrankCnt(this.players.length - 1, this.di);
     } else {
@@ -72,7 +74,8 @@ function shangjiahe(seatIndex) {
     }
 }
 
-function xiajiahe(seatIndex) {
+pro.xiajiahe = function(seatIndex) {
+    logger.debug("#####players: %j",this.players);
     if (seatIndex == this.players.length - 1) {
         this.addDrankCnt(0, this.di);
     } else {
@@ -80,17 +83,29 @@ function xiajiahe(seatIndex) {
     }
 }
 
-function zijhe(seatIndex) {
+pro.zijhe = function(seatIndex) {
     this.addDrankCnt(seatIndex, this.di);
 }
-function calGuiHe(crap) {
+pro.calGuiHe = function(crap) {
     var keys = _.keys(this.countBySeat);
+    var self = this;
+    // 摇到了几个鬼
+    var guis = [];
+    _.each(this.gui,function (gui) {
+           if(crap == gui){
+               guis.push(gui);
+           }
+    });
+    logger.debug("calGuiHe: this.gui:%j,guis:%j,crap:%s,di:%s,this.countBySeat:%j",this.gui,guis,crap, self.di,self.countBySeat);
     _.each(keys,function (data) {
-        var craps = this.countBySeat[data];
-        for (var i = 0; i < craps.length; i++) {
-            if (craps[i] == crap) {
-                this.addDrankCnt(data, this.di);
+        var craps = self.countBySeat[data];
+        for (var i = 0; i < guis.length; i++) {
+            for (var j=0;j< craps.length;j++){
+                if (guis[i] == craps[j]) {
+                    self.addDrankCnt(data, self.di);
+                }
             }
+
         }
     })
 }
@@ -109,29 +124,31 @@ pro.shoot = function (seatIndex) {
     // 清空
     this.thisShootDrank = {};
     var craps = [];
+    var self = this;
     var totalValue = 0;
     for (var i = 0; i < this.guiNum; i++) {
         var gui = _.random(1, 6);
         craps.push(gui);
         totalValue +=gui;
     }
+    logger.debug("#####2players: %j",this.players);
     // 计算
     // var totalValue = crap1 + crap2;
     switch (totalValue) {
         case 7:
-            shangjiahe(seatIndex);
+            this.shangjiahe(seatIndex);
             break;
         case 8:
-            xiajiahe(seatIndex);
+            this.xiajiahe(seatIndex);
             break;
         case 9:
-            zijhe(seatIndex);
+            this.zijhe(seatIndex);
             break;
         default :
             break;
     }
     _.each(craps,function (crap) {
-        calGuiHe(crap);
+        self.calGuiHe(crap);
     })
     // calGuiHe(crap1);
     // calGuiHe(crap2);
@@ -144,7 +161,7 @@ pro.shoot = function (seatIndex) {
         this.trun++;
     }
     this.room.pushAllRoomMember('room.zhuogui', {trun: this.trun});
-    this.room.pushAllRoomMember('room.dranks', {dranks: this.thisShootDrank});
+    this.room.pushAllRoomMember('room.dranks', {dranks: this.thisShootDrank,craps:craps});
     // return this.thisShootDrank;
 }
 

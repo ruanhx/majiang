@@ -253,9 +253,9 @@ cc.Class({
 
 
         var conf = {
-            di:1,
+            di:0.5,
             gui:2,
-            maxCnt:5,
+            maxCnt:3,
 
         };
 

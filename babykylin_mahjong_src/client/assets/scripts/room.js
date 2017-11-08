@@ -1,4 +1,4 @@
-
+var async = require('async');
 cc.Class({
     extends: cc.Component,
 
@@ -52,6 +52,7 @@ cc.Class({
                     guiString = guiString + "     " + data.gui[1];
                 }
                 self.guiText.getComponent(cc.Label).string = "本轮鬼:" + guiString;
+                cc.log("zhanGuiButton.active");
                 self.zhanGuiButton.active = true;
             });
         });
@@ -90,35 +91,54 @@ cc.Class({
                 }
             }
 
-            // self.playShoot(data.craps,function(){
-                
-
-            // });
-
-            
         });
 
         pomelo.on('room.zhuogui',function(data){
             cc.log("zhuogui: %j",data);
-            this.readyTitle.getComponent(cc.Label).string = "捉鬼开始~";
+            self.readyTitle.getComponent(cc.Label).string = "捉鬼开始~";
             if(self.index == data.trun){
                 self.zhuoGuiButton.active = true;
             }else if(self.zhuoGuiButton.active == true){
                 self.zhuoGuiButton.active = false;
             }
         });
-
+        // 捉鬼
         pomelo.on('room.dranks',function(data){
             cc.log("room.dranks: %j",data);
-            var keys = _.keys(data.dranks);
-            _.each(keys,function(key){
-                var player =  self.memberBySeat[key];
-                var drank = mySelf.getChildByName('drank');
-                drank.active = true;
-                var drankLabel = drank.getChildByName('bei');
-                drankLabel.getComponent(cc.Label).string = data.dranks[key] + "杯";
-
-            })
+            async.series({
+                function(callback){
+                    self.playShoot(data.craps,callback);
+                    // callback(null, 1);
+                },
+                function(callback){
+                    self.zhanGuiButton.active = false;
+                    var keys = _.keys(data.dranks);
+                    _.each(keys,function(key){
+                        var player =  self.memberBySeat[key];
+                        cc.log("room.dranks2:%j,%s,%j",self.memberBySeat,key,keys);
+                        var drank = player.getChildByName('drank');
+                        drank.active = true;
+                        var drankLabel = drank.getChildByName('bei');
+                        drankLabel.getComponent(cc.Label).string = data.dranks[key] + "杯";
+                    })
+                    callback(null, 2);
+                }
+            },function(err, results) {
+                console.log(results);
+            });
+            // self.playShoot(data.craps,function(){
+            //     self.zhanGuiButton.active = false;
+            //     var keys = _.keys(data.dranks);
+            //     _.each(keys,function(key){
+            //         var player =  self.memberBySeat[key];
+            //         cc.log("room.dranks2:%j,%s,%j",self.memberBySeat,key,keys);
+            //         var drank = player.getChildByName('drank');
+            //         drank.active = true;
+            //         var drankLabel = drank.getChildByName('bei');
+            //         drankLabel.getComponent(cc.Label).string = data.dranks[key] + "杯";
+            //     })
+            // });
+            
         });
     },
 
@@ -136,7 +156,7 @@ cc.Class({
             }
         })
     },
-
+    // 占鬼按钮
     onZhanGuiButton: function(){
         var self = this;
         pomelo.request('area.roomHandler.zhanGui',{id:cc.vv.userMgr.roomData,index:self.index},function(res){
@@ -159,6 +179,11 @@ cc.Class({
 
     onZhuoGuiButton: function(){
         var self = this;
+        var values = _.values(self.memberList);
+        _.each(values,function(num){
+            var drank = num.getChildByName('drank');
+            drank.active = false;
+        });
         pomelo.request('area.roomHandler.zhuoGui',{id:cc.vv.userMgr.roomData,index:self.index},function(res){
             cc.log("zhuoGui: %j",res);
             if(res.code ==200){
