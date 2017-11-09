@@ -46,6 +46,7 @@ cc.Class({
                 ready.active = false;
             });
             self.guis = data.gui;
+            
             self.playShoot(data.gui,function(){
                 var guiString = " " + data.gui[0];
                 if(data.gui.length ==2){
@@ -105,40 +106,29 @@ cc.Class({
         // 捉鬼
         pomelo.on('room.dranks',function(data){
             cc.log("room.dranks: %j",data);
-            async.series({
-                function(callback){
-                    self.playShoot(data.craps,callback);
-                    // callback(null, 1);
-                },
-                function(callback){
-                    self.zhanGuiButton.active = false;
-                    var keys = _.keys(data.dranks);
-                    _.each(keys,function(key){
-                        var player =  self.memberBySeat[key];
-                        cc.log("room.dranks2:%j,%s,%j",self.memberBySeat,key,keys);
-                        var drank = player.getChildByName('drank');
-                        drank.active = true;
-                        var drankLabel = drank.getChildByName('bei');
-                        drankLabel.getComponent(cc.Label).string = data.dranks[key] + "杯";
-                    })
-                    callback(null, 2);
-                }
-            },function(err, results) {
-                console.log(results);
+            // 重置喝酒标识
+            var values = _.values(self.memberList);
+            _.each(values,function(num){
+                var drank = num.getChildByName('drank');
+                drank.active = false;
             });
-            // self.playShoot(data.craps,function(){
-            //     self.zhanGuiButton.active = false;
-            //     var keys = _.keys(data.dranks);
-            //     _.each(keys,function(key){
-            //         var player =  self.memberBySeat[key];
-            //         cc.log("room.dranks2:%j,%s,%j",self.memberBySeat,key,keys);
-            //         var drank = player.getChildByName('drank');
-            //         drank.active = true;
-            //         var drankLabel = drank.getChildByName('bei');
-            //         drankLabel.getComponent(cc.Label).string = data.dranks[key] + "杯";
-            //     })
-            // });
-            
+
+            var craps = data.craps;
+            var dranks = data.dranks;
+            self.playShoot(craps,function(){
+                cc.log("room.dranks3: %j,%j",craps,dranks);
+                self.zhanGuiButton.active = false;
+                var keys = _.keys(dranks);
+                _.each(keys,function(key){
+                    var player =  self.memberBySeat[key];
+                    cc.log("room.dranks2:%j,%s,%j",self.memberBySeat,key,keys);
+                    var drank = player.getChildByName('drank');
+                    drank.active = true;
+                    var drankLabel = drank.getChildByName('bei');
+                    drankLabel.getComponent(cc.Label).string = dranks[key] + "杯";
+                })
+            });
+
         });
     },
 
@@ -179,11 +169,7 @@ cc.Class({
 
     onZhuoGuiButton: function(){
         var self = this;
-        var values = _.values(self.memberList);
-        _.each(values,function(num){
-            var drank = num.getChildByName('drank');
-            drank.active = false;
-        });
+        
         pomelo.request('area.roomHandler.zhuoGui',{id:cc.vv.userMgr.roomData,index:self.index},function(res){
             cc.log("zhuoGui: %j",res);
             if(res.code ==200){
@@ -192,7 +178,8 @@ cc.Class({
         })
     },
 
-    playShoot: function(guis,callback){
+    playShoot: function(guis,cb){
+        cc.log("playShoot###");
         var self = this;
         this.dice1.active = false;
         this.shoot.active = true;
@@ -202,15 +189,17 @@ cc.Class({
         
         // 设置动画循环次数为2次
         animState.repeatCount = 5;
-        
-        anim.on('finished', function(){
+        var onFinish = function(){
             self.shoot.active = false;
             self.dice1.active = true;
             cc.loader.loadRes("textures/zhuogui/"+guis[0]+".png", cc.SpriteFrame, function (err, spriteFrame) {
                 self.dice1.getComponent(cc.Sprite).spriteFrame = spriteFrame;
-                callback();
+                anim.off('finished',onFinish,self);
+                cb();
             });
-        },this);
+        }
+        anim.on('finished', onFinish,this);
+        // anim.off('finished',{},this);
         if(guis.length ==2){
             var shoot2 = this.node.getChildByName('shootAni2');
             shoot2.active = true;
@@ -220,7 +209,7 @@ cc.Class({
             anim2.on('finished', function(){
                 shoot2.active = false;
                 self.dice2.active = true;
-                cc.loader.loadRes("textures/zhuogui/"+guis[1]+".png", cc.SpriteFrame, function (err, spriteFrame) {
+                cc.loader.loadRes("textures/zhuogui/"+guis[1], cc.SpriteFrame, function (err, spriteFrame) {
                     self.dice2.getComponent(cc.Sprite).spriteFrame = spriteFrame;
                 });
             },this);
@@ -232,7 +221,52 @@ cc.Class({
     },
 
     onbuttonTest: function () {
-        this.addChild({memberName:this.index + "_uuu",memberId:10010,isReady:false})
+        var self = this;
+        var guis = [];
+        guis.push(2);
+        guis.push(3);
+        async.series({
+            one: function(callback){
+                self.playShoot(guis,function(){
+                    cc.log("onbuttonTest###");
+                    callback(null,1);
+                });
+                // callback(null, 1);
+            },
+            two: function(callback){
+                var guiString = " " + guis[0];
+                if(guis.length ==2){
+                    guiString = guiString + "     " + guis[1];
+                }
+                self.guiText.getComponent(cc.Label).string = "本轮鬼:" + guiString;
+                
+                self.zhanGuiButton.active = true;
+                callback(null, 2);
+            }
+        },function(err, results) {
+            console.log(results);
+        });
+        // async.waterfall({
+        //     function(callback){
+        //         self.playShoot(guis,function(){
+        //             cc.log("onbuttonTest###");
+        //             callback(null,1);
+        //         });
+        //     },
+        //     function(arg1,callback){
+        //         var guiString = " " + guis[0];
+        //         if(guis.length ==2){
+        //             guiString = guiString + "     " + guis[1];
+        //         }
+        //         self.guiText.getComponent(cc.Label).string = "本轮鬼:" + guiString;
+                
+        //         self.zhanGuiButton.active = true;
+        //         callback(null,2);
+        //     }
+        // },function(err, results) {
+        //     console.log(results);
+        // });
+
     },
 
     onSort : function(){

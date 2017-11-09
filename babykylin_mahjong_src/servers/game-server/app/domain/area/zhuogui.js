@@ -53,16 +53,29 @@ pro.zhangui = function (seatIndex) {
     }
 };
 pro.addDrankCnt = function(seatIndex, cnt) {
-    var hasDrank = this.thisTrunDrank[seatIndex];
+    var hasDrank = 0;
+    var thisTrunHasDrank = this.thisTrunDrank[seatIndex];
+    if(thisTrunHasDrank){
+        hasDrank = thisTrunHasDrank;
+    }
     if (hasDrank >= this.maxDrank) {
         return;
     }
+    var limitCnt = this.maxDrank - hasDrank;
+    var addCnt = Math.min(limitCnt,cnt);
+    if(!thisTrunHasDrank){
+        this.thisTrunDrank[seatIndex] = addCnt;
+    }else {
+        this.thisTrunDrank[seatIndex] = thisTrunHasDrank + addCnt;
+    }
     var drankCnt = this.thisShootDrank[seatIndex];
     if (!drankCnt) {
-        this.thisShootDrank[seatIndex] = cnt;
+        this.thisShootDrank[seatIndex] = addCnt;
     } else {
-        this.thisShootDrank[seatIndex] = drankCnt + cnt;
+        this.thisShootDrank[seatIndex] = drankCnt + addCnt;
     }
+
+
 }
 //
 pro.shangjiahe = function(seatIndex) {
@@ -110,13 +123,26 @@ pro.calGuiHe = function(crap) {
     })
 }
 
+pro.hasDrankLimit = function () {
+    var values = _.values(this.thisTrunDrank);
+    var self = this;
+    var hasDrankLimit = _.find(values,function (num) {
+        return num == self.maxDrank;
+    });
+    return hasDrankLimit;
+}
+
 pro.addTrun = function () {
-    this.trun++;
+    if (!this.thisShootDrank || _.values(this.thisShootDrank).length == 0||this.hasDrankLimit()) {
+        this.trun++;
+        this.thisTrunDrank = {};
+    }
+    // this.trun++;
     if (this.trun > this.players.length) {
         this.pushAll('trunEnd', {trun: this.trun});
         return;
     }
-    this.thisTrunDrank = {};
+
     this.pushAll('trunUpdate', {trun: this.trun});
 }
 
@@ -157,9 +183,12 @@ pro.shoot = function (seatIndex) {
     // }
     // this.room.pushAllRoomMember('shootCrap', {trun: this.trun});
 
-    if (!this.thisShootDrank || this.thisShootDrank.length == 0) {
+    if (!this.thisShootDrank || _.values(this.thisShootDrank).length == 0) {
         this.trun++;
     }
+    // if(this.trun>){
+    //
+    // }
     this.room.pushAllRoomMember('room.zhuogui', {trun: this.trun});
     this.room.pushAllRoomMember('room.dranks', {dranks: this.thisShootDrank,craps:craps});
     // return this.thisShootDrank;

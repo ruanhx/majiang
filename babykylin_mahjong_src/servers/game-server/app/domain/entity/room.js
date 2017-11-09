@@ -70,10 +70,10 @@ pro.pushAllRoomMember = function (route, msg) {
     _.each(memberList, function (playerId) {
         var player = area.getPlayer(playerId);
         if (player) {
-            logger.debug("pushAllRoomMember %s,%s,%j",playerId,route, msg);
+            // logger.debug("pushAllRoomMember %s,%s,%j",playerId,route, msg);
             player.pushMsg(route, msg);
         }else {
-            logger.debug("pushAllRoomMember error %s",playerId);
+            // logger.debug("pushAllRoomMember error %s",playerId);
         }
     });
 };
