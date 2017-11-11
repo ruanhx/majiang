@@ -160,3 +160,29 @@ pro.zhuoGui = function (msg, session, next) {
     room.games.shoot(msg.index);
     return next(null,{code:Code.OK});
 };
+
+pro.checkDrank =  function (msg, session, next) {
+    var player = area.getPlayer(session.get('playerId'));
+    var room = roomMgr.getInstance().getRoomById(msg.id);
+    // 房间不存在
+    if(!room){
+        return next(null,{code:Code.ROOM.ROOM_IS_NOT_EXIST});
+    }
+    room.games.checkIsDrank();
+    return next(null,{code:Code.OK});
+}
+
+pro.chooseDrank = function (msg, session, next) {
+    var player = area.getPlayer(session.get('playerId'));
+    var room = roomMgr.getInstance().getRoomById(msg.id);
+    // 房间不存在
+    if(!room){
+        return next(null,{code:Code.ROOM.ROOM_IS_NOT_EXIST});
+    }
+    if(!msg.index){
+        return next(null,{code:Code.ROOM.CHOOSE_ONLY_ONE});
+    }
+
+    room.games.choosePlayerDrank(msg.index);
+    return next(null,{code:Code.OK});
+}

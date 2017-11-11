@@ -20,6 +20,8 @@ cc.Class({
         this.readyTitle = this.node.getChildByName('readyTitle');
         this.zhanGuiButton = this.node.getChildByName('zhanGuiButton');
         this.zhuoGuiButton = this.node.getChildByName('zhuoGuiButton');
+        this.checkDrankBtn = this.node.getChildByName('checkDrankBtn');
+        this.chooseButton = this.node.getChildByName('chooseButton');
         this.dice1 = this.node.getChildByName('dice1');
         this.dice2 = this.node.getChildByName('dice2');
         this.shoot = this.node.getChildByName('shootAni');
@@ -106,18 +108,19 @@ cc.Class({
         // 捉鬼
         pomelo.on('room.dranks',function(data){
             cc.log("room.dranks: %j",data);
-            // 重置喝酒标识
-            var values = _.values(self.memberList);
-            _.each(values,function(num){
-                var drank = num.getChildByName('drank');
-                drank.active = false;
-            });
 
+            
+            self.zhuoGuiButton.active = false;
+            // 房主显示清酒按钮
+            if(self.ownerId == cc.vv.userMgr.userId){
+            self.checkDrankBtn.active = true;
+            }
             var craps = data.craps;
             var dranks = data.dranks;
             self.playShoot(craps,function(){
                 cc.log("room.dranks3: %j,%j",craps,dranks);
                 self.zhanGuiButton.active = false;
+                self.readyTitle.getComponent(cc.Label).string = "等待房主确认是否有欠酒~";
                 var keys = _.keys(dranks);
                 _.each(keys,function(key){
                     var player =  self.memberBySeat[key];
@@ -128,8 +131,31 @@ cc.Class({
                     drankLabel.getComponent(cc.Label).string = dranks[key] + "杯";
                 })
             });
-
         });
+        // 结束
+        pomelo.on('room.zhuoguiEnd',function(data){
+            
+            self.readyTitle.getComponent(cc.Label).string = "游戏结束，喝酒量统计~";
+            var keys = _.keys(data.totalDranks);
+            _.each(keys,function(key){
+                var player =  self.memberBySeat[key];
+                var drank = player.getChildByName('drank');
+                drank.active = true;
+                var drankLabel = drank.getChildByName('bei');
+                drankLabel.getComponent(cc.Label).string = data.totalDranks[key] + "杯";
+            })
+        });
+
+        // 对子
+        pomelo.on('room.pair',function(data){
+            self.zhuoGuiButton.active = false;
+            self.playShoot(data.craps,function(){
+                self.zhanGuiButton.active = false;
+                self.readyTitle.getComponent(cc.Label).string = "指定一个人喝酒~";
+                self.chooseButton.active = true;
+            });
+        })
+
     },
 
 
@@ -140,6 +166,7 @@ cc.Class({
             res.info.member.forEach(function(data) {
                 self.addChild(data);
             }, this);
+            self.ownerId = res.info.ownerId;
             if(res.info.ownerId == cc.vv.userMgr.userId){
                 cc.log("res.ownerId: %s ,%s",res,cc.vv.userMgr.userId);
                 self.beginBtn.active = true;
@@ -156,6 +183,27 @@ cc.Class({
             self.dice1.active = false;
         })
     },
+    // 指定玩家喝
+    onChooseButton: function(){
+        var self = this;
+        pomelo.request('area.roomHandler.chooseDrank',{id:cc.vv.userMgr.roomData,index:self.choosePlayerId},function(res){
+            cc.log("area.roomHandler.chooseDrank: %j",res);
+            if(res.code == 105){
+                cc.vv.alert.show("提示", "只能指定一个玩家");
+            }
+            if(res.code == 200){
+                var values = _.values(self.memberList);
+                _.each(values,function(num){
+                    var otherChoose = num.getChildByName('choose');
+                    if(otherChoose.active){
+                       otherChoose.active = false;
+                    }
+                });
+                self.chooseButton.active = false;
+            }
+            
+        })
+    },
 
     onBeginButton: function(){
         var self = this;
@@ -164,6 +212,23 @@ cc.Class({
             if(res.code ==200){
                 self.beginBtn.active = false;
             }
+        })
+    },
+    //确认是否清酒
+    onCheckDrankButton: function(){
+        var self = this;
+        pomelo.request('area.roomHandler.checkDrank',{id:cc.vv.userMgr.roomData},function(res){
+            cc.log("checkDrank: %j",res);
+            if(res.code == 200){
+                self.checkDrankBtn.active = false;
+                // 重置喝酒标识
+            var values = _.values(self.memberList);
+            _.each(values,function(num){
+                var drank = num.getChildByName('drank');
+                drank.active = false;
+            });
+            }
+            
         })
     },
 
@@ -246,26 +311,6 @@ cc.Class({
         },function(err, results) {
             console.log(results);
         });
-        // async.waterfall({
-        //     function(callback){
-        //         self.playShoot(guis,function(){
-        //             cc.log("onbuttonTest###");
-        //             callback(null,1);
-        //         });
-        //     },
-        //     function(arg1,callback){
-        //         var guiString = " " + guis[0];
-        //         if(guis.length ==2){
-        //             guiString = guiString + "     " + guis[1];
-        //         }
-        //         self.guiText.getComponent(cc.Label).string = "本轮鬼:" + guiString;
-                
-        //         self.zhanGuiButton.active = true;
-        //         callback(null,2);
-        //     }
-        // },function(err, results) {
-        //     console.log(results);
-        // });
 
     },
 
@@ -292,9 +337,28 @@ cc.Class({
             var ready = newNode.getChildByName('ready');
             ready.active = true;
         }
-        
+        var self = this;
         // newNode.setZOrder(this.index);
-        
+        // 点击事件
+        newNode.on(cc.Node.EventType.TOUCH_END, function (event) {
+             console.log('touch down');
+             var values = _.values(self.memberList);
+             _.each(values,function(num){
+                 var otherChoose = num.getChildByName('choose');
+                 if(otherChoose.active){
+                    otherChoose.active = false;
+                 }
+             });
+             var choose = newNode.getChildByName('choose');
+             console.log('touch down index:%s',newNode.getLocalZOrder());
+             self.choosePlayerId = newNode.getLocalZOrder();
+             if(choose.active){
+                choose.active = false;
+             }else{
+                choose.active = true;
+             }
+             
+        }, this);
         this.memberList[data.memberId] = newNode;
         this.memberBySeat[data.index] = newNode;
         this.prepare.addChild(newNode,data.index);

@@ -11,6 +11,7 @@ module.exports = {
         ROOM_IS_IN_ROOM:102,
         ROOM_IS_NOT_ALL_READY:103,
         ROOM_IS_ROOM_FULL:104,
+        CHOOSE_ONLY_ONE:105,
     },
 
     CONNECTOR: {
