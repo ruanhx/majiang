@@ -2,3 +2,6 @@
 [2017-10-25 09:18:45.515] [INFO] crash-log - [32m[D:\ProjectTest\majiang\babykylin_mahjong_src\servers\game-server\node_modules\pomelo\lib\master\master.js] [39m[connector],[cluster-server-connector-0],[1508894325515],[disconnect]
 [2017-10-25 09:18:45.515] [INFO] crash-log - [32m[D:\ProjectTest\majiang\babykylin_mahjong_src\servers\game-server\node_modules\pomelo\lib\master\master.js] [39m[gate],[gate-server-1],[1508894325515],[disconnect]
 [2017-10-25 09:18:45.515] [INFO] crash-log - [32m[D:\ProjectTest\majiang\babykylin_mahjong_src\servers\game-server\node_modules\pomelo\lib\master\master.js] [39m[master],[master-server-1],[1508894325515],[disconnect]
+[2017-11-16 20:52:35.270] [INFO] crash-log - [32m[D:\ProjectTest\majiang\babykylin_mahjong_src\servers\game-server\node_modules\pomelo\lib\master\master.js] [39m[gate],[gate-server-1],[1510836755270],[disconnect]
+[2017-11-16 20:52:35.274] [INFO] crash-log - [32m[D:\ProjectTest\majiang\babykylin_mahjong_src\servers\game-server\node_modules\pomelo\lib\master\master.js] [39m[connector],[cluster-server-connector-0],[1510836755274],[disconnect]
+[2017-11-16 20:52:35.468] [INFO] crash-log - [32m[D:\ProjectTest\majiang\babykylin_mahjong_src\servers\game-server\node_modules\pomelo\lib\master\master.js] [39m[area],[cluster-server-area-0],[1510836755468],[disconnect]

@@ -701,7 +701,7 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "珍爱生活\n远离赌博",
+    "_N$string": "珍爱生活\n远离酗酒",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
@@ -23834,7 +23834,7 @@
     },
     "_children": [],
     "_tag": -1,
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 672
@@ -24541,7 +24541,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 160,
+      "width": 80,
       "height": 40
     },
     "_rotationX": 0,
@@ -24576,7 +24576,7 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "血战到底",
+    "_N$string": "捉鬼",
     "_N$horizontalAlign": 0,
     "_N$verticalAlign": 0,
     "_N$fontFamily": "Arial",
@@ -24615,8 +24615,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 963.9,
-      "height": 175
+      "width": 0,
+      "height": 25
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -24650,7 +24650,7 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "1、游戏人数:4人\n2、游戏道具:筒条万 共108张\n3、玩家胡牌后，牌局继续进行。直到三家胡牌，或者牌墙抓完\n4、牌局开始时，需要玩家选择定缺的花色。胡牌时，手牌最多二色，否则不可以胡牌。\n5、流局时查大叫，未叫牌的玩家，要赔偿已叫牌玩家（不含胡牌玩家）最大番数\n6、坐庄规则：上一局最先胡牌的当庄；一炮多响，点炮者当庄；流局，庄家下家当庄。\n",
+    "_N$string": "",
     "_N$horizontalAlign": 0,
     "_N$verticalAlign": 0,
     "_N$fontFamily": "Arial",
@@ -24689,7 +24689,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 160,
+      "width": 0,
       "height": 40
     },
     "_rotationX": 0,
@@ -24724,7 +24724,7 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "血流成河",
+    "_N$string": "",
     "_N$horizontalAlign": 0,
     "_N$verticalAlign": 0,
     "_N$fontFamily": "Arial",
@@ -24763,8 +24763,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1088.9,
-      "height": 200
+      "width": 0,
+      "height": 25
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -24798,7 +24798,7 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "血流成河规则与血战到底基本一致，不同之处是，胡牌后可以继续胡牌和弯杠。\n1、游戏人数:4人\n2、游戏道具:筒条万 共108张\n3、玩家胡牌后，可以继续胡牌。直到牌墙无牌为止。血流胡牌以后，不可以直杠或暗杠，可以弯杠\n4、胡牌时，手牌最多二色，否则不可以胡牌。\n5、流局时查大叫，未叫牌的玩家，要赔偿已叫牌玩家（不含胡牌玩家）最大番数\n6、坐庄规则：上一局最先胡牌的当庄；一炮多响，点炮者当庄；流局，庄家下家当庄。\n",
+    "_N$string": "",
     "_N$horizontalAlign": 0,
     "_N$verticalAlign": 0,
     "_N$fontFamily": "Arial",

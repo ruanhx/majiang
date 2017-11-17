@@ -19,9 +19,9 @@ cd ../../../serverManager/config/schema/
 chmod +x *.sh
 ./createTable.sh
 
-cd ../../../snExchangeServer/config/schema/
-chmod +x *.sh
-./createTable.sh
+#cd ../../../snExchangeServer/config/schema/
+#chmod +x *.sh
+#./createTable.sh
 
 cd ../../../gmServer/config/schema/
 chmod +x *.sh

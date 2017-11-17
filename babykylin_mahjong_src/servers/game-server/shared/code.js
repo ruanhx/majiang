@@ -12,6 +12,8 @@ module.exports = {
         ROOM_IS_NOT_ALL_READY:103,
         ROOM_IS_ROOM_FULL:104,
         CHOOSE_ONLY_ONE:105,
+        // 摇到一对1
+        SHOOT_DOUBLE_ONE:106
     },
 
     CONNECTOR: {

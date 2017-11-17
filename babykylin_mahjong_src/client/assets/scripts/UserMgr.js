@@ -88,7 +88,8 @@ cc.Class({
         // 启动网络连接  
         var acc = account;
         var pwd = "123456";
-        var url = "127.0.0.1";
+        var url = "139.199.179.171";
+        // var url = "127.0.0.1";
         var port = 3014;
         var self = this;
         pomelo.init({

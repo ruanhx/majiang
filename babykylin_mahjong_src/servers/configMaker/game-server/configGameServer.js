@@ -25,7 +25,7 @@ var configure = function()
 	configureServers(  path.join(cfgDir, 'servers.json') ,  path.join(cfgDir, 'servers.json.bak'));
 	configureStateReport(  path.join(cfgDir, 'stateReport.json') ,  path.join(cfgDir, 'stateReport.json.bak') ,  path.join('./../ClientStateReport', 'stateReport.json')  );
 	configureMaster(  path.join(cfgDir, 'master.json') ,  path.join(cfgDir, 'master.json.bak')); 
-	configureSn(  path.join(cfgDir, 'sn.json') ,  path.join(cfgDir, 'sn.json.bak'));
+	//configureSn(  path.join(cfgDir, 'sn.json') ,  path.join(cfgDir, 'sn.json.bak'));
 
 	//创建数据库表 
 	shMysql( path.join(mysqlDir, 'createUser.sh') ,  path.join(mysqlDir, 'createUser.sh.bak') );

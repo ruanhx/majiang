@@ -1,9 +1,18 @@
 {
+  "appKey": "",
+  "appSecret": "",
   "excludeScenes": [],
   "includeAnySDK": false,
+  "includeSDKBox": false,
   "includeSdk": [
     "anysdk"
   ],
+  "inlineSpriteFrames": true,
+  "inlineSpriteFrames_native": true,
+  "md5Cache": false,
+  "mergeStartScene": false,
+  "oauthLoginServer": "",
+  "optimizeHotUpdate": false,
   "orientation": {
     "landscapeLeft": true,
     "landscapeRight": true,
@@ -11,16 +20,9 @@
     "upsideDown": false
   },
   "packageName": "com.babykylin.qpgames",
-  "startScene": "7898c3aa-75db-4523-8b22-e60bf7d83784",
-  "title": "SCMJ",
-  "webOrientation": "landscape",
-  "oauthLoginServer": "",
-  "appKey": "",
-  "appSecret": "",
   "privateKey": "",
   "renderMode": "0",
-  "inlineSpriteFrames": true,
-  "inlineSpriteFrames_native": true,
-  "mergeStartScene": false,
-  "optimizeHotUpdate": false
+  "startScene": "7898c3aa-75db-4523-8b22-e60bf7d83784",
+  "title": "zg",
+  "webOrientation": "landscape"
 }

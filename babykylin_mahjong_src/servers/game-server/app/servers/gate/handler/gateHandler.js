@@ -28,8 +28,8 @@ handler.queryEntry = function (msg, session, next) {
     if (connectors.length === 0) {
         return next(null, {code: Code.GATE.FA_NO_SERVER_AVAILABLE});
     }
-    var index = Math.abs(crc.crc32(uid)) % connectors.length,
-        res = connectors[index];
+    // var index = Math.abs(crc.crc32(parseInt(uid))) % connectors.length,
+    var  res = connectors[0];
 
     next(null, {code: Code.OK, host: res.clientHost ? res.clientHost : res.host, port: res.clientPort});
 };

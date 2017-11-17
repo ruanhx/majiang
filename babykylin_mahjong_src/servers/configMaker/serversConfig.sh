@@ -15,9 +15,9 @@ cd ../game-server
 chmod +x *.sh
 ./do.sh
 
-cd ../snExchangeServer
-chmod +x *.sh
-./do.sh
+#cd ../snExchangeServer
+#chmod +x *.sh
+#./do.sh
 
 cd ../game-admin
 chmod +x *.sh

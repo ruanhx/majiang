@@ -3,7 +3,8 @@
  */
 var _ = require('underscore');
 // var Player = require('./Player');
-var roomMgr = require("./roommgr"),
+var roomMgr = require("./roomMgr"),
+    Code = require('../../../shared/code'),
     logger = require('pomelo-logger').getLogger(__filename);
 // var userMgr = require("./usermgr");
 var games = {};
@@ -193,8 +194,10 @@ pro.shoot = function (seatIndex) {
     // 是否为2个1
     if(totalValue==2){
         this.room.pushAllRoomMember('room.pair', {craps:craps});
+        return next(null,{code:Code.ROOM.SHOOT_DOUBLE_ONE});
     }else {
         this.room.pushAllRoomMember('room.dranks', {dranks: this.thisShootDrank,craps:craps});
+        return next(null,{code:Code.OK});
     }
 
 }

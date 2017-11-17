@@ -157,8 +157,8 @@ pro.zhuoGui = function (msg, session, next) {
     if(!room){
         return next(null,{code:Code.ROOM.ROOM_IS_NOT_EXIST});
     }
-    room.games.shoot(msg.index);
-    return next(null,{code:Code.OK});
+    room.games.shoot(msg.index,next);
+
 };
 
 pro.checkDrank =  function (msg, session, next) {
@@ -184,5 +184,17 @@ pro.chooseDrank = function (msg, session, next) {
     }
 
     room.games.choosePlayerDrank(msg.index);
+    return next(null,{code:Code.OK});
+};
+pro.exitRoom = function (msg, session, next) {
+    var player = area.getPlayer(session.get('playerId'));
+    var room = roomMgr.getInstance().getRoomById(msg.id);
+    // 房间不存在
+    if(!room){
+        return next(null,{code:Code.ROOM.ROOM_IS_NOT_EXIST});
+    }
+
+    room.quitRoom(session.get('playerId'));
+    player.set('roomId',0);
     return next(null,{code:Code.OK});
 }

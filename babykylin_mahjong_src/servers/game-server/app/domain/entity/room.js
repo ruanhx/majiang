@@ -101,7 +101,6 @@ pro.enter = function (playerId, playerName,player) {
         logger.error("getPlayerById:%s,%j",playerId,this.member);
         return;
     }
-    logger.error("enter");
     var index = this.roomIndex.shift();
     this.member.push({memberId: playerId, memberName: playerName, isReady: false,index:index});
     this.roomSave();
@@ -129,11 +128,28 @@ pro.setReady = function (playerId,leave) {
 };
 
 
-
+// 游戏开始
 pro.begin = function () {
     // 全部准备好了
     this.games = new Zhuogui(this);
     this.games.dingGui2();
-}
+};
+
+pro.quitRoom = function (playerId) {
+    var member = this.getRoomMemberById(playerId);
+    if (!member) {
+        logger.error("getPlayerById:%s,%j",playerId,this.member);
+        return;
+    }
+    var index = member.index;
+    this.roomIndex.splice(0,0,index);
+    var memberIndex = _.findIndex(this.member, function (num) {
+        return num.memberId == playerId;
+    });
+    this.member.splice(memberIndex,1);
+    this.roomSave();
+    this.pushAllRoomMember('room.removeMember', {memberId: playerId});
+};
+
 
 module.exports = Room;

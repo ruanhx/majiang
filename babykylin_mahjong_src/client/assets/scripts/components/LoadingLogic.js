@@ -1,7 +1,7 @@
 // Compatible with v1.5.0+
-if (!cc.loader.loadResAll) {
-    cc.loader.loadResAll = cc.loader.loadResDir;
-}
+// if (!cc.loader.loadResAll) {
+//     cc.loader.loadResAll = cc.loader.loadResDir;
+// }
 
 cc.Class({
     extends: cc.Component,
@@ -31,13 +31,13 @@ cc.Class({
         var self = this;
         
         cc.loader.onProgress = function ( completedCount, totalCount,  item ){
-            //console.log("completedCount:" + completedCount + ",totalCount:" + totalCount );
+            console.log("completedCount:" + completedCount + ",totalCount:" + totalCount );
             if(self._isLoading){
-                self._progress = completedCount/totalCount;
+                self._progress = completedCount+" / "+totalCount;
             }
         };
         
-        cc.loader.loadResAll("textures", function (err, assets) {
+        cc.loader.loadResDir("textures", function (err, assets) {
             self.onLoadComplete();
         });      
     },
@@ -54,15 +54,16 @@ cc.Class({
         if(this._stateStr.length == 0){
             return;
         }
-        this.tipLabel.string = this._stateStr + ' ';
-        if(this._isLoading){
-            this.tipLabel.string += Math.floor(this._progress * 100) + "%";   
-        }
-        else{
-            var t = Math.floor(Date.now() / 1000) % 4;
-            for(var i = 0; i < t; ++ i){
-                this.tipLabel.string += '.';
-            }            
-        }
+        this.tipLabel.string = this._stateStr +this._progress;
+        // this.tipLabel.string = this._stateStr + ' ';
+        // if(this._isLoading){
+        //     this.tipLabel.string += Math.floor(this._progress * 100) + "%";   
+        // }
+        // else{
+        //     var t = Math.floor(Date.now() / 1000) % 4;
+        //     for(var i = 0; i < t; ++ i){
+        //         this.tipLabel.string += '.';
+        //     }            
+        // }
     }
 });

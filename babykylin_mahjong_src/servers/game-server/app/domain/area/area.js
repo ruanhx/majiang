@@ -152,7 +152,9 @@ exp.removePlayer = function (playerId) {
         player.leaveTime = setTimeout(function () {
             // player.onLogoff();
             var room = roomMgr.getInstance().getRoomById(player.roomId);
-            room.setReady(playerId,1);
+            if(room){
+                room.setReady(playerId,1);
+            }
             // player.flush(function () {
             //     if (oldSessionId === player.sessionId && oldFrontId === player.frontendId) {
             //         console.log('removePlayer erase player %s.', player.id);

@@ -86,7 +86,8 @@ Handler.prototype.entry = function (msg, session, next) {
                 // exp:0,
                 // coins:100,
                 gems:100,
-                ip:"127.0.0.1",
+                // ip:"127.0.0.1",
+                ip:"139.199.179.171",
                 sex:1});
         }
     });

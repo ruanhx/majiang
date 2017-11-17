@@ -1,0 +1,1 @@
+[2017-11-16 20:52:35.258] [INFO] admin-log - [32m[D:\ProjectTest\majiang\babykylin_mahjong_src\servers\game-server\node_modules\pomelo\lib\master\master.js] [39m{"action":"execute","moduleId":"__console__","method":"clientHandler","msg":{"signal":"stop","ids":[],"clientId":"pomelo_terminal_1510836755203","username":"admin"}}

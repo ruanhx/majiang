@@ -2,9 +2,9 @@
 if [ "$1" = "start" ]; then
 	echo starting all servers...
 	
-	echo starting snExchangeServer...
-	cd snExchangeServer && nohup node app > snExchangeServer.log 2>&1 &
-	echo start snExchangeServer ok-0
+	#echo starting snExchangeServer...
+	#cd snExchangeServer && nohup node app > snExchangeServer.log 2>&1 &
+	#echo start snExchangeServer ok-0
 	
 	echo starting serverManager...
 	cd serverManager && nohup node app > serverManager.log 2>&1 &
@@ -22,9 +22,9 @@ if [ "$1" = "start" ]; then
 	cd update-server && nohup node app > update-server.log 2>&1 &
 	echo start update-server ok-3
 
-    echo starting gmServer...
-    cd gmServer && nohup node app > gmServer.log 2>&1 &
-    echo start gmServer ok-4
+    #echo starting gmServer...
+    #cd gmServer && nohup node app > gmServer.log 2>&1 &
+    #echo start gmServer ok-4
 	
 	echo start all servers ok-5
 elif [ "$1" = "stop" ]; then
