@@ -10,7 +10,6 @@ var sync = require('./plugins/pomelo-sync-plugin-ex'),
     stateReportConfig = require('./config/stateReport'),
     roomMgr = require('./app/domain/area/roomMgr'),
     unregisterFilter = require('./app/servers/area/filter/unregisterFilter'),
-    world = require('./app/domain/world/world'),
     stateReport = require('./app/util/stateReport');
 	expressProxy = require('./app/components/express'),
     dataApi = require('./app/util/dataApi');

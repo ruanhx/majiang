@@ -4,14 +4,12 @@
 
 var logger = require('pomelo-logger').getLogger(__filename);
 
-var world = require('../../../domain/world/world'),
-    Code = require('../../../../shared/code'),
+var Code = require('../../../../shared/code'),
     Consts = require('../../../consts/consts'),
     playerManager = require('../../../domain/world/playerManager'),
     rankListManager = require('../../../domain/world/rankListManager'),
     divisionRankingList = require('../../../domain/world/rankList/divisionRankingList').getModle(),
     starRankingList = require('../../../domain/world/rankList/starRankingList').getModle(),
-    scoreRankingList = require('../../../domain/world/scoreRankingList'),
     powerRankingList = require('../../../domain/world/rankList/powerRankingList').getModle(),
     barrierRankingList = require('../../../domain/world/rankList/barrierRankingList').getModle(),
     barrierScoreRankingList = require('../../../domain/world/rankList/barrierScoreRankingList').getModle();
@@ -135,10 +133,5 @@ pro.sendStarRankAward = function (args, cb) {
  */
 pro.sendPowerRankAward = function (args, cb) {
     powerRankingList.dispatchAwards();
-    return cb(null,Code.OK);
-};
-
-pro.sendEndlessScoreRankAward = function (args, cb) {
-    scoreRankingList.getScoreRankingList().dispatchAwards(Consts.RANKING_TYPE.ENDLESSSCORE);
     return cb(null,Code.OK);
 };

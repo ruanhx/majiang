@@ -20,12 +20,7 @@
 
     ],
     "gate": [
-      {
-        "id": 1,
-        "time": "0 59 23 * * *",
-        "action": "dailySample.sample",
-        "comment": ""
-      }
+
     ]
   },
   "production": {

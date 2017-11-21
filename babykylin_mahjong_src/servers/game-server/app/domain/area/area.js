@@ -6,12 +6,9 @@ var _ = require('underscore');
 
 var Player = require('../entity/player');
 var eventManager = require('../event/eventManager');
-var teamManager = require('./teamManager');
 var roomMgr = require('./roomMgr');
 var logger = require('pomelo-logger').getLogger(__filename);
-var barrierManager = require('./barrierManager');
-var teamTiming = require('./teamTiming'),
-    dataApi = require('../../util/dataApi'),
+var dataApi = require('../../util/dataApi'),
     offlineFightRecordDao = require('../../dao/offlineFightRecordDao'),
     Consts = require('../../consts/consts');
 
@@ -47,12 +44,7 @@ exp.init = function (opts) {
     id = opts.id;
     players = {};
     entities = {};
-    /*初始化队伍管理器*/
-    teamManager.init();
-    /*初始化战斗管理器*/
-    barrierManager.init();
-    /*初始化定时器*/
-    teamTiming.init();
+
 
     var timerId = setInterval(function () {
         if (!dataApi.Shop || !dataApi.Goods) {
@@ -69,12 +61,6 @@ exp.init = function (opts) {
 exp.clear = function () {
     players = {};
     entities = {};
-    /*释放队伍管理器*/
-    teamManager.clear();
-    /*释放战斗管理器*/
-    barrierManager.clear();
-    /*释放定时器*/
-    teamTiming.clear();
 };
 
 /*获取玩家信息*/

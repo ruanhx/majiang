@@ -8,7 +8,6 @@ var pomelo = require('pomelo'),
     _ = require('underscore');
 
 var area = require('../../../domain/area/area'),
-    barrierManager = require('../../../domain/area/barrierManager'),
     Code = require('../../../../shared/code'),
     playerDao = require('../../../dao/playerDao'),
     dataApi = require('../../../util/dataApi'),
@@ -19,10 +18,7 @@ var area = require('../../../domain/area/area'),
     flow = require('../../../consts/flow'),
     publisher = require('../../../domain/activity/publisher'),
     Utils =  require('../../../util/utils'),
-    randBossRecordDao = require('../../../dao/randBossRecordDao'),
-    common = require('../../../util/common'),
-    randBossDao = require('../../../dao/randBossDao'),
-    friendsDao = require('../../../dao/friendsDao');
+    common = require('../../../util/common');
 
 var Handler = function (app) {
     this.app = app;
@@ -161,33 +157,7 @@ function createPlayer(session, allData,isReconnect, next) {
 
 
     // if(isReconnect && isReconnect == 1){//是断线重连的
-    //     //if(true){
-    //     //恢复战斗
-    //     if(allData.offlineFightRecord != null && allData.offlineFightRecord.length > 0){
-    //         var record = allData.offlineFightRecord[0];
-    //         var recordDetail = JSON.parse(record.detail);
-    //         if(record.type == consts.OFFLINE_FIGHT_TYPE.BARRIER) {//关卡战斗
-    //             var barrierData = dataApi.Custom.findById(recordDetail.barrierId);
-    //             var barrier = barrierManager.createBarrier(player, recordDetail.barrierId, barrierData, recordDetail.barrierDropList, recordDetail.activityDropDouble);
-    //             barrier.buyTimeCount = recordDetail.buyTimeCount;
-    //             barrier.reviveCnt = recordDetail.reviveCnt;
-    //         }
-    //         else if(record.type == consts.OFFLINE_FIGHT_TYPE.RANDBOSS){//随机boss
-    //             var randBoss = player.passedBarrierMgr.randBoss;
-    //             if(randBoss){
-    //                 randBoss.enterAtkRandBossTime = recordDetail.enterAtkRandBossTime;
-    //                 randBoss.setWin(recordDetail.winCnt);
-    //             }
-    //         }else if(record.type == consts.OFFLINE_FIGHT_TYPE.ENDLESS){
-    //             player.singleEndlessOccasionId =  recordDetail.singleEndlessOccasionId;
-    //             player.effectBuffIds = recordDetail.effectBuffIds;
-    //             player.singleEndlessFighting = recordDetail.singleEndlessFighting;
-    //             player.singleEndlessReviveCnt = recordDetail.singleEndlessReviveCnt;
-    //             player.singleEndlessCommitted = recordDetail.singleEndlessCommitted;
-    //             player.singleReopenBoxCnt = recordDetail.singleReopenBoxCnt;
-    //             player.occasionManager.add(player.singleEndlessOccasionId);
-    //         }
-    //     }
+
     //
     //     next(null, {code: Code.OK,curPlayer: player.getClientInfo()});
     // }else{

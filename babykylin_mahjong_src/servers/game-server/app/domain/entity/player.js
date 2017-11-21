@@ -18,7 +18,6 @@ var Entity = require('./entity'),
     messageService = require('../messageService'),
     DailyResetManager = require('../../util/dailyResetManager'),
     dropUtils = require('../area/dropUtils'),
-    DataStatisticManager = require('../dataStatistics/dataStatisticManager'),
     Code = require('../../../shared/code'),
     Consts = require('../../consts/consts'),
     FLOW = require('../../consts/flow');

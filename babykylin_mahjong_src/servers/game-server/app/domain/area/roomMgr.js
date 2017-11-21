@@ -2,7 +2,7 @@
  * Created by Administrator on 2017/10/26 0026.
  */
 var roomDao = require('../../dao/roomDao'),
-    Room = require('../entity/room');
+    Room = require('../entity/room'),
     _ = require('underscore');
 
 var roomMgr = function () {

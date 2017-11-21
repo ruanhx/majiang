@@ -1,6 +1,8 @@
 /**
  * Created by Administrator on 2017/10/26 0026.
  */
+var util = require('util');
+
 var EventEmitter = require('events').EventEmitter;
 var _ = require('underscore'),
     logger = require('pomelo-logger').getLogger(__filename),

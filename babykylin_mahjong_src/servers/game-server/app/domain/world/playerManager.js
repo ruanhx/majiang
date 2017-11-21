@@ -8,7 +8,6 @@ var pomelo = require('pomelo'),
     logger = require('pomelo-logger').getLogger(__filename);
 
 var Player = require('./player'),
-    endlessReport = require('./endlessReport'),
     messageService = require('../messageService');
 
 var PlayerManager = function () {
@@ -54,7 +53,6 @@ pro.remove = function (playerId, frontendId, sessionId) {
         delete this.playersById[playerId];
         delete this.playersByUserName[player.username];
         messageService.remove(playerId);
-        endlessReport.get().playerOut(playerId);
         return true;
     }
     return false;

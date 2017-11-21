@@ -4,9 +4,6 @@
 var pomelo = require('pomelo');
 var util = require('util'),
     Consts = require('../../consts/consts'),
-    weekScoreRankingListDao = require('../../dao/weekScoreRankingListDao'),
-    scoreRankingListDao = require('../../dao/scoreRankingListDao'),
-    catchRankingListDao = require('../../dao/catchRankingListDao'),
     playerManager = require('./playerManager'),
     EventEmitter = require('events').EventEmitter,
     rankListDao = require('../../dao/rankListDao');
