@@ -44,7 +44,7 @@ cc.Class({
     login:function(){
         if(cc.sys.os == cc.sys.OS_ANDROID){ 
             jsb.reflection.callStaticMethod(this.ANDROID_API, "Login", "()V");
-        }
+        }  
         else if(cc.sys.os == cc.sys.OS_IOS){
             jsb.reflection.callStaticMethod(this.IOS_API, "login");
         }
