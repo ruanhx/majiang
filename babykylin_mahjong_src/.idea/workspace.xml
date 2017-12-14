@@ -15,16 +15,6 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="mailSync.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/servers/game-server/app/dao/mapping/mailSync.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="8" column="2" lean-forward="false" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="crons.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/servers/game-server/config/crons.json">
           <provider selected="true" editor-type-id="text-editor">
@@ -65,31 +55,43 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="servers.json" pinned="false" current-in-tab="true">
+      <file leaf-file-name="servers.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/servers/game-server/config/servers.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="242">
-              <caret line="32" column="14" lean-forward="true" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="14" />
+              <caret line="32" column="14" lean-forward="false" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="14" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mailDao.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/servers/game-server/app/dao/mailDao.js">
+      <file leaf-file-name="niuniu.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/area/niuniu.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="556">
+              <caret line="46" column="29" lean-forward="true" selection-start-line="46" selection-start-column="29" selection-end-line="46" selection-end-column="29" />
+              <folding>
+                <element signature="e#0#55#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/servers/game-server/test.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="88">
+              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="43" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="offlineFightRecordDao.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/servers/game-server/app/dao/offlineFightRecordDao.js">
+      <file leaf-file-name="dataUtils.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/servers/game-server/app/util/dataUtils.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="550">
-              <caret line="25" column="20" lean-forward="false" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
+            <state relative-caret-position="88">
+              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -126,7 +128,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>world</find>
       <find>friendsDao</find>
       <find>chat</find>
       <find>s</find>
@@ -156,6 +157,7 @@
       <find>updateHero</find>
       <find>scoreRankingListDao</find>
       <find>statisticsDao</find>
+      <find>datau</find>
     </findStrings>
     <dirStrings>
       <dir>D:\ProjectTest\majiang\babykylin_mahjong_src\server</dir>
@@ -164,8 +166,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/client/assets/scripts/netutil/connectorPomelo.js" />
-        <option value="$PROJECT_DIR$/client/assets/scripts/netutil/gatePomelo.js" />
         <option value="$PROJECT_DIR$/client/assets/scripts/components/AppStart.js" />
         <option value="$PROJECT_DIR$/client/assets/scripts/UserMgr.js" />
         <option value="$PROJECT_DIR$/server/game_server/zgRoommgr.js" />
@@ -215,6 +215,8 @@
         <option value="$PROJECT_DIR$/servers/game-server/app/domain/event/eventManager.js" />
         <option value="$PROJECT_DIR$/servers/game-server/config/crons.json" />
         <option value="$PROJECT_DIR$/servers/game-server/app/servers/connector/handler/entryHandler.js" />
+        <option value="$PROJECT_DIR$/servers/game-server/test.js" />
+        <option value="$PROJECT_DIR$/servers/game-server/app/domain/area/niuniu.js" />
       </list>
     </option>
   </component>
@@ -253,8 +255,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -317,7 +319,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="util" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -365,7 +371,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="servers" />
+              <option name="myItemId" value="domain" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -391,79 +397,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="servers" />
+              <option name="myItemId" value="domain" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="gate" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="babykylin_mahjong_src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="babykylin_mahjong_src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="servers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="game-server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="servers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gate" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="handler" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="babykylin_mahjong_src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="babykylin_mahjong_src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="servers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="game-server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="servers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="connector" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="handler" />
+              <option name="myItemId" value="area" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -531,31 +469,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Node.js.game">
-    <configuration default="false" name="app.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="project" path-to-js-file="app.js" application-parameters="--debug=5858" working-dir="$PROJECT_DIR$/server/game_server">
-      <EXTENSION ID="com.jetbrains.nodejs.remote.docker.NodeJSDockerRunConfigurationExtension">
-        <option name="envVars">
-          <list />
-        </option>
-        <option name="extraHosts">
-          <list />
-        </option>
-        <option name="links">
-          <list />
-        </option>
-        <option name="networkDisabled" value="false" />
-        <option name="networkMode" value="bridge" />
-        <option name="portBindings">
-          <list />
-        </option>
-        <option name="publishAllPorts" value="false" />
-        <option name="version" value="1" />
-        <option name="volumeBindings">
-          <list />
-        </option>
-      </EXTENSION>
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Node.js.niuniu.js">
     <configuration default="false" name="serverManager" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="project" path-to-js-file="app.js" working-dir="$PROJECT_DIR$/servers/serverManager">
       <EXTENSION ID="com.jetbrains.nodejs.remote.docker.NodeJSDockerRunConfigurationExtension">
         <option name="envVars">
@@ -578,9 +492,6 @@
           <list />
         </option>
       </EXTENSION>
-      <method />
-    </configuration>
-    <configuration default="false" name="app.js (2)" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="project" path-to-js-file="app.js" working-dir="$PROJECT_DIR$/servers/serverManager">
       <method />
     </configuration>
     <configuration default="false" name="game" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="project" path-to-js-file="app.js" working-dir="$PROJECT_DIR$/servers/game-server">
@@ -629,6 +540,12 @@
           <list />
         </option>
       </EXTENSION>
+      <method />
+    </configuration>
+    <configuration default="false" name="test.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="project" path-to-js-file="test.js" working-dir="$PROJECT_DIR$/servers/game-server">
+      <method />
+    </configuration>
+    <configuration default="false" name="niuniu.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="project" path-to-js-file="niuniu.js" working-dir="$PROJECT_DIR$/servers/game-server/app/domain/area">
       <method />
     </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
@@ -707,19 +624,19 @@
     </configuration>
     <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Node.js Remote Debug.game" />
-      <item index="1" class="java.lang.String" itemvalue="Node.js.app.js" />
-      <item index="2" class="java.lang.String" itemvalue="Node.js.serverManager" />
-      <item index="3" class="java.lang.String" itemvalue="Node.js.app.js (2)" />
-      <item index="4" class="java.lang.String" itemvalue="Node.js.game" />
-      <item index="5" class="java.lang.String" itemvalue="Node.js.authServer" />
+      <item index="1" class="java.lang.String" itemvalue="Node.js.serverManager" />
+      <item index="2" class="java.lang.String" itemvalue="Node.js.game" />
+      <item index="3" class="java.lang.String" itemvalue="Node.js.authServer" />
+      <item index="4" class="java.lang.String" itemvalue="Node.js.test.js" />
+      <item index="5" class="java.lang.String" itemvalue="Node.js.niuniu.js" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Node.js.game" />
-        <item index="1" class="java.lang.String" itemvalue="Node.js.serverManager" />
-        <item index="2" class="java.lang.String" itemvalue="Node.js.authServer" />
-        <item index="3" class="java.lang.String" itemvalue="Node.js.app.js (2)" />
-        <item index="4" class="java.lang.String" itemvalue="Node.js.app.js" />
+        <item index="0" class="java.lang.String" itemvalue="Node.js.niuniu.js" />
+        <item index="1" class="java.lang.String" itemvalue="Node.js.test.js" />
+        <item index="2" class="java.lang.String" itemvalue="Node.js.game" />
+        <item index="3" class="java.lang.String" itemvalue="Node.js.serverManager" />
+        <item index="4" class="java.lang.String" itemvalue="Node.js.authServer" />
       </list>
     </recent_temporary>
   </component>
@@ -767,16 +684,16 @@
       <workItem from="1510830808038" duration="6408000" />
       <workItem from="1511250506751" duration="5223000" />
       <workItem from="1511762492372" duration="5677000" />
-      <workItem from="1512991719823" duration="8848000" />
+      <workItem from="1512991719823" duration="9442000" />
+      <workItem from="1513251329577" duration="3640000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="369603000" />
+    <option name="totallyTimeSpent" value="373837000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1456" height="876" extended-state="1" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1456" height="876" extended-state="0" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30747533" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -821,9 +738,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/servers/game-server/app/dao/mapping/friendPersonSync.js" />
-    <entry file="file://$PROJECT_DIR$/servers/game-server/app/dao/mapping/friendsSync.js" />
-    <entry file="file://$PROJECT_DIR$/servers/game-server/app/dao/mapping/globalEndlessSync.js" />
     <entry file="file://$PROJECT_DIR$/servers/game-server/app/dao/mapping/guidePrizeSync.js" />
     <entry file="file://$PROJECT_DIR$/servers/game-server/app/dao/mapping/hasBuyHeroSync.js" />
     <entry file="file://$PROJECT_DIR$/servers/game-server/app/dao/mapping/heroBagSync.js" />
@@ -973,8 +887,34 @@
     <entry file="file://$PROJECT_DIR$/servers/game-server/config/servers.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
-          <caret line="32" column="14" lean-forward="true" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="14" />
+          <caret line="32" column="14" lean-forward="false" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="14" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/servers/game-server/app/util/dataUtils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/servers/game-server/test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="43" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/servers/game-server/app/domain/area/niuniu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="556">
+          <caret line="46" column="29" lean-forward="true" selection-start-line="46" selection-start-column="29" selection-end-line="46" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#55#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

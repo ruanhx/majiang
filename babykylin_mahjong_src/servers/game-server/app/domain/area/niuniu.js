@@ -1,9 +1,12 @@
 /**
- * Created by Administrator on 2017/10/29.
+ * Created by Administrator on 2017/12/14 0014.
  */
 var _ = require('underscore');
+var exp = module.exports = {};
+
 function getRandom() {
-    return parseInt(2 + (9 - 2 + 1) * Math.random());
+    return _.random(1,10);
+    // return parseInt(2 + (9 - 2 + 1) * Math.random());
 }
 
 function getCards() {
